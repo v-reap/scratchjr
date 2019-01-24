@@ -8,8 +8,8 @@ export function homeMain () {
     homeStrings();
     iOS.getsettings(doNext);
     function doNext (str) {
-        var list = str.split(',');
-        iOS.path = list[1] == '0' ? list[0] + '/' : undefined;
+        // var list = str.split(',');
+        // iOS.path = list[1] == '0' ? list[0] + '/' : undefined;
         Lobby.appinit(window.Settings.scratchJrVersion);
     }
 }

@@ -392,7 +392,7 @@ window.tablet = new ElectronDesktopInterface();
 function loadSettings (settingsRoot, whenDone) {
     IO.requestFromServer(settingsRoot + 'settings.json', (result) => {
         window.Settings = {
-            "edition": "free",
+            "edition": "PBS",
             "scratchJrVersion": "iOSv01",
             "useStoryStarters": false,
             "shareEnabled": true,
