@@ -182,7 +182,7 @@ export default class ScratchJr {
         version = v;
         document.body.scrollTop = 0;
         time = (new Date()) - 0;
-        var urlvars = getUrlVars();
+        var urlvars = getUrlVars();//?pmd5=2&mode=edit test jack
         iOS.hascamera();
         ScratchJr.log('starting the app');
         BlockSpecs.initBlocks();

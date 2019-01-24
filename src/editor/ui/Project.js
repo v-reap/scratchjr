@@ -88,6 +88,8 @@ export default class Project {
 
     static dataRecieved (str) {
         ScratchJr.log('got project metadata', ScratchJr.getTime(), 'sec');
+        //test jack
+        var str =  '{"pages":["page 1"],"currentPage":"page 1","page 1":{"textstartat":84.6,"sprites":["Tic 1","Text 1","仙女 1"],"num":1,"lastSprite":"Tic 1","Tic 1":{"shown":true,"type":"sprite","md5":"Blue.svg","id":"Tic 1","flip":false,"name":"Tic","angle":0,"scale":0.5,"speed":2,"defaultScale":0.5,"sounds":["pop.mp3"],"xcoor":344,"ycoor":180,"cx":75,"cy":126,"w":151,"h":253,"homex":240,"homey":180,"homescale":0.5,"homeshown":true,"homeflip":false,"scripts":[[["onflag","null",195,45],["forward",1,268,45],["forever","null",333,45]]]},"Text 1":{"shown":true,"type":"text","id":"Text 1","speed":2,"cx":137.5,"cy":32,"w":275,"h":64,"xcoor":239,"ycoor":48,"homex":239,"homey":48,"str":"dddddddd","color":"rgb(196, 40, 27)","fontsize":56},"仙女 1":{"shown":true,"type":"sprite","md5":"Fairy.svg","id":"仙女 1","flip":false,"name":"仙女","angle":0,"scale":0.5,"speed":1,"defaultScale":0.5,"sounds":["pop.mp3"],"xcoor":127,"ycoor":198,"cx":117,"cy":160,"w":235,"h":320,"homex":127,"homey":198,"homescale":0.5,"homeshown":true,"homeflip":false,"scripts":[[["same","null",731,53],["hide","null",796,53],["wait",8,861,53],["show","null",926,53]],[["stopmine","null",472,155]],[["back",1,573,153],["hop",2,638,153],["home","null",703,153]],[["onclick","null",203,55],["repeat",4,276,39.400000000000006,[["forward",1,311,55]]],["playsnd","pop.mp3",440,55],["endstack","null",505,55]],[["grow",2,587,23],["shrink",2,652,23]],[["setspeed",0,296,163]]]},"layers":["Tic 1","仙女 1","Text 1"]}}';
         var data = JSON.parse(str)[0];
         metadata = IO.parseProjectData(data);
         mediaCount = -1;
