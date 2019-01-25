@@ -6,7 +6,7 @@ module.exports = {
         app: './src/entry/app.js'
     },
     output: {
-        path: __dirname + '/src/build/bundles',
+        path: __dirname + '/editions/free/src',
         filename: '[name].bundle.js'
     },
     performance: {

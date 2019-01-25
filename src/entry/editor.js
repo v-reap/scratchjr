@@ -6,7 +6,7 @@ import Record from '../editor/ui/Record';
 export function editorMain () {
     iOS.getsettings(doNext);
     function doNext (str) {
-        var list = str.split(',');
+        var list = str ? str.split(',') : '';
         iOS.path = list[1] == '0' ? list[0] + '/' : undefined;
         if (list.length > 2) {
             Record.available = list[2] == 'YES' ? true : false;
