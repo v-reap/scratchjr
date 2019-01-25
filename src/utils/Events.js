@@ -120,13 +120,13 @@ export default class Events {
         updatefcn = atdrag;
         if (isTablet) { // startDrag event setting
             delta = 10 * scaleMultiplier;
-            window.ontouchmove = function (evt) {
+            window.onmousemove = function (evt) {
                 Events.mouseMove(evt);
             };
-            window.ontouchend = function (evt) {
+            window.onmousedown = function (evt) {
                 Events.mouseUp(evt);
             };
-            window.ontouchleave = function (evt) {
+            window.onmouseleave = function (evt) {
                 Events.mouseUp(evt);
             };
             window.ontouchcancel = function (evt) {
@@ -212,8 +212,8 @@ export default class Events {
 
     static clearEvents () {
         if (isTablet) { // clearEvents
-            window.ontouchmove = undefined;
-            window.ontouchend = undefined;
+            window.onmousemove = undefined;
+            window.onmousedown = undefined;
         } else {
             window.onmousemove = function (e) {
                 e.preventDefault();

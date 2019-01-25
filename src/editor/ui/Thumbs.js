@@ -352,7 +352,7 @@ export default class Thumbs {
         img.setAttribute('class', 'unselectable');
         tb.setAttribute('id', 'emptypage');
         if (isTablet) {
-            tb.ontouchstart = function (evt) {
+            tb.onmousedown = function (evt) {
                 Thumbs.clickOnEmptyPage(evt);
             };
         } else {

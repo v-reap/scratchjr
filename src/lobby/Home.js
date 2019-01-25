@@ -23,9 +23,11 @@ export default class Home {
         var inner = newHTML('div', 'inner', frame);
         var div = newHTML('div', 'scrollarea', inner);
         div.setAttribute('id', 'scrollarea');
-        frame.ontouchstart = Home.handleTouchStart;
-        frame.ontouchend = Home.handleTouchEnd;
-        Home.displayYourProjects();
+        frame.onmousedown = Home.handleTouchStart;
+        frame.onmouseup = Home.handleTouchEnd;
+        // Home.displayYourProjects();
+        var str = '[]';
+        this.displayProjects(str);
     }
 
     ////////////////////////////
@@ -50,13 +52,14 @@ export default class Home {
         if ((mytarget != Home.actionTarget) && Home.actionTarget && (Home.actionTarget.childElementCount > 2)) {
             Home.actionTarget.childNodes[Home.actionTarget.childElementCount - 1].style.visibility = 'hidden';
         }
+        console.log(e);
         Home.actionTarget = mytarget;
         Home.initialPt = Events.getTargetPoint(e);
         if (Home.actionTarget) {
             holdit(Home.actionTarget);
         }
         function holdit () {
-            frame.ontouchmove = Home.handleMove;
+            frame.onmousemove = Home.handleMove;
             var repeat = function () {
                 if (Home.actionTarget && (Home.actionTarget.childElementCount > 2)) {
                     Home.actionTarget.childNodes[Home.actionTarget.childElementCount - 1].style.visibility = 'visible';
@@ -105,7 +108,7 @@ export default class Home {
             return;
         }
         if (isTablet) {
-            frame.ontouchmove = undefined;
+            frame.onmousemove = undefined;
         } else {
             frame.onmousemove = undefined;
         }

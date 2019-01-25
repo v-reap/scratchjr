@@ -51,7 +51,7 @@ export default class Scroll {
 
         var me = this;
         if (isTablet) {
-            this.aup.ontouchstart = function (e) {
+            this.aup.onmousedown = function (e) {
                 me.scrolldown(e);
             };
         } else {
@@ -61,7 +61,7 @@ export default class Scroll {
         }
 
         if (isTablet) {
-            this.adown.ontouchstart = function (e) {
+            this.adown.onmousedown = function (e) {
                 me.scrollup(e);
             };
         } else {
@@ -71,7 +71,7 @@ export default class Scroll {
         }
 
         if (isTablet) {
-            this.aleft.ontouchstart = function (e) {
+            this.aleft.onmousedown = function (e) {
                 me.scrollright(e);
             };
         } else {
@@ -81,7 +81,7 @@ export default class Scroll {
         }
 
         if (isTablet) {
-            this.aright.ontouchstart = function (e) {
+            this.aright.onmousedown = function (e) {
                 me.scrollleft(e);
             };
         } else {

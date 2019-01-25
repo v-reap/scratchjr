@@ -236,7 +236,7 @@ export default class Page {
         pq.textContent = this.num;
         newHTML('div', 'deletethumb', tb);
         if (isTablet) {
-            tb.ontouchstart = function (evt) {
+            tb.onmousedown = function (evt) {
                 Thumbs.pageMouseDown(evt);
             };
         } else {

@@ -18,7 +18,7 @@ let frame;
 export default class Samples {
     static init () {
         frame = gn('htmlcontents');
-        gn('tabicon').ontouchstart = Samples.playHowTo;
+        gn('tabicon').onmousedown = Samples.playHowTo;
         var div = newHTML('div', 'samples off', frame);
         div.setAttribute('id', 'samples');
         Samples.display('samples');

@@ -115,8 +115,8 @@ export default class PaintAction {
 
     static clearEvents () {
         currentShape = undefined;
-        window.ontouchmove = undefined;
-        window.ontouchend = undefined;
+        window.onmousemove = undefined;
+        window.onmousedown = undefined;
     }
 
     static stopAction (e) {
@@ -152,10 +152,10 @@ export default class PaintAction {
     }
 
     static setEvents () {
-        window.ontouchmove = function (evt) {
+        window.onmousemove = function (evt) {
             PaintAction.mouseMove(evt);
         };
-        window.ontouchend = function (evt) {
+        window.onmousedown = function (evt) {
             PaintAction.mouseUp(evt);
         };
         window.ontouchcancel = function (evt) {

@@ -4,7 +4,7 @@ let place;
 
 export function gettingStartedMain () {
     gn('closeHelp').onclick = gettingStartedCloseMe;
-    gn('closeHelp').ontouchstart = gettingStartedCloseMe;
+    gn('closeHelp').onmousedown = gettingStartedCloseMe;
     var videoObj = gn('myVideo');
     if (isiOS) {
         // On iOS we can load from server
@@ -20,7 +20,7 @@ export function gettingStartedMain () {
 
     var urlvars = getUrlVars();
     place = urlvars['place'];
-    document.ontouchmove = function (e) {
+    document.onmousemove = function (e) {
         e.preventDefault();
     };
 }

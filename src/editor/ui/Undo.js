@@ -36,7 +36,7 @@ export default class Undo {
         div.setAttribute('id', prefix + key);
         if (fcn) {
             if (isTablet) {
-                div.ontouchstart = function (evt) {
+                div.onmousedown = function (evt) {
                     fcn(evt);
                 };
             } else {

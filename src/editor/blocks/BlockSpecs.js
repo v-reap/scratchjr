@@ -56,7 +56,7 @@ export default class BlockSpecs {
         BlockSpecs.palettes = BlockSpecs.setupPalettesDef();
         BlockSpecs.categories = BlockSpecs.setupCategories();
         if (window.Settings.edition == 'PBS') {
-            BlockSpecs.canvasMask = BlockSpecs.getImageFrom('assets/ui/canvasmask', 'svg');
+            BlockSpecs.canvasMask = BlockSpecs.getImageFrom('assets/ui/canvasmask', 'png');
         } else {
             BlockSpecs.canvasMask = BlockSpecs.getImageFrom('assets/ui/canvasmask');
         }

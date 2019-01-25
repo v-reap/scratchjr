@@ -49,7 +49,7 @@ export default class PaintUndo {
         button.setAttribute('id', prefix + key);
         if (fcn) {
             if (isTablet) {
-                button.ontouchstart = function (evt) {
+                button.onmousedown = function (evt) {
                     fcn(evt);
                 };
             } else {

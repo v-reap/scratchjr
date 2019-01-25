@@ -70,7 +70,7 @@ export default class Menu {
             drawThumbnail(img, micon);
         }
         if (isTablet) {
-            cs.ontouchstart = function (evt) {
+            cs.onmousedown = function (evt) {
                 handleTouchStart(evt);
             };
         } else {

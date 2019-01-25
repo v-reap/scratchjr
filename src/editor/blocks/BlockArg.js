@@ -232,7 +232,7 @@ export default class BlockArg {
         if (!this.daddy.inpalette) {
             var ba = this;
             if (isTablet) {
-                ba.button.ontouchstart = function (evt) {
+                ba.button.onmousedown = function (evt) {
                     ba.pressDropDown(evt, fcn);
                 };
             } else {

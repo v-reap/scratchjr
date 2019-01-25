@@ -28,7 +28,7 @@ export default class Stage {
             position: 'absolute'
         });
         var me = this;
-        this.div.ontouchstart = function (evt) {
+        this.div.onmousedown = function (evt) {
             me.mouseDown(evt);
         };
         this.div.owner = this;
@@ -419,10 +419,10 @@ export default class Stage {
 
     setEvents () {
         var me = this;
-        window.ontouchmove = function (evt) {
+        window.onmousemove = function (evt) {
             me.mouseMove(evt);
         };
-        window.ontouchend = function (evt) {
+        window.onmousedown = function (evt) {
             me.mouseUp(evt);
         };
     }

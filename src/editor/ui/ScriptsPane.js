@@ -41,7 +41,7 @@ export default class ScriptsPane {
         }
         ScratchJr.stage.currentPage.setCurrentSprite(gn(sprname).owner);
         currentsc.owner.activate();
-        currentsc.parentNode.ontouchstart = function (evt) {
+        currentsc.parentNode.onmousedown = function (evt) {
             currentsc.owner.scriptsMouseDown(evt);
         };
         scroll.update();
@@ -268,10 +268,10 @@ export default class ScriptsPane {
 
     static setDragBackgroundEvents (fcnmove, fcnup) {
         if (isTablet) { // setDragBackgroundEvents
-            window.ontouchmove = function (evt) {
+            window.onmousemove = function (evt) {
                 fcnmove(evt);
             };
-            window.ontouchend = function (evt) {
+            window.onmousedown = function (evt) {
                 fcnup(evt);
             };
         } else {

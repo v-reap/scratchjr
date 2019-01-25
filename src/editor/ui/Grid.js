@@ -70,7 +70,7 @@ export default class Grid {
             dy += size;
         }
         if (isTablet) {
-            cnv.ontouchstart = function (evt) {
+            cnv.onmousedown = function (evt) {
                 ScratchJr.stage.mouseDown(evt);
             };
         } else {
@@ -154,7 +154,7 @@ export default class Grid {
             position: 'absolute'
         });
         if (isTablet) {
-            cnv.ontouchstart = function (evt) {
+            cnv.onmousedown = function (evt) {
                 Grid.mouseDownOnCursor(evt);
             };
         } else {
@@ -170,7 +170,7 @@ export default class Grid {
         ctx.strokeRect(3, 3, size - 6, size - 6);
         ctx.fillRect(3, 3, size - 6, size - 6);
         if (isTablet) {
-            gc.ontouchstart = Grid.mouseDownOnCursor;
+            gc.onmousedown = Grid.mouseDownOnCursor;
         } else {
             gc.onmousedown = Grid.mouseDownOnCursor;
         }

@@ -38,7 +38,7 @@ export default class Record {
         var buttons = newHTML('div', 'recordbuttons', actions);
         var okbut = newHTML('div', 'recorddone', buttons);
         if (isTablet) {
-            okbut.ontouchstart = Record.saveSoundAndClose;
+            okbut.onmousedown = Record.saveSoundAndClose;
         } else {
             okbut.onmousedown = Record.saveSoundAndClose;
         }
@@ -90,7 +90,7 @@ export default class Record {
         button.setAttribute('id', prefix + key);
         if (fcn) {
             if (isTablet) {
-                button.ontouchstart = function (evt) {
+                button.onmousedown = function (evt) {
                     fcn(evt);
                 };
             } else {

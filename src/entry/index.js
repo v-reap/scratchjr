@@ -6,8 +6,8 @@ import Localization from '../utils/Localization';
 import AppUsage from '../utils/AppUsage';
 
 export function indexMain () {
-    gn('gettings').ontouchend = indexGettingstarted;
-    gn('startcode').ontouchend = indexGohome;
+    gn('gettings').onmousedown = indexGettingstarted;
+    gn('startcode').onmousedown = indexGohome;
     ScratchAudio.init();
     var urlvars = getUrlVars();
     if (urlvars.back) {
@@ -21,14 +21,14 @@ export function indexMain () {
         gn('startButton').textContent = Localization.localize('PBS_START');
         gn('gettings').textContent = Localization.localize('PBS_HOW_TO');
 
-        gn('startButton').ontouchend = indexGohome;
-        gn('pbschars').ontouchend = indexGohome;
+        gn('startButton').onmousedown = indexGohome;
+        gn('pbschars').onmousedown = indexGohome;
 
-        gn('topbar-moreapps').ontouchstart = indexMoreApps;
-        gn('topbar-settings').ontouchstart = indexGoSettings;
-        gn('topbar-info').ontouchstart = indexInfo;
+        gn('topbar-moreapps').onmousedown = indexMoreApps;
+        gn('topbar-settings').onmousedown = indexGoSettings;
+        gn('topbar-info').onmousedown = indexInfo;
     } else {
-        gn('gear').ontouchstart = indexGoSettings;
+        gn('gear').onmousedown = indexGoSettings;
     }
 
     setTimeout(function () {
@@ -54,7 +54,7 @@ function indexFirstTime () {
         iOS.hidesplash(doit);
     }, 500);
     function doit () {
-        window.ontouchend = function () {
+        window.onmousedown = function () {
             indexLoadOptions();
         };
     }
@@ -97,7 +97,7 @@ function indexLoadStart (afterUsage) {
     }
     gn('gettings').className = 'gettings show';
     gn('startcode').className = 'startcode show';
-    document.ontouchmove = function (e) {
+    document.onmousemove = function (e) {
         e.preventDefault();
     };
     if (isAndroid) {
@@ -125,10 +125,10 @@ function indexLoadUsage () {
     gn('usageHome').className = 'usageHome show';
     gn('usageOther').className = 'usageOther show';
     gn('usageNoanswer').className = 'usageNoanswer show';
-    gn('usageSchool').ontouchend = indexSetUsage;
-    gn('usageHome').ontouchend = indexSetUsage;
-    gn('usageOther').ontouchend = indexSetUsage;
-    gn('usageNoanswer').ontouchend = indexSetUsage;
+    gn('usageSchool').onmousedown = indexSetUsage;
+    gn('usageHome').onmousedown = indexSetUsage;
+    gn('usageOther').onmousedown = indexSetUsage;
+    gn('usageNoanswer').onmousedown = indexSetUsage;
 }
 
 function indexGohome () {

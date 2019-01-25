@@ -4,12 +4,12 @@ import iOS from '../iPad/iOS';
 import Lobby from '../lobby/Lobby';
 
 export function homeMain () {
-    gn('logotab').ontouchend = homeGoBack;
+    gn('logotab').onmousedown = homeGoBack;
     homeStrings();
     iOS.getsettings(doNext);
     function doNext (str) {
-        var list = str.split(',');
-        iOS.path = list[1] == '0' ? list[0] + '/' : undefined;
+        // var list = str.split(',');
+        // iOS.path = list[1] == '0' ? list[0] + '/' : undefined;
         Lobby.appinit(window.Settings.scratchJrVersion);
     }
 }

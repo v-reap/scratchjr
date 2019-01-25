@@ -183,7 +183,7 @@ export default class Paint {
         } else {
             Paint.initSprite(sw, sh);
         }
-        window.ontouchstart = Paint.detectGesture;
+        window.onmousedown = Paint.detectGesture;
         window.ondevicemotion = undefined;
 
         // Set the back button callback
@@ -223,8 +223,8 @@ export default class Paint {
     }
 
     static clearEvents (e) {
-        window.ontouchmove = undefined;
-        window.ontouchend = undefined;
+        window.onmousemove = undefined;
+        window.onmousedown = undefined;
         if (PaintAction.currentshape) {
             PaintAction.stopAction(e);
         }
@@ -245,10 +245,10 @@ export default class Paint {
         }
         Ghost.clearLayer();
         initialPoint = PaintAction.getScreenPt(e);
-        window.ontouchmove = function (evt) {
+        window.onmousemove = function (evt) {
             Paint.dragBackground(evt);
         };
-        window.ontouchend = function () {
+        window.onmousedown = function () {
             Paint.bounceBack();
             Paint.setCanvasTransform(currentZoom);
             PaintAction.clearEvents();
@@ -261,13 +261,13 @@ export default class Paint {
         if (PaintAction.currentshape) {
             return;
         }
-        window.ontouchmove = function () {
+        window.onmousemove = function () {
             Paint.gestureStart(e);
         };
     }
 
     static gestureStart (e) {
-        window.ontouchmove = undefined;
+        window.onmousemove = undefined;
         var skipmodes = ['path', 'ellipse', 'rect'];
         if (skipmodes.indexOf(mode) > -1) {
             if (PaintAction.currentshape && PaintAction.currentshape.parentNode) {
@@ -280,8 +280,8 @@ export default class Paint {
         initialPoint = PaintAction.zoomPt(Events.pinchcenter);
         Events.clearEvents();
         Events.clearDragAndDrop();
-        window.ontouchmove = Paint.gestureChange;
-        window.ontouchend = Paint.gestureEnd;
+        window.onmousemove = Paint.gestureChange;
+        window.onmousedown = Paint.gestureEnd;
     }
 
     static gestureChange (e) {
@@ -303,8 +303,8 @@ export default class Paint {
 
     static gestureEnd (e) {
         e.preventDefault();
-        window.ontouchmove = undefined;
-        window.ontouchend = undefined;
+        window.onmousemove = undefined;
+        window.onmousedown = undefined;
         var scale = Math.min(maxZoom, Events.scaleStartsAt * Events.zoomScale(e));
         scale = Math.max(minZoom, scale);
         Paint.updateZoomScale(scale);
@@ -324,7 +324,7 @@ export default class Paint {
     }
 
     static mouseDown (e) {
-        if ((isTablet && e.target.ontouchstart) || e.target.ontouchstart) {
+        if ((isTablet && e.target.onmousedown) || e.target.onmousedown) {
             return;
         }
         var pt = Events.getTargetPoint(e);
@@ -344,8 +344,8 @@ export default class Paint {
         paintFrame.className = 'paintframe disappear';
         frame.style.display = 'block';
         ScratchJr.editorEvents();
-        window.ontouchmove = undefined;
-        window.ontouchend = undefined;
+        window.onmousemove = undefined;
+        window.onmousedown = undefined;
         window.onmousemove = undefined;
         Alert.close();
         Paint.clearWorkspace();
@@ -584,7 +584,7 @@ export default class Paint {
         var clicky = newHTML('div', 'paintdone', pt);
         clicky.id = 'donecheck';
         if (isTablet) {
-            clicky.ontouchstart = Paint.backToProject;
+            clicky.onmousedown = Paint.backToProject;
         } else {
             clicky.onmousedown = Paint.backToProject;
         }
@@ -599,7 +599,7 @@ export default class Paint {
         ti.name = 'name';
         ti.maxLength = 25;
         ti.firstTime = true;
-        ti.ontouchstart = () => {};
+        ti.onmousedown = () => {};
         ti.onfocus = Paint.nameFocus;
         ti.onblur = Paint.nameBlur;
         ti.onkeypress = Paint.handleNamePress;
@@ -689,7 +689,7 @@ export default class Paint {
             var icon = newHTML('div', 'tool ' + list[i] + ' off', but);
             icon.setAttribute('key', list[i]);
             if (isTablet) {
-                icon.ontouchstart = Paint.setMode;
+                icon.onmousedown = Paint.setMode;
             } else {
                 icon.onmousedown = Paint.setMode;
             }
@@ -702,7 +702,7 @@ export default class Paint {
         for (var i = 0; i < pensizes.length; i++) {
             var ps = newHTML('div', 'pensizeholder', section);
             ps.key = i;
-            ps.ontouchstart = function (e) {
+            ps.onmousedown = function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 var n = Number(this.key);
@@ -767,7 +767,7 @@ export default class Paint {
             var but = newHTML('div', 'element off', pal);
             var icon = newHTML('div', 'tool ' + list[i] + ' off', but);
             icon.setAttribute('key', list[i]);
-            icon.ontouchstart = Paint.setMode;
+            icon.onmousedown = Paint.setMode;
         }
     }
 
@@ -787,16 +787,16 @@ export default class Paint {
             fc.style.display = 'none';
         }
 
-        fc.ontouchstart = Paint.setMode;
+        fc.onmousedown = Paint.setMode;
         var captureContainer = newHTML('div', 'snapshot-container', gn('backdrop'));
         captureContainer.setAttribute('id', 'capture-container');
         var capture = newHTML('div', 'snapshot', captureContainer);
         capture.setAttribute('id', 'capture');
         capture.setAttribute('key', 'camerasnap');
-        capture.ontouchstart = Paint.setMode;
+        capture.onmousedown = Paint.setMode;
         var cc = newHTML('div', 'cameraclose', topbar);
         cc.setAttribute('id', 'cameraclose');
-        cc.ontouchstart = Paint.closeCameraMode;
+        cc.onmousedown = Paint.closeCameraMode;
     }
 
     static closeCameraMode () {
@@ -870,7 +870,7 @@ export default class Paint {
             sf = newHTML('div', 'splasharea off', colour);
             Paint.setSplashColor(sf, splash, swatchlist[i]);
             Paint.addImageUrl(sf, splashshade);
-            colour.ontouchstart = Paint.selectSwatch;
+            colour.onmousedown = Paint.selectSwatch;
         }
         Paint.setSwatchColor(gn('swatches').childNodes[swatchlist.indexOf('#1C1C1C')]);
     }
