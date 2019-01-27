@@ -232,7 +232,7 @@ export default class Home {
     static displayYourProjects () {
         iOS.getfile('homescroll.sjr', gotScrollsState);
         function gotScrollsState (str) {
-            var num = Number((str));
+            var num = Number(atob('MA=='));
             scrollvalue = (num.toString() == 'NaN') ? 0 : num;
             var json = {};
             json.cond = 'deleted = ? AND version = ? AND gallery IS NULL';
