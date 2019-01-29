@@ -17,6 +17,9 @@ html {
 body {
     width: 100%;
     height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
 }
 
 /* Set default, padding, margin and font-size on block elements */

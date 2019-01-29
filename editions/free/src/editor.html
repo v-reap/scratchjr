@@ -10,13 +10,20 @@
 
 <script>
     window.scratchJrPage = 'editor';
+    const isMiniProgram = window.__wxjs_environment === 'miniprogram';
+    if (isMiniProgram){
+        document.body.addEventListener('touchmove', function (e) {
+            e.preventDefault(); //阻止默认的处理方式(阻止下拉滑动的效果) 
+        }, {passive: false}); //passive 参数不能省略，用来兼容ios和android
+    }
 </script>
 <script type="text/javascript" src="app.bundle.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+
 </head>
 <body style="background: white;">
-<div class="frame" id="frame"></div>
-<div class="libframe" id="libframe"></div>
-<div class="paintframe" id="paintframe"></div>
-
+    <div class="frame" id="frame"></div>
+    <div class="libframe" id="libframe"></div>
+    <div class="paintframe" id="paintframe"></div>
 </body>
 </html>

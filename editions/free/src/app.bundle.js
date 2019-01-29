@@ -19433,7 +19433,7 @@ var dragginLayer = 7000;
 var currentProject = undefined;
 var editmode = void 0;
 
-var isDebugging = false;
+var isDebugging = true;
 var time = void 0;
 var userStart = false;
 var onHold = false;
@@ -31489,9 +31489,9 @@ var UI = function () {
         value: function topSection() {
             var div = (0, _lib.newHTML)('div', 'topsection', _lib.frame);
             div.setAttribute('id', 'topsection');
-            if (_ScratchJr2.default.isEditable()) {
-                UI.addProjectInfo();
-            }
+            // if (ScratchJr.isEditable()) {
+            //     UI.addProjectInfo();
+            // }
             UI.leftPanel(div);
             UI.stageArea(div);
             UI.rightPanel(div);
@@ -33364,8 +33364,38 @@ var ElectronDesktopInterface = function () {
             //https://medium.com/@Jeff_Duke_io/working-with-html5-audio-in-electron-645b2d2202bd
 
             try {
+                var autoPlayMusic = function autoPlayMusic() {
+                    // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+                    function musicInBrowserHandler() {
+                        _musicPlay(true);
+                        document.body.removeEventListener('touchstart', musicInBrowserHandler);
+                    }
+                    document.body.addEventListener('touchstart', musicInBrowserHandler);
+
+                    // 自动播放音乐效果，解决微信自动播放问题
+                    function musicInWeixinHandler() {
+                        _musicPlay(true);
+                        document.addEventListener("WeixinJSBridgeReady", function () {
+                            _musicPlay(true);
+                        }, false);
+                        document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+                    }
+                    document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+                };
+
+                var _musicPlay = function _musicPlay(isPlay) {
+                    var media = audioElement;
+                    if (isPlay && media.paused) {
+                        media.play();
+                    }
+                    if (!isPlay && !media.paused) {
+                        media.pause();
+                    }
+                };
+
                 var playPromise = audioElement.play();
 
+                autoPlayMusic();
                 // In browsers that don’t yet support this functionality,
                 // playPromise won’t be defined.
                 if (playPromise !== undefined) {

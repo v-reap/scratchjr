@@ -12,7 +12,6 @@ import {gettingStartedMain} from './gettingstarted';
 import {inappInterfaceGuide, inappAbout, inappBlocksGuide, inappPaintEditorGuide} from './inapp';
 
 
-
 const DEBUG = true;//  remote.getCurrentWebContents().browserWindowOptions.isDebug;  // grab the DEBUG variable from main. This is passed through the BrowserWindow creation
 const DEBUG_FILEIO =  DEBUG && true;       // saving and loading user files
 const DEBUG_RESOURCEIO = DEBUG && true;  // files from the application directory
@@ -211,7 +210,34 @@ class ElectronDesktopInterface {
 
         try {
             let playPromise = audioElement.play();
-
+            function autoPlayMusic() {
+                // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+                function musicInBrowserHandler() {
+                    musicPlay(true);
+                    document.body.removeEventListener('touchstart', musicInBrowserHandler);
+                }
+                document.body.addEventListener('touchstart', musicInBrowserHandler);
+            
+                // 自动播放音乐效果，解决微信自动播放问题
+                function musicInWeixinHandler() {
+                    musicPlay(true);
+                    document.addEventListener("WeixinJSBridgeReady", function () {
+                        musicPlay(true);
+                    }, false);
+                    document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+                }
+                document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }
+            function musicPlay(isPlay) {
+                var media = audioElement    ;
+                if (isPlay && media.paused) {
+                    media.play();
+                }
+                if (!isPlay && !media.paused) {
+                    media.pause();
+                }
+            }
+            autoPlayMusic();
             // In browsers that don’t yet support this functionality,
             // playPromise won’t be defined.
             if (playPromise !== undefined) {
@@ -1026,3 +1052,4 @@ window.onload = () => {
         AppUsage.initUsage();
     });
 };
+

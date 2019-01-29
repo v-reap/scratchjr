@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>微信录音</title>
+	<link href="./img/loadingty.png" rel="shortcut icon">
+</head>
+<body>
+	<!-- <a href="javascript:void(0);" id="startRecord">点击录音</a> -->
+	<input type="button" value="点击录音" id="startRecord" onclick="testa()">
+	<input type="button" value="停止录音" id="stopRecord" onclick="console.log('tetasfd')">
+	<input type="button" value="播放音频" id="playVoice">
+	<input type="button" value="暂停播放" id="pauseVoice">
+	<input type="button" value="停止播放" id="stopVoice">
+	<input type="button" value="上传语音" id="uploadVoice">
+
+	<input type="button" value="跳转页面" id="btn">
+
+	<script	src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+    <script type="text/javascript">
+        function testa(){
+            var a = new window.Audio('/sounds/pop.mp3');
+            play = function(){
+                a.play();
+                document.removeEventListener("touchstart",play, false);
+            };
+            document.addEventListener("WeixinJSBridgeReady", function () {//微信
+                play();
+            }, false);
+            document.addEventListener("touchstart",play, false);
+            console.log(111);
+        }
+        // $(function () {
+        //    //小程序发送信息
+        //     wx.miniProgram.getEnv(function (res) {
+        //         if (res.miniprogram) {
+        //             var info = {
+        //                 wboid: '1234555555',//参数一
+        //                 wid: '78945454545',//参数二
+        //             };
+        //             var json = JSON.stringify(info);
+        //             wx.miniProgram.postMessage({ data: json });
+    
+        //             //这种跳转方式是跳转到小程序指定页面 并携带此参数
+        //            // wx.miniProgram.reLaunch({ url: '../../pages/pay/pay?json=' + json });
+        //         }
+        //     });
+        // });
+        // const recorderManager = wx.getRecorderManager()
+
+        // recorderManager.onStart(() => {
+        // console.log('recorder start')
+        // })
+        // recorderManager.onPause(() => {
+        // console.log('recorder pause')
+        // })
+        // recorderManager.onStop((res) => {
+        // console.log('recorder stop', res)
+        // const {tempFilePath} = res
+        // })
+        // recorderManager.onFrameRecorded((res) => {
+        // const {frameBuffer} = res
+        // console.log('frameBuffer.byteLength', frameBuffer.byteLength)
+        // })
+
+        // const options = {
+        // duration: 10000,
+        // sampleRate: 44100,
+        // numberOfChannels: 1,
+        // encodeBitRate: 192000,
+        // format: 'aac',
+        // frameSize: 50
+        // }
+
+        // recorderManager.start(options)
+	</script>
+	</body>
+</html>

@@ -75,9 +75,9 @@ export default class UI {
     static topSection () {
         var div = newHTML('div', 'topsection', frame);
         div.setAttribute('id', 'topsection');
-        if (ScratchJr.isEditable()) {
-            UI.addProjectInfo();
-        }
+        // if (ScratchJr.isEditable()) {
+        //     UI.addProjectInfo();
+        // }
         UI.leftPanel(div);
         UI.stageArea(div);
         UI.rightPanel(div);
