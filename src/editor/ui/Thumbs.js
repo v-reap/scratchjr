@@ -103,7 +103,7 @@ export default class Thumbs {
     static prepareToDragPage (e) {
         e.preventDefault();
         e.stopPropagation();
-        ScratchAudio.sndFX('grab.wav');
+        ScratchAudio.sndFX('grab.mp3');
         var pt = Events.getTargetPoint(e);
         Events.dragmousex = pt.x;
         Events.dragmousey = pt.y;
@@ -236,7 +236,7 @@ export default class Thumbs {
     static repositionThumb (thumb, dy) {
         var pos = Thumbs.getPagePos(dy);
         if (pos != thumb.pos) {
-            ScratchAudio.sndFX('snap.wav');
+            ScratchAudio.sndFX('snap.mp3');
         }
         var myprev = thumb.prev;
         var mynext = thumb.next;
@@ -367,7 +367,7 @@ export default class Thumbs {
         if (isTablet && e.touches && (e.touches.length > 1)) {
             return;
         }
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         e.preventDefault();
         ScratchJr.stage.currentPage.div.style.visibility = 'hidden';
         ScratchJr.stage.currentPage.setPageSprites('hidden');
@@ -518,7 +518,7 @@ export default class Thumbs {
     static prepareToDrag (e) {
         e.preventDefault();
         e.stopPropagation();
-        ScratchAudio.sndFX('grab.wav');
+        ScratchAudio.sndFX('grab.mp3');
         var pt = Events.getTargetPoint(e);
         Events.dragmousex = pt.x;
         Events.dragmousey = pt.y;

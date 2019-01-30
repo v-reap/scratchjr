@@ -19937,7 +19937,7 @@ var ScratchJr = function () {
             div = sc.parentNode;
             var w = div.offsetWidth;
             var h = div.offsetHeight;
-            var dx = pt.x + 480 * _lib.scaleMultiplier > w ? w - 486 * _lib.scaleMultiplier : pt.x - 6 * _lib.scaleMultiplier;
+            var dx = pt.x + tmwidth * _lib.scaleMultiplier > w ? w - 486 * _lib.scaleMultiplier : pt.x - 6 * _lib.scaleMultiplier;
             var ti = document.forms.editable.field;
             ti.style.textAlign = 'center';
             document.forms.editable.style.left = dx + 'px';
@@ -20090,7 +20090,7 @@ var ScratchJr = function () {
                 t = t.parentNode;
             }
             if (t.className != 'onekey space') {
-                _ScratchAudio2.default.sndFX('keydown.wav');
+                _ScratchAudio2.default.sndFX('keydown.mp3');
             }
             var c = t.textContent;
             var input = activeFocus.input;
@@ -20106,7 +20106,7 @@ var ScratchJr = function () {
                 val = '0';
             }
             if (c == '-' && val != '0') {
-                _ScratchAudio2.default.sndFX('boing.wav');
+                _ScratchAudio2.default.sndFX('boing.mp3');
                 return;
             }
             if (val == '0') {
@@ -20115,7 +20115,7 @@ var ScratchJr = function () {
                 val += c;
             }
             if (Number(val).toString() != 'NaN' && (Number(val) > 99 || Number(val) < -99)) {
-                _ScratchAudio2.default.sndFX('boing.wav');
+                _ScratchAudio2.default.sndFX('boing.mp3');
             } else {
                 activeFocus.setValue(val);
             }
@@ -20250,7 +20250,7 @@ var ScratchJr = function () {
     }, {
         key: 'saveProjectState',
         value: function saveProjectState() {
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             if (_lib.frame.style.display == 'none') {
                 _Paint2.default.saveEditState(ScratchJr.stopServer);
             } else {
@@ -21455,7 +21455,7 @@ var BlockArg = function () {
                 var imgh = img.naturalHeight ? img.naturalHeight : img.height;
                 ctx.drawImage(img, 0, 0, imgw, imgh, 0, 0, w, h);
             }
-            var scale = w / 480;
+            var scale = w / tmwidth;
             for (var i = 0; i < page.div.childElementCount; i++) {
                 var spr = page.div.childNodes[i].owner;
                 if (!spr) {
@@ -22022,7 +22022,7 @@ var Page = function () {
         _classCallCheck(this, Page);
 
         var container = _ScratchJr2.default.stage.pagesdiv;
-        this.div = (0, _lib.newHTML)('div', 'stagepage', container); // newDiv(container,0,0, 480, 360, {position: 'absolute'});
+        this.div = (0, _lib.newHTML)('div', 'stagepage', container); // newDiv(container,0,0, tmwidth, 360, {position: 'absolute'});
         this.div.owner = this;
         this.id = id;
         this.textstartat = 36;
@@ -22030,7 +22030,7 @@ var Page = function () {
         _ScratchJr2.default.stage.currentPage = this;
         this.num = data ? data.num : _ScratchJr2.default.stage.pages.length + 1;
         this.sprites = JSON.stringify([]);
-        this.bkg = (0, _lib.newDiv)(this.div, 0, 0, 480, 360, {
+        this.bkg = (0, _lib.newDiv)(this.div, 0, 0, tmwidth, 360, {
             position: 'absolute',
             background: _ScratchJr2.default.stagecolor
         });
@@ -22295,7 +22295,7 @@ var Page = function () {
                 var imgh = img.naturalHeight ? img.naturalHeight : img.height;
                 ctx.drawImage(img, 0, 0, imgw, imgh, 0, 0, w, h);
             }
-            var scale = w / 480;
+            var scale = w / tmwidth;
             for (var i = 0; i < this.div.childElementCount; i++) {
                 var spr = this.div.childNodes[i].owner;
                 if (!spr) {
@@ -23895,8 +23895,8 @@ var Sprite = function () {
             if (!this.shown) {
                 return false;
             }
-            (0, _lib.setCanvasSize)(_ScratchJr2.default.workingCanvas, 480, 360);
-            (0, _lib.setCanvasSize)(_ScratchJr2.default.workingCanvas2, 480, 360);
+            (0, _lib.setCanvasSize)(_ScratchJr2.default.workingCanvas, tmwidth, 360);
+            (0, _lib.setCanvasSize)(_ScratchJr2.default.workingCanvas2, tmwidth, 360);
             var page = this.div.parentNode;
             var box = this.getBoxWithEffects(); // box with effects is a scale  and 1.5 times to count for rotations
             for (var i = 0; i < page.childElementCount; i++) {
@@ -23931,8 +23931,8 @@ var Sprite = function () {
         value: function verifyHit(other) {
             var ctx = _ScratchJr2.default.workingCanvas.getContext('2d');
             var ctx2 = _ScratchJr2.default.workingCanvas2.getContext('2d');
-            ctx.clearRect(0, 0, 480, 360);
-            ctx2.clearRect(0, 0, 480, 360);
+            ctx.clearRect(0, 0, tmwidth, 360);
+            ctx2.clearRect(0, 0, tmwidth, 360);
             var box = this.getBoxWithEffects();
             var box2 = other.getBoxWithEffects();
             var rect = box.intersection(box2);
@@ -24013,13 +24013,13 @@ var Sprite = function () {
         key: 'wrapChar',
         value: function wrapChar() {
             if (this.xcoor < 0) {
-                this.xcoor = 480 + this.xcoor;
+                this.xcoor = tmwidth + this.xcoor;
             }
             if (this.ycoor < 0) {
                 this.ycoor = 360 + this.ycoor;
             }
-            if (this.xcoor >= 480) {
-                this.xcoor = this.xcoor - 480;
+            if (this.xcoor >= tmwidth) {
+                this.xcoor = this.xcoor - tmwidth;
             }
             if (this.ycoor >= 360) {
                 this.ycoor = this.ycoor - 360;
@@ -24028,8 +24028,8 @@ var Sprite = function () {
     }, {
         key: 'wrapText',
         value: function wrapText() {
-            var max = this.cx > 480 ? this.cx : 480;
-            var min = this.cx > 480 ? 480 - this.cx : 0;
+            var max = this.cx > tmwidth ? this.cx : tmwidth;
+            var min = this.cx > tmwidth ? tmwidth - this.cx : 0;
             if (this.xcoor < min) {
                 this.xcoor = max + this.xcoor;
             }
@@ -24256,7 +24256,7 @@ var Sprite = function () {
             w += 10;
             w = Math.round(w);
             var offset = this.screenLeft() + this.div.offsetWidth * this.scale / 2 - w / 2;
-            var dx = offset < 0 ? 0 : offset + w > 480 ? 478 - w : offset;
+            var dx = offset < 0 ? 0 : offset + w > tmwidth ? 478 - w : offset;
             dx = Math.round(dx);
             h = p.offsetHeight + curve * 2 + 7;
             (0, _lib.setCanvasSize)(this.balloon, w, h);
@@ -24285,7 +24285,7 @@ var Sprite = function () {
             var h = this.balloon.offsetHeight;
             var dy = this.screenTop();
             var offset = this.screenLeft() + this.div.offsetWidth * this.scale / 2 - w / 2;
-            var dx = offset < 0 ? 0 : offset + w > 480 ? 478 - w : offset;
+            var dx = offset < 0 ? 0 : offset + w > tmwidth ? 478 - w : offset;
             dx = Math.round(dx);
             dy -= h;
             if (dy < 2) {
@@ -24935,11 +24935,11 @@ var Stage = function () {
         this.div = (0, _lib.newHTML)('div', 'stage', div);
         this.div.setAttribute('id', 'stage');
         this.div.style.webkitTextSizeAdjust = '100%';
-        this.width = 480;
+        this.width = tmwidth;
         this.height = 360;
         this.setStageScaleAndPosition(_lib.scaleMultiplier, 46, 74);
         this.pages = [];
-        this.pagesdiv = (0, _lib.newDiv)(this.div, 0, 0, 480, 360, {
+        this.pagesdiv = (0, _lib.newDiv)(this.div, 0, 0, tmwidth, 360, {
             position: 'absolute'
         });
         var me = this;
@@ -25077,7 +25077,7 @@ var Stage = function () {
     }, {
         key: 'copySprite',
         value: function copySprite(el, thumb) {
-            _ScratchAudio2.default.sndFX('copy.wav');
+            _ScratchAudio2.default.sndFX('copy.mp3');
             _Thumbs2.default.overpage(thumb);
             var data = _Project2.default.encodeSprite(el.owner);
             if ((0, _lib.gn)(thumb.owner).owner == this.currentPage) {
@@ -25143,7 +25143,7 @@ var Stage = function () {
             this.removePageBlocks(str);
             this.pages.splice(indx, 1);
             if (!data) {
-                _ScratchAudio2.default.sndFX('cut.wav');
+                _ScratchAudio2.default.sndFX('cut.mp3');
             }
             this.removePage(page);
             if (this.pages.length == 0) {
@@ -25240,14 +25240,14 @@ var Stage = function () {
                 return;
             }
             var pt = this.getStagePt(e);
-            (0, _lib.setCanvasSize)(_ScratchJr2.default.workingCanvas, 480, 360);
+            (0, _lib.setCanvasSize)(_ScratchJr2.default.workingCanvas, tmwidth, 360);
             var ctx = _ScratchJr2.default.workingCanvas.getContext('2d');
             var target = e.target.nodeName == 'CANVAS' ? this.checkShaking(pt, e.target) : e.target;
             if (_ScratchJr2.default.shaking && target.id == 'deletesprite') {
                 this.removeSprite(_ScratchJr2.default.shaking.owner);
                 return;
             }
-            ctx.clearRect(0, 0, 480, 360);
+            ctx.clearRect(0, 0, tmwidth, 360);
             var hitobj = this.whoIsIt(ctx, pt);
             if (_ScratchJr2.default.shaking && hitobj && hitobj.id == _ScratchJr2.default.shaking.id) {
                 // check grid case
@@ -25314,7 +25314,7 @@ var Stage = function () {
                 }
             }
             var fuzzy = 5;
-            ctx.clearRect(0, 0, 480, 360);
+            ctx.clearRect(0, 0, tmwidth, 360);
             for (var j = page.childElementCount - 1; j > -1; j--) {
                 spr = page.childNodes[j].owner;
                 if (!spr) {
@@ -25440,7 +25440,7 @@ var Stage = function () {
             if (delta.y + spr.ycoor < 0) {
                 delta.y -= spr.ycoor + delta.y;
             }
-            if (delta.x + spr.xcoor >= 480) {
+            if (delta.x + spr.xcoor >= tmwidth) {
                 delta.x += 479 - (spr.xcoor + delta.x);
             }
             if (delta.y + spr.ycoor >= 360) {
@@ -25451,8 +25451,8 @@ var Stage = function () {
     }, {
         key: 'wrapText',
         value: function wrapText(spr, delta) {
-            var max = spr.cx > 480 ? spr.cx : 480;
-            var min = spr.cx > 480 ? 480 - spr.cx : 0;
+            var max = spr.cx > tmwidth ? spr.cx : tmwidth;
+            var min = spr.cx > tmwidth ? tmwidth - spr.cx : 0;
             if (delta.x + spr.xcoor <= min) {
                 delta.x -= spr.xcoor + delta.x - min;
             }
@@ -25515,7 +25515,7 @@ var Stage = function () {
         value: function removeSprite(sprite) {
             _ScratchJr2.default.shaking = undefined;
             _ScratchJr2.default.stopShaking = undefined;
-            _ScratchAudio2.default.sndFX('cut.wav');
+            _ScratchAudio2.default.sndFX('cut.mp3');
             if (sprite.type == 'text') {
                 sprite.deleteText(true);
             } else {
@@ -25558,7 +25558,7 @@ var Stage = function () {
             }
             var th = spr.thumbnail;
             var sprite = _ScratchJr2.default.getSprite();
-            _ScratchAudio2.default.sndFX('cut.wav');
+            _ScratchAudio2.default.sndFX('cut.mp3');
             list.splice(n, 1);
             spr.div.parentNode.removeChild(spr.div);
             if (sc) {
@@ -25645,7 +25645,8 @@ var Stage = function () {
         key: 'sd',
         value: function sd() {
             var stg = (0, _lib.gn)('stage');
-            var mask = (0, _lib.newDiv)((0, _lib.gn)('stageframe'), stg.offsetLeft + 1, stg.offsetTop + 1, 482, 362, {
+            var width = tmwidth + 2;
+            var mask = (0, _lib.newDiv)((0, _lib.gn)('stageframe'), stg.offsetLeft + 1, stg.offsetTop + 1, width, 362, {
                 position: 'absolute',
                 zIndex: _ScratchJr2.default.layerTop + 20,
                 visibility: 'hidden'
@@ -26050,7 +26051,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var width = 482;
+var width = tmwidth;
 var height = 362;
 var size = 24;
 var hidden = true;
@@ -26096,7 +26097,7 @@ var Grid = function () {
             ctx.lineWidth = 1;
             var dx = size;
             // vertical
-            for (var i = 0; i < 480 / size; i++) {
+            for (var i = 0; i < tmwidth / size; i++) {
                 ctx.moveTo(dx, 0);
                 ctx.lineTo(dx, 360);
                 ctx.stroke();
@@ -26106,7 +26107,7 @@ var Grid = function () {
             // horizontal
             for (i = 0; i < 360 / size; i++) {
                 ctx.moveTo(0, dy);
-                ctx.lineTo(480, dy);
+                ctx.lineTo(tmwidth, dy);
                 ctx.stroke();
                 dy += size;
             }
@@ -26131,7 +26132,7 @@ var Grid = function () {
             Grid.setScaleAndPosition(row, _lib.scaleMultiplier, 46 - 24, 75 + height, w - 46 - 30, 24);
             var offset = size;
             var dx = offset;
-            for (var i = 0; i < 480 / offset; i++) {
+            for (var i = 0; i < tmwidth / offset; i++) {
                 var num = (0, _lib.newDiv)(row, dx, 0, size, size, {
                     position: 'absolute',
                     zIndex: 10
@@ -26475,7 +26476,7 @@ var Library = function () {
         value: function close(e) {
             e.preventDefault();
             e.stopPropagation();
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             _ScratchJr2.default.blur();
             libFrame.className = 'libframe disappear';
             document.body.scrollTop = 0;
@@ -26771,7 +26772,7 @@ var Library = function () {
     }, {
         key: 'removeFromAssetList',
         value: function removeFromAssetList() {
-            _ScratchAudio2.default.sndFX('cut.wav');
+            _ScratchAudio2.default.sndFX('cut.mp3');
             var b = shaking;
             b.parentNode.removeChild(b);
             var key = type == 'costumes' ? 'usershapes' : 'userbkgs';
@@ -27089,6 +27090,7 @@ var Palette = function () {
             sel.setAttribute('id', 'selectors');
             var bkg = (0, _lib.newHTML)('div', 'catbkg', sel);
             (0, _lib.newHTML)('div', 'catimage', bkg);
+            console.log(_lib.scaleMultiplier);
             var leftPx = 15 * _lib.scaleMultiplier;
             var widthPx = 54 * _lib.scaleMultiplier;
             for (var i = 0; i < _BlockSpecs2.default.categories.length; i++) {
@@ -27135,7 +27137,7 @@ var Palette = function () {
     }, {
         key: 'removeSound',
         value: function removeSound(ths) {
-            _ScratchAudio2.default.sndFX('cut.wav');
+            _ScratchAudio2.default.sndFX('cut.mp3');
             var indx = ths.owner.getArgValue();
             var spr = _ScratchJr2.default.getSprite();
             if (!spr) {
@@ -27290,7 +27292,7 @@ var Palette = function () {
         key: 'prepareForDrag',
         value: function prepareForDrag(e) {
             e.preventDefault();
-            _ScratchAudio2.default.sndFX('grab.wav');
+            _ScratchAudio2.default.sndFX('grab.mp3');
             if (!_ScratchJr2.default.runtime.inactive()) {
                 _ScratchJr2.default.stopStrips();
             }
@@ -27375,7 +27377,7 @@ var Palette = function () {
             e.preventDefault();
             _ScratchJr2.default.unfocus(e);
             var t = e.target;
-            _ScratchAudio2.default.sndFX('keydown.wav');
+            _ScratchAudio2.default.sndFX('keydown.mp3');
             var index = t.parentNode ? t.parentNode.index : 2;
             Palette.selectCategory(index);
         }
@@ -28270,7 +28272,7 @@ var Project = function () {
     }, {
         key: 'getThumbnailPNG',
         value: function getThumbnailPNG(page, w, h, fcn) {
-            var scale = w / 480;
+            var scale = w / tmwidth;
             var data = {};
             data.pagecount = _ScratchJr2.default.stage.pages.length;
             var c = document.createElement('canvas');
@@ -28285,11 +28287,11 @@ var Project = function () {
                 var pcnv;
                 if (md5.substr(md5.length - 3) == 'png') {
                     var bgimg = page.div.firstElementChild.firstElementChild;
-                    pcnv = Project.drawPNGInCanvas(bgimg, 480, 360);
+                    pcnv = Project.drawPNGInCanvas(bgimg, tmwidth, 360);
                 } else {
-                    pcnv = Project.drawSVGinCanvas(page.svg, 480, 360);
+                    pcnv = Project.drawSVGinCanvas(page.svg, tmwidth, 360);
                 }
-                ctx.drawImage(pcnv, 0, 0, 480, 360, 0, 0, w, h);
+                ctx.drawImage(pcnv, 0, 0, tmwidth, 360, 0, 0, w, h);
                 Project.drawSprites(page, scale, c, w, h, fcn);
             }
         }
@@ -29137,7 +29139,7 @@ var Scripts = function () {
             }
             if (me.blocktype.indexOf('caret') < 0) {
                 _ScratchJr2.default.storyStart('Scripts.snapToDock');
-                _ScratchAudio2.default.sndFX('snap.wav');
+                _ScratchAudio2.default.sndFX('snap.mp3');
             }
             var you = choice[0];
             var yourn = choice[1];
@@ -29538,7 +29540,7 @@ var Scripts = function () {
         value: function deleteBlocks() {
             _ScratchJr2.default.storyStart('Scripts.prototype.deleteBlocks');
             _ScriptsPane2.default.cleanCarets();
-            _ScratchAudio2.default.sndFX('cut.wav');
+            _ScratchAudio2.default.sndFX('cut.mp3');
             if (this.dragList.length > 0) {
                 _ScratchJr2.default.runtime.stopThreadBlock(this.dragList[0].findFirst());
             }
@@ -29878,7 +29880,7 @@ var ScriptsPane = function () {
                     ScriptsPane.blockDropped(_ScratchJr2.default.getActiveScript(), el.startx, el.starty);
                     if (thumb && (0, _lib.gn)(thumb.owner).owner.type == (0, _lib.gn)(page.currentSpriteName).owner.type) {
                         _ScratchJr2.default.storyStart('ScriptsPane.dropBlock:library');
-                        _ScratchAudio2.default.sndFX('copy.wav');
+                        _ScratchAudio2.default.sndFX('copy.mp3');
                         _Thumbs2.default.quickHighlight(thumb);
                         setTimeout(function () {
                             _Thumbs2.default.quickRestore(thumb);
@@ -30739,7 +30741,7 @@ var Thumbs = function () {
         value: function prepareToDragPage(e) {
             e.preventDefault();
             e.stopPropagation();
-            _ScratchAudio2.default.sndFX('grab.wav');
+            _ScratchAudio2.default.sndFX('grab.mp3');
             var pt = _Events2.default.getTargetPoint(e);
             _Events2.default.dragmousex = pt.x;
             _Events2.default.dragmousey = pt.y;
@@ -30882,7 +30884,7 @@ var Thumbs = function () {
         value: function repositionThumb(thumb, dy) {
             var pos = Thumbs.getPagePos(dy);
             if (pos != thumb.pos) {
-                _ScratchAudio2.default.sndFX('snap.wav');
+                _ScratchAudio2.default.sndFX('snap.mp3');
             }
             var myprev = thumb.prev;
             var mynext = thumb.next;
@@ -31018,7 +31020,7 @@ var Thumbs = function () {
             if (_lib.isTablet && e.touches && e.touches.length > 1) {
                 return;
             }
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             e.preventDefault();
             _ScratchJr2.default.stage.currentPage.div.style.visibility = 'hidden';
             _ScratchJr2.default.stage.currentPage.setPageSprites('hidden');
@@ -31181,7 +31183,7 @@ var Thumbs = function () {
         value: function prepareToDrag(e) {
             e.preventDefault();
             e.stopPropagation();
-            _ScratchAudio2.default.sndFX('grab.wav');
+            _ScratchAudio2.default.sndFX('grab.mp3');
             var pt = _Events2.default.getTargetPoint(e);
             _Events2.default.dragmousex = pt.x;
             _Events2.default.dragmousey = pt.y;
@@ -31502,6 +31504,7 @@ var UI = function () {
             // sprite library
             var sl = (0, _lib.newHTML)('div', 'leftpanel', div);
             var flip = (0, _lib.newHTML)('div', 'flipme', sl);
+            flip.innerHTML = tmwidth;
             flip.setAttribute('id', 'flip');
             flip.ontouchstart = function (evt) {
                 _ScratchJr2.default.saveAndFlip(evt);
@@ -31584,7 +31587,7 @@ var UI = function () {
     }, {
         key: 'parentalGate',
         value: function parentalGate(evt, callback) {
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             var pgFrame = (0, _lib.newHTML)('div', 'parentalgate', (0, _lib.gn)('frame'));
 
             var pgCloseButton = (0, _lib.newHTML)('div', 'paintdone', pgFrame);
@@ -31623,7 +31626,7 @@ var UI = function () {
             pgExplain.textContent = _Localization2.default.localize('PARENTAL_GATE_EXPLANATION');
 
             function parentalGateClose(success) {
-                _ScratchAudio2.default.sndFX('exittap.wav');
+                _ScratchAudio2.default.sndFX('exittap.mp3');
                 (0, _lib.gn)('frame').removeChild(pgFrame);
                 if (success) {
                     callback(evt);
@@ -31643,7 +31646,7 @@ var UI = function () {
     }, {
         key: 'infoDoShare',
         value: function infoDoShare(evt, nameField, shareLoadingGif, shareType) {
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             shareLoadingGif.style.visibility = 'visible';
             nameField.blur(); // Hide the keyboard for name changes
 
@@ -31758,7 +31761,7 @@ var UI = function () {
             _ScratchJr2.default.changed = true;
             _iOS2.default.setfield(_iOS2.default.database, _Project2.default.metadata.id, 'name', pname);
             if (!dontHide) {
-                _ScratchAudio2.default.sndFX('exittap.wav');
+                _ScratchAudio2.default.sndFX('exittap.mp3');
                 (0, _lib.gn)('infobox').className = 'infobox fade';
             }
         }
@@ -31799,7 +31802,7 @@ var UI = function () {
                 UI.hideInfoBox(e2);
             });
 
-            _ScratchAudio2.default.sndFX('entertap.wav');
+            _ScratchAudio2.default.sndFX('entertap.mp3');
             _ScratchJr2.default.stopStrips();
             if (!_Project2.default.metadata.ctime) {
                 _Project2.default.metadata.mtime = new Date().getTime();
@@ -31847,7 +31850,7 @@ var UI = function () {
                 document.forms.projectname.myproject.blur();
                 UI.handleTextFieldSave();
             } else {
-                _ScratchAudio2.default.sndFX('exittap.wav');
+                _ScratchAudio2.default.sndFX('exittap.mp3');
                 (0, _lib.gn)('infobox').className = 'infobox fade';
             }
             infoBoxOpen = false;
@@ -32146,7 +32149,7 @@ var UI = function () {
             if (_ScratchJr2.default.onHold) {
                 return;
             }
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             if (!_ScratchJr2.default.runtime.inactive()) {
                 _ScratchJr2.default.stopStripsFromTop(e);
             }
@@ -32165,7 +32168,7 @@ var UI = function () {
     }, {
         key: 'switchGrid',
         value: function switchGrid() {
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             UI.toggleGrid(!_Grid2.default.hidden);
         }
     }, {
@@ -32323,7 +32326,7 @@ var UI = function () {
             if (pt.x > (0, _lib.globalx)(e.target) + 167) {
                 return;
             }
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             _ScratchJr2.default.stopStrips();
             _ScratchJr2.default.unfocus(e);
             if (_Events2.default.dragthumbnail) {
@@ -32510,7 +32513,7 @@ var UI = function () {
             if (!t) {
                 return;
             }
-            _ScratchAudio2.default.sndFX('splash.wav');
+            _ScratchAudio2.default.sndFX('splash.mp3');
             UI.setMenuTextColor(t);
             var text = document.forms.activetextbox.textsprite;
             var c = t.childNodes[0].childNodes[0].style.background;
@@ -32746,7 +32749,7 @@ var Undo = function () {
                 index--;
             }
             index--;
-            var snd = index < 0 ? 'boing.wav' : 'tap.wav';
+            var snd = index < 0 ? 'boing.mp3' : 'tap.mp3';
             _ScratchAudio2.default.sndFX(snd);
             if (index < 0) {
                 index = 0;
@@ -32765,7 +32768,7 @@ var Undo = function () {
             _ScratchJr2.default.unfocus();
             _ScratchJr2.default.time = e.timeStamp;
             index++;
-            var snd = index > buffer.length - 1 ? 'boing.wav' : 'tap.wav';
+            var snd = index > buffer.length - 1 ? 'boing.mp3' : 'tap.mp3';
             _ScratchAudio2.default.sndFX(snd);
             if (index > buffer.length - 1) {
                 index = buffer.length - 1;
@@ -33364,38 +33367,15 @@ var ElectronDesktopInterface = function () {
             //https://medium.com/@Jeff_Duke_io/working-with-html5-audio-in-electron-645b2d2202bd
 
             try {
-                var autoPlayMusic = function autoPlayMusic() {
-                    // 自动播放音乐效果，解决浏览器或者APP自动播放问题
-                    function musicInBrowserHandler() {
-                        _musicPlay(true);
-                        document.body.removeEventListener('touchstart', musicInBrowserHandler);
-                    }
-                    document.body.addEventListener('touchstart', musicInBrowserHandler);
-
-                    // 自动播放音乐效果，解决微信自动播放问题
-                    function musicInWeixinHandler() {
-                        _musicPlay(true);
-                        document.addEventListener("WeixinJSBridgeReady", function () {
-                            _musicPlay(true);
-                        }, false);
-                        document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-                    }
-                    document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-                };
-
-                var _musicPlay = function _musicPlay(isPlay) {
-                    var media = audioElement;
-                    if (isPlay && media.paused) {
-                        media.play();
-                    }
-                    if (!isPlay && !media.paused) {
-                        media.pause();
-                    }
+                // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+                var _musicInBrowserHandler = function _musicInBrowserHandler() {
+                    document.body.removeEventListener('touchstart', _musicInBrowserHandler);
+                    audioElement.play();
                 };
 
                 var playPromise = audioElement.play();
+                document.body.addEventListener('touchstart', _musicInBrowserHandler);
 
-                autoPlayMusic();
                 // In browsers that don’t yet support this functionality,
                 // playPromise won’t be defined.
                 if (playPromise !== undefined) {
@@ -34023,7 +34003,6 @@ var CameraPickerDialog = function () {
             if (!this.cameraPickerDiv) {
                 this.cameraPickerDiv = document.createElement('div');
                 this.cameraPickerDiv.setAttribute('style', 'z-index:90000; position:absolute; top:0px, left:0px, width: 1000px; height: 1000px;');
-
                 this.cameraPickerDiv.id = 'cameraPickerDiv';
 
                 // the video has autoplay so that the feed will start when shown
@@ -34161,6 +34140,9 @@ window.onload = function () {
             (0, _lib.preprocessAndLoadCss)('css', 'css/editor.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/editorleftpanel.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/editorstage.css');
+            (0, _lib.preprocessAndLoadCss)('css', 'css/editor.m.css');
+            (0, _lib.preprocessAndLoadCss)('css', 'css/editorleftpanel.m.css');
+            (0, _lib.preprocessAndLoadCss)('css', 'css/editorstage.m.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/editormodal.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/librarymodal.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/paintlook.css');
@@ -34456,7 +34438,7 @@ function inappInterfaceGuide() {
             currentButton.className = 'interface-button';
             currentButton = target.parentNode;
             currentButton.className = currentButton.className + ' interface-button-selected';
-            window.parent.ScratchAudio.sndFXWithVolume('keydown.wav', 0.3);
+            window.parent.ScratchAudio.sndFXWithVolume('keydown.mp3', 0.3);
         }
     };
     document.addEventListener('touchstart', switchHelp, false);
@@ -34488,7 +34470,7 @@ function inappPaintEditorGuide() {
             currentButton.className = 'paint-button';
             currentButton = target.parentNode;
             currentButton.className = currentButton.className + ' paint-button-selected';
-            window.parent.ScratchAudio.sndFXWithVolume('keydown.wav', 0.3);
+            window.parent.ScratchAudio.sndFXWithVolume('keydown.mp3', 0.3);
         }
     };
     document.addEventListener('touchstart', switchHelp, false);
@@ -34689,12 +34671,12 @@ function indexGohome() {
 function indexGoSettings() {
     // Switch to the settings selection page
     // Triggered by tapping the gear icon in the top right
-    _ScratchAudio2.default.sndFX('tap.wav');
+    _ScratchAudio2.default.sndFX('tap.mp3');
     window.location.href = 'home.html?place=gear';
 }
 
 function indexGettingstarted() {
-    _ScratchAudio2.default.sndFX('tap.wav');
+    _ScratchAudio2.default.sndFX('tap.mp3');
     window.location.href = 'gettingstarted.html?place=home';
 }
 
@@ -34718,17 +34700,17 @@ function indexSetUsage(e) {
     // Send one-time analytics event about usage
     _iOS2.default.analyticsEvent('lobby', 'scratchjr_usage', usageText);
     _AppUsage2.default.setUsage(usageText);
-    _ScratchAudio2.default.sndFX('tap.wav');
+    _ScratchAudio2.default.sndFX('tap.mp3');
     indexLoadStart(true);
 }
 // For PBS KIDS edition only
 function indexInfo() {
-    _ScratchAudio2.default.sndFX('tap.wav');
+    _ScratchAudio2.default.sndFX('tap.mp3');
     window.location.href = 'home.html?place=book';
 }
 
 function indexMoreApps() {
-    _ScratchAudio2.default.sndFX('tap.wav');
+    _ScratchAudio2.default.sndFX('tap.mp3');
 
     _UI2.default.parentalGate(null, function () {
         if (_lib.isiOS) {
@@ -35921,7 +35903,7 @@ var IO = function () {
                         IO.getImagesInSVG(data, gotSVGImages);
 
                         function gotSVGImages() {
-                            var thumbnailDataURL = IO.getThumbnail(data, 480, 360, 120, 90);
+                            var thumbnailDataURL = IO.getThumbnail(data, tmwidth, 360, 120, 90);
                             var thumbnailPngBase64 = thumbnailDataURL.split(',')[1];
                             _iOS2.default.setmedia(thumbnailPngBase64, 'png', function (thumbnailMD5) {
 
@@ -35938,7 +35920,7 @@ var IO = function () {
                                         var json = {};
                                         var keylist = ['md5', 'altmd5', 'version', 'width', 'height', 'ext'];
                                         var values = '?,?,?,?,?,?';
-                                        json.values = [fullName, thumbnailMD5, 'iOSv01', '480', '360', 'svg'];
+                                        json.values = [fullName, thumbnailMD5, 'iOSv01', tmwidth, '360', 'svg'];
                                         json.stmt = 'insert into userbkgs (' + keylist.toString() + ') values (' + values + ')';
                                         _iOS2.default.stmt(json, function () {
                                             saveActual++;
@@ -36783,7 +36765,7 @@ var Home = function () {
             var md5 = Home.actionTarget.id;
             switch (Home.getAction(e)) {
                 case 'project':
-                    _ScratchAudio2.default.sndFX('keydown.wav');
+                    _ScratchAudio2.default.sndFX('keydown.mp3');
                     if (md5 && md5 == 'newproject') {
                         Home.createNewProject();
                     } else if (md5) {
@@ -36793,7 +36775,7 @@ var Home = function () {
                     }
                     break;
                 case 'delete':
-                    _ScratchAudio2.default.sndFX('cut.wav');
+                    _ScratchAudio2.default.sndFX('cut.mp3');
                     _Project2.default.thumbnailUnique(Home.actionTarget.thumb, Home.actionTarget.id, function (isUnique) {
                         if (isUnique) {
                             _iOS2.default.remove(Home.actionTarget.thumb, _iOS2.default.trace);
@@ -37072,8 +37054,8 @@ var Lobby = function () {
             version = v;
             var urlvars = (0, _lib.getUrlVars)();
             var place = urlvars.place;
-            _ScratchAudio2.default.addSound('sounds/', 'tap.wav', _ScratchAudio2.default.uiSounds);
-            _ScratchAudio2.default.addSound('sounds/', 'cut.wav', _ScratchAudio2.default.uiSounds);
+            _ScratchAudio2.default.addSound('sounds/', 'tap.mp3', _ScratchAudio2.default.uiSounds);
+            _ScratchAudio2.default.addSound('sounds/', 'cut.mp3', _ScratchAudio2.default.uiSounds);
             _ScratchAudio2.default.init();
             Lobby.setPage(place ? place : 'home');
 
@@ -37154,19 +37136,19 @@ var Lobby = function () {
             switch (page) {
                 case 'home':
                     busy = true;
-                    _ScratchAudio2.default.sndFX('tap.wav');
+                    _ScratchAudio2.default.sndFX('tap.mp3');
                     Lobby.loadProjects(div);
                     break;
                 case 'help':
                     busy = true;
-                    _ScratchAudio2.default.sndFX('tap.wav');
+                    _ScratchAudio2.default.sndFX('tap.mp3');
                     Lobby.loadSamples(div);
                     break;
                 case 'book':
                     Lobby.loadGuide(div);
                     break;
                 case 'gear':
-                    _ScratchAudio2.default.sndFX('tap.wav');
+                    _ScratchAudio2.default.sndFX('tap.mp3');
                     Lobby.loadSettings(div);
                     break;
                 default:
@@ -37242,7 +37224,7 @@ var Lobby = function () {
                 languageButton.textContent = l;
 
                 languageButton.ontouchstart = function (e) {
-                    _ScratchAudio2.default.sndFX('tap.wav');
+                    _ScratchAudio2.default.sndFX('tap.mp3');
                     var newLocale = window.Settings.supportedLocales[e.target.textContent];
                     _Cookie2.default.set('localization', newLocale);
                     _iOS2.default.analyticsEvent('lobby', 'language_changed', newLocale);
@@ -37258,7 +37240,7 @@ var Lobby = function () {
             }
             document.ontouchmove = undefined;
             busy = true;
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             Lobby.selectSubButton(page);
             document.documentElement.scrollTop = 0;
             (0, _lib.gn)('wrapc').scrollTop = 0;
@@ -37481,7 +37463,7 @@ var Samples = function () {
         value: function playHowTo(e) {
             e.preventDefault();
             e.stopPropagation();
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             window.location.href = 'gettingstarted.html?place=help';
         }
 
@@ -37528,7 +37510,7 @@ var Samples = function () {
         value: function loadMe(e, mt) {
             e.preventDefault();
             e.stopPropagation();
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             _iOS2.default.analyticsEvent('samples', 'sample_opened', mt.textContent);
             var md5 = mt.md5;
             window.location.href = 'editor.html?pmd5=' + md5 + '&mode=' + (window.Settings.useStoryStarters ? 'storyStarter' : 'look');
@@ -37659,7 +37641,7 @@ var Camera = function () {
     _createClass(Camera, null, [{
         key: 'startFeed',
         value: function startFeed(feedTarget) {
-            _ScratchAudio2.default.sndFX('entertap.wav');
+            _ScratchAudio2.default.sndFX('entertap.mp3');
             if (!_Paint2.default.canvasFits()) {
                 _Paint2.default.scaleToFit();
             }
@@ -37712,7 +37694,7 @@ var Camera = function () {
         value: function doAction(str) {
             switch (str) {
                 case 'cameraflip':
-                    _ScratchAudio2.default.sndFX('tap.wav');
+                    _ScratchAudio2.default.sndFX('tap.mp3');
                     view = view == 'front' ? 'back' : 'front';
                     _iOS2.default.choosecamera(view, Camera.flip);
                     break;
@@ -39181,7 +39163,7 @@ var Paint = function () {
             _SVGTools2.default.init();
             nativeJr = true;
             if (isBkg) {
-                Paint.initBkg(480, 360);
+                Paint.initBkg(tmwidth, 360);
             } else {
                 Paint.initSprite(sw, sh);
             }
@@ -39387,7 +39369,7 @@ var Paint = function () {
             _Camera2.default.close();
             _PaintAction2.default.clearDragGroup();
             _ScratchJr2.default.unfocus();
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             if (spriteId == null && currentName == null) {
                 Paint.savePageImage(Paint.changePage);
             } else {
@@ -39400,7 +39382,7 @@ var Paint = function () {
         value: function saveEditState() {
             _Camera2.default.close();
             _ScratchJr2.default.unfocus();
-            _ScratchAudio2.default.sndFX('tap.wav');
+            _ScratchAudio2.default.sndFX('tap.mp3');
             if (spriteId == null && currentName == null) {
                 Paint.savePageImage();
             } else {
@@ -39434,7 +39416,7 @@ var Paint = function () {
             } else {
                 var tools = ['select', 'rotate', 'stamper', 'scissors', 'camera', 'paintbucket'];
                 if (tools.indexOf(t.getAttribute('key')) > -1) {
-                    _ScratchAudio2.default.sndFX('tap.wav');
+                    _ScratchAudio2.default.sndFX('tap.mp3');
                 }
                 Paint.selectButton(t.getAttribute('key'));
             }
@@ -39685,7 +39667,7 @@ var Paint = function () {
                     ti.value = '';
                 }
                 if (ti.value.length == 25) {
-                    _ScratchAudio2.default.sndFX('boing.wav');
+                    _ScratchAudio2.default.sndFX('boing.mp3');
                 }
             }
         }
@@ -39848,7 +39830,7 @@ var Paint = function () {
     }, {
         key: 'closeCameraMode',
         value: function closeCameraMode() {
-            _ScratchAudio2.default.sndFX('exittap.wav');
+            _ScratchAudio2.default.sndFX('exittap.mp3');
             _Camera2.default.close();
             Paint.selectButton('select');
         }
@@ -39966,7 +39948,7 @@ var Paint = function () {
             if (!t) {
                 return;
             }
-            _ScratchAudio2.default.sndFX('splash.wav');
+            _ScratchAudio2.default.sndFX('splash.mp3');
             Paint.setSwatchColor(t);
         }
     }, {
@@ -40126,7 +40108,7 @@ var Paint = function () {
                     'fixed': 'yes',
                     fill: _ScratchJr2.default.stagecolor
                 };
-                var cmds = [['M', 0, 0], ['L', 480, 0], ['L', 480, 360], ['L', 0, 360], ['L', 0, 0]];
+                var cmds = [['M', 0, 0], ['L', tmwidth, 0], ['L', tmwidth, 360], ['L', 0, 360], ['L', 0, 0]];
                 attr.d = _SVG2Canvas2.default.arrayToString(cmds);
                 _SVGTools2.default.addChild((0, _lib.gn)('layer1'), 'path', attr);
                 _Ghost2.default.drawOffscreen();
@@ -40328,14 +40310,14 @@ var Paint = function () {
     }, {
         key: 'addToBkgLib',
         value: function addToBkgLib(fcn) {
-            var dataurl = _IO2.default.getThumbnail(svgdata, 480, 360, 120, 90);
+            var dataurl = _IO2.default.getThumbnail(svgdata, tmwidth, 360, 120, 90);
             var pngBase64 = dataurl.split(',')[1];
             _iOS2.default.setmedia(pngBase64, 'png', setBkgRecord);
             function setBkgRecord(pngmd5) {
                 var json = {};
                 var keylist = ['md5', 'altmd5', 'version', 'width', 'height', 'ext'];
                 var values = '?,?,?,?,?,?';
-                json.values = [saveMD5, pngmd5, _ScratchJr2.default.version, '480', '360', 'svg'];
+                json.values = [saveMD5, pngmd5, _ScratchJr2.default.version, tmwidth, '360', 'svg'];
                 json.stmt = 'insert into userbkgs (' + keylist.toString() + ') values (' + values + ')';
                 _iOS2.default.stmt(json, fcn);
             }
@@ -41375,7 +41357,7 @@ var PaintAction = function () {
     }, {
         key: 'playSnapSound',
         value: function playSnapSound(state) {
-            _ScratchAudio2.default.sndFX(state ? 'cut.wav' : 'snap.wav');
+            _ScratchAudio2.default.sndFX(state ? 'cut.mp3' : 'snap.mp3');
         }
     }, {
         key: 'movePointByDrag',
@@ -41522,7 +41504,7 @@ var PaintAction = function () {
             if (!currentShape) {
                 return;
             }
-            _ScratchAudio2.default.sndFX('cut.wav');
+            _ScratchAudio2.default.sndFX('cut.mp3');
             var mtimage = _SVGImage2.default.getImage(currentShape);
             var p = currentShape.parentNode;
             var res = [];
@@ -41569,7 +41551,7 @@ var PaintAction = function () {
             if (!currentShape) {
                 return;
             }
-            _ScratchAudio2.default.sndFX('copy.wav');
+            _ScratchAudio2.default.sndFX('copy.mp3');
             _SVGTools2.default.cloneSVGelement(currentShape);
             _Ghost2.default.clearLayer();
             _PaintUndo2.default.record();
@@ -41608,7 +41590,7 @@ var PaintAction = function () {
     }, {
         key: 'paintRegion',
         value: function paintRegion() {
-            _ScratchAudio2.default.sndFX('splash.wav');
+            _ScratchAudio2.default.sndFX('splash.mp3');
             switch (PaintAction.getPaintType()) {
                 case 'paths':
                     _Path2.default.setData(currentShape);
@@ -41685,7 +41667,7 @@ var PaintAction = function () {
                 box1 = box1.union(_SVGTools2.default.getTransformedBox(dragGroup[j]).expandBy(_SVGTools2.default.getPenWidthForm(dragGroup[j])));
             }
             if (!box1.intersects(box2)) {
-                _ScratchAudio2.default.sndFX('boing.wav');
+                _ScratchAudio2.default.sndFX('boing.mp3');
                 var delta = {
                     x: 0,
                     y: 0
@@ -42173,7 +42155,7 @@ var PaintUndo = function () {
                 index--;
             }
             index--;
-            var snd = index < 0 ? 'boing.wav' : 'tap.wav';
+            var snd = index < 0 ? 'boing.mp3' : 'tap.mp3';
             _ScratchAudio2.default.sndFX(snd);
             if (index < 0) {
                 index = 0;
@@ -42194,7 +42176,7 @@ var PaintUndo = function () {
                 _Camera2.default.doAction('undo');
             }
             index++;
-            var snd = index > buffer.length - 1 ? 'boing.wav' : 'tap.wav';
+            var snd = index > buffer.length - 1 ? 'boing.mp3' : 'tap.mp3';
             _ScratchAudio2.default.sndFX(snd);
             if (index > buffer.length - 1) {
                 index = buffer.length - 1;
@@ -43500,7 +43482,7 @@ var Path = function () {
             var box2 = {
                 x: 0,
                 y: 0,
-                width: 480,
+                width: tmwidth,
                 height: 360
             };
             if (Path.withinBounds(box, box2)) {
@@ -43646,7 +43628,7 @@ var Path = function () {
                     y: -10
                 };
             }
-            if (last.x >= 480) {
+            if (last.x >= tmwidth) {
                 return {
                     x: 490,
                     y: last.y
@@ -43691,7 +43673,7 @@ var Path = function () {
             if (pt.x <= 0) {
                 return 'W';
             }
-            if (pt.x >= 480) {
+            if (pt.x >= tmwidth) {
                 return 'E';
             }
             if (pt.y >= 360) {
@@ -43708,7 +43690,7 @@ var Path = function () {
             var box2 = {
                 x: 0,
                 y: 0,
-                width: 480,
+                width: tmwidth,
                 height: 360
             };
             if (Path.withinBounds(box, box2)) {
@@ -48518,7 +48500,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 ////////////////////////////////////////////////////
 
 var uiSounds = {};
-var defaultSounds = ['cut.wav', 'snap.wav', 'copy.wav', 'grab.wav', 'boing.wav', 'tap.wav', 'keydown.wav', 'entertap.wav', 'exittap.wav', 'splash.wav'];
+var defaultSounds = ['cut.mp3', 'snap.mp3', 'copy.mp3', 'grab.mp3', 'boing.mp3', 'tap.mp3', 'keydown.mp3', 'entertap.mp3', 'exittap.mp3', 'splash.mp3'];
 var projectSounds = {};
 
 var ScratchAudio = function () {
@@ -48787,6 +48769,7 @@ exports.findKeyframesRule = findKeyframesRule;
 exports.colorToRGBA = colorToRGBA;
 exports.css_vh = css_vh;
 exports.css_vw = css_vw;
+exports.css_vm = css_vm;
 var frame = exports.frame = undefined;
 // XXX: isTablet is legacy code that can be used to detect if we're running on a desktop browser
 // There are references to it throughout the codebase, should possibly be removed at some point
@@ -48794,7 +48777,7 @@ var isTablet = exports.isTablet = window.orientation != 'undefined';
 var DEGTOR = exports.DEGTOR = Math.PI / 180;
 var WINDOW_INNER_HEIGHT = exports.WINDOW_INNER_HEIGHT = window.innerHeight;
 var WINDOW_INNER_WIDTH = exports.WINDOW_INNER_WIDTH = window.innerWidth;
-var scaleMultiplier = exports.scaleMultiplier = WINDOW_INNER_HEIGHT / 768.0;
+var scaleMultiplier = exports.scaleMultiplier = (WINDOW_INNER_HEIGHT > WINDOW_INNER_WIDTH ? WINDOW_INNER_WIDTH : WINDOW_INNER_HEIGHT) / 768.0;
 var fullscreenScaleMultiplier = exports.fullscreenScaleMultiplier = 136;
 
 var isiOS = exports.isiOS = typeof AndroidInterface == 'undefined';
@@ -49439,6 +49422,10 @@ function css_vw(x) {
     return x * WINDOW_INNER_WIDTH / 100.0 + 'px';
 }
 
+function css_vm(x) {
+    return x * (WINDOW_INNER_HEIGHT > WINDOW_INNER_WIDTH ? WINDOW_INNER_WIDTH : WINDOW_INNER_HEIGHT) / 100.0 + 'px';
+}
+
 Number.prototype.mod = function (n) {
     return (this % n + n) % n;
 };
@@ -49468,4 +49455,4 @@ Number.prototype.mod = function (n) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.bundle.js.map
+//# sourceMappingURL=app.bundle.js.map?4ae4d674

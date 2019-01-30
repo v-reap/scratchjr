@@ -36,8 +36,8 @@ export default class Lobby {
         version = v;
         var urlvars = getUrlVars();
         var place = urlvars.place;
-        ScratchAudio.addSound('sounds/', 'tap.wav', ScratchAudio.uiSounds);
-        ScratchAudio.addSound('sounds/', 'cut.wav', ScratchAudio.uiSounds);
+        ScratchAudio.addSound('sounds/', 'tap.mp3', ScratchAudio.uiSounds);
+        ScratchAudio.addSound('sounds/', 'cut.mp3', ScratchAudio.uiSounds);
         ScratchAudio.init();
         Lobby.setPage(place ? place : 'home');
 
@@ -116,19 +116,19 @@ export default class Lobby {
         switch (page) {
         case 'home':
             busy = true;
-            ScratchAudio.sndFX('tap.wav');
+            ScratchAudio.sndFX('tap.mp3');
             Lobby.loadProjects(div);
             break;
         case 'help':
             busy = true;
-            ScratchAudio.sndFX('tap.wav');
+            ScratchAudio.sndFX('tap.mp3');
             Lobby.loadSamples(div);
             break;
         case 'book':
             Lobby.loadGuide(div);
             break;
         case 'gear':
-            ScratchAudio.sndFX('tap.wav');
+            ScratchAudio.sndFX('tap.mp3');
             Lobby.loadSettings(div);
             break;
         default:
@@ -200,7 +200,7 @@ export default class Lobby {
             languageButton.textContent = l;
 
             languageButton.ontouchstart = function (e) {
-                ScratchAudio.sndFX('tap.wav');
+                ScratchAudio.sndFX('tap.mp3');
                 let newLocale = window.Settings.supportedLocales[e.target.textContent];
                 Cookie.set('localization', newLocale);
                 iOS.analyticsEvent('lobby', 'language_changed', newLocale);
@@ -215,7 +215,7 @@ export default class Lobby {
         }
         document.ontouchmove = undefined;
         busy = true;
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         Lobby.selectSubButton(page);
         document.documentElement.scrollTop = 0;
         gn('wrapc').scrollTop = 0;

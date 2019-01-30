@@ -7,7 +7,7 @@ import Events from '../../utils/Events';
 import Localization from '../../utils/Localization';
 import {gn, scaleMultiplier, isTablet, newDiv, setProps, newP, newCanvas} from '../../utils/lib';
 
-let width = 482;
+let width = tmwidth;
 let height = 362;
 let size = 24;
 let hidden = true;
@@ -55,7 +55,7 @@ export default class Grid {
         ctx.lineWidth = 1;
         var dx = size;
         // vertical
-        for (var i = 0; i < 480 / size; i++) {
+        for (var i = 0; i < tmwidth / size; i++) {
             ctx.moveTo(dx, 0);
             ctx.lineTo(dx, 360);
             ctx.stroke();
@@ -65,7 +65,7 @@ export default class Grid {
         // horizontal
         for (i = 0; i < 360 / size; i++) {
             ctx.moveTo(0, dy);
-            ctx.lineTo(480, dy);
+            ctx.lineTo(tmwidth, dy);
             ctx.stroke();
             dy += size;
         }
@@ -89,7 +89,7 @@ export default class Grid {
         Grid.setScaleAndPosition(row, scaleMultiplier, 46 - 24, 75 + height, w - 46 - 30, 24);
         var offset = size;
         var dx = offset;
-        for (var i = 0; i < 480 / offset; i++) {
+        for (var i = 0; i < tmwidth / offset; i++) {
             var num = newDiv(row, dx, 0, size, size, {
                 position: 'absolute',
                 zIndex: 10

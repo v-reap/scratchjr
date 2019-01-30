@@ -243,7 +243,7 @@ export default class Scripts {
         }
         if (me.blocktype.indexOf('caret') < 0) {
             ScratchJr.storyStart('Scripts.snapToDock');
-            ScratchAudio.sndFX('snap.wav');
+            ScratchAudio.sndFX('snap.mp3');
         }
         var you = choice[0];
         var yourn = choice[1];
@@ -615,7 +615,7 @@ export default class Scripts {
     deleteBlocks () {
         ScratchJr.storyStart('Scripts.prototype.deleteBlocks');
         ScriptsPane.cleanCarets();
-        ScratchAudio.sndFX('cut.wav');
+        ScratchAudio.sndFX('cut.mp3');
         if (this.dragList.length > 0) {
             ScratchJr.runtime.stopThreadBlock(this.dragList[0].findFirst());
         }

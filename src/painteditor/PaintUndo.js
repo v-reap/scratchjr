@@ -106,7 +106,7 @@ export default class PaintUndo {
             index--;
         }
         index--;
-        var snd = (index < 0) ? 'boing.wav' : 'tap.wav';
+        var snd = (index < 0) ? 'boing.mp3' : 'tap.mp3';
         ScratchAudio.sndFX(snd);
         if (index < 0) {
             index = 0;
@@ -126,7 +126,7 @@ export default class PaintUndo {
             Camera.doAction('undo');
         }
         index++;
-        var snd = (index > buffer.length - 1) ? 'boing.wav' : 'tap.wav';
+        var snd = (index > buffer.length - 1) ? 'boing.mp3' : 'tap.mp3';
         ScratchAudio.sndFX(snd);
         if (index > buffer.length - 1) {
             index = buffer.length - 1;

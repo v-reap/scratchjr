@@ -591,7 +591,7 @@ export default class PaintAction {
     }
 
     static playSnapSound (state) {
-        ScratchAudio.sndFX(state ? 'cut.wav' : 'snap.wav');
+        ScratchAudio.sndFX(state ? 'cut.mp3' : 'snap.mp3');
     }
 
     static movePointByDrag (dx, dy) {
@@ -731,7 +731,7 @@ export default class PaintAction {
         if (!currentShape) {
             return;
         }
-        ScratchAudio.sndFX('cut.wav');
+        ScratchAudio.sndFX('cut.mp3');
         var mtimage = SVGImage.getImage(currentShape);
         var p = currentShape.parentNode;
         var res = [];
@@ -775,7 +775,7 @@ export default class PaintAction {
         if (!currentShape) {
             return;
         }
-        ScratchAudio.sndFX('copy.wav');
+        ScratchAudio.sndFX('copy.mp3');
         SVGTools.cloneSVGelement(currentShape);
         Ghost.clearLayer();
         PaintUndo.record();
@@ -813,7 +813,7 @@ export default class PaintAction {
     }
 
     static paintRegion () {
-        ScratchAudio.sndFX('splash.wav');
+        ScratchAudio.sndFX('splash.mp3');
         switch (PaintAction.getPaintType()) {
         case 'paths':
             Path.setData(currentShape);
@@ -891,7 +891,7 @@ export default class PaintAction {
                     SVGTools.getPenWidthForm(dragGroup[j])));
         }
         if (!box1.intersects(box2)) {
-            ScratchAudio.sndFX('boing.wav');
+            ScratchAudio.sndFX('boing.mp3');
             var delta = {
                 x: 0,
                 y: 0

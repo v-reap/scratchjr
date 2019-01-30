@@ -87,6 +87,7 @@ export default class UI {
         // sprite library
         var sl = newHTML('div', 'leftpanel', div);
         var flip = newHTML('div', 'flipme', sl);
+        flip.innerHTML = tmwidth;
         flip.setAttribute('id', 'flip');
         flip.ontouchstart = function (evt) {
             ScratchJr.saveAndFlip(evt);
@@ -165,7 +166,7 @@ export default class UI {
     }
 
     static parentalGate (evt, callback) {
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         var pgFrame = newHTML('div', 'parentalgate', gn('frame'));
 
         var pgCloseButton = newHTML('div', 'paintdone', pgFrame);
@@ -215,7 +216,7 @@ export default class UI {
         pgExplain.textContent = Localization.localize('PARENTAL_GATE_EXPLANATION');
 
         function parentalGateClose (success) {
-            ScratchAudio.sndFX('exittap.wav');
+            ScratchAudio.sndFX('exittap.mp3');
             gn('frame').removeChild(pgFrame);
             if (success) {
                 callback(evt);
@@ -233,7 +234,7 @@ export default class UI {
     + */
 
     static infoDoShare (evt, nameField, shareLoadingGif, shareType) {
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         shareLoadingGif.style.visibility = 'visible';
         nameField.blur(); // Hide the keyboard for name changes
 
@@ -350,7 +351,7 @@ export default class UI {
         ScratchJr.changed = true;
         iOS.setfield(iOS.database, Project.metadata.id, 'name', pname);
         if (!dontHide) {
-            ScratchAudio.sndFX('exittap.wav');
+            ScratchAudio.sndFX('exittap.mp3');
             gn('infobox').className = 'infobox fade';
         }
     }
@@ -390,7 +391,7 @@ export default class UI {
             UI.hideInfoBox(e2);
         });
 
-        ScratchAudio.sndFX('entertap.wav');
+        ScratchAudio.sndFX('entertap.mp3');
         ScratchJr.stopStrips();
         if (!Project.metadata.ctime) {
             Project.metadata.mtime = (new Date()).getTime();
@@ -436,7 +437,7 @@ export default class UI {
             (document.forms.projectname.myproject).blur();
             UI.handleTextFieldSave();
         } else {
-            ScratchAudio.sndFX('exittap.wav');
+            ScratchAudio.sndFX('exittap.mp3');
             gn('infobox').className = 'infobox fade';
         }
         infoBoxOpen = false;
@@ -718,7 +719,7 @@ export default class UI {
         if (ScratchJr.onHold) {
             return;
         }
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         if (!ScratchJr.runtime.inactive()) {
             ScratchJr.stopStripsFromTop(e);
         }
@@ -735,7 +736,7 @@ export default class UI {
     }
 
     static switchGrid () {
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         UI.toggleGrid(!Grid.hidden);
     }
 
@@ -880,7 +881,7 @@ export default class UI {
         if (pt.x > (globalx(e.target) + 167)) {
             return;
         }
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         ScratchJr.stopStrips();
         ScratchJr.unfocus(e);
         if (Events.dragthumbnail) {
@@ -1056,7 +1057,7 @@ export default class UI {
         if (!t) {
             return;
         }
-        ScratchAudio.sndFX('splash.wav');
+        ScratchAudio.sndFX('splash.mp3');
         UI.setMenuTextColor(t);
         var text = document.forms.activetextbox.textsprite;
         var c = t.childNodes[0].childNodes[0].style.background;

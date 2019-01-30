@@ -210,34 +210,13 @@ class ElectronDesktopInterface {
 
         try {
             let playPromise = audioElement.play();
-            function autoPlayMusic() {
-                // 自动播放音乐效果，解决浏览器或者APP自动播放问题
-                function musicInBrowserHandler() {
-                    musicPlay(true);
-                    document.body.removeEventListener('touchstart', musicInBrowserHandler);
-                }
-                document.body.addEventListener('touchstart', musicInBrowserHandler);
+            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+            function musicInBrowserHandler() {
+                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+                audioElement.play();
+            }
+            document.body.addEventListener('touchstart', musicInBrowserHandler);
             
-                // 自动播放音乐效果，解决微信自动播放问题
-                function musicInWeixinHandler() {
-                    musicPlay(true);
-                    document.addEventListener("WeixinJSBridgeReady", function () {
-                        musicPlay(true);
-                    }, false);
-                    document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-                }
-                document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-            }
-            function musicPlay(isPlay) {
-                var media = audioElement    ;
-                if (isPlay && media.paused) {
-                    media.play();
-                }
-                if (!isPlay && !media.paused) {
-                    media.pause();
-                }
-            }
-            autoPlayMusic();
             // In browsers that don’t yet support this functionality,
             // playPromise won’t be defined.
             if (playPromise !== undefined) {
@@ -855,10 +834,6 @@ class CameraPickerDialog {
         if (!this.cameraPickerDiv) {
             this.cameraPickerDiv = document.createElement('div');
             this.cameraPickerDiv.setAttribute('style', 'z-index:90000; position:absolute; top:0px, left:0px, width: 1000px; height: 1000px;');
-
-
-
-
             this.cameraPickerDiv.id = 'cameraPickerDiv';
 
             // the video has autoplay so that the feed will start when shown
@@ -997,6 +972,9 @@ window.onload = () => {
         preprocessAndLoadCss('css', 'css/editor.css');
         preprocessAndLoadCss('css', 'css/editorleftpanel.css');
         preprocessAndLoadCss('css', 'css/editorstage.css');
+        preprocessAndLoadCss('css', 'css/editor.m.css');
+        preprocessAndLoadCss('css', 'css/editorleftpanel.m.css');
+        preprocessAndLoadCss('css', 'css/editorstage.m.css');
         preprocessAndLoadCss('css', 'css/editormodal.css');
         preprocessAndLoadCss('css', 'css/librarymodal.css');
         preprocessAndLoadCss('css', 'css/paintlook.css');

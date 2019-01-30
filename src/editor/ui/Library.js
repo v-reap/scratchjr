@@ -79,7 +79,7 @@ export default class Library {
     static close (e) {
         e.preventDefault();
         e.stopPropagation();
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         ScratchJr.blur();
         libFrame.className = 'libframe disappear';
         document.body.scrollTop = 0;
@@ -364,7 +364,7 @@ export default class Library {
     }
 
     static removeFromAssetList () {
-        ScratchAudio.sndFX('cut.wav');
+        ScratchAudio.sndFX('cut.mp3');
         var b = shaking;
         b.parentNode.removeChild(b);
         var key = (type == 'costumes') ? 'usershapes' : 'userbkgs';

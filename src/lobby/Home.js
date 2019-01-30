@@ -131,7 +131,7 @@ export default class Home {
         var md5 = Home.actionTarget.id;
         switch (Home.getAction(e)) {
         case 'project':
-            ScratchAudio.sndFX('keydown.wav');
+            ScratchAudio.sndFX('keydown.mp3');
             if (md5 && (md5 == 'newproject')) {
                 Home.createNewProject();
             } else if (md5) {
@@ -141,7 +141,7 @@ export default class Home {
             }
             break;
         case 'delete':
-            ScratchAudio.sndFX('cut.wav');
+            ScratchAudio.sndFX('cut.mp3');
             Project.thumbnailUnique(Home.actionTarget.thumb, Home.actionTarget.id, function (isUnique) {
                 if (isUnique) {
                     iOS.remove(Home.actionTarget.thumb, iOS.trace);

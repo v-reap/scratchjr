@@ -7,8 +7,8 @@ import iOS from '../iPad/iOS';
 ////////////////////////////////////////////////////
 
 let uiSounds = {};
-let defaultSounds = ['cut.wav', 'snap.wav', 'copy.wav', 'grab.wav', 'boing.wav', 'tap.wav',
-    'keydown.wav', 'entertap.wav', 'exittap.wav', 'splash.wav'];
+let defaultSounds = ['cut.mp3', 'snap.mp3', 'copy.mp3', 'grab.mp3', 'boing.mp3', 'tap.mp3',
+    'keydown.mp3', 'entertap.mp3', 'exittap.mp3', 'splash.mp3'];
 let projectSounds = {};
 
 export default class ScratchAudio {

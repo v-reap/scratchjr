@@ -18,7 +18,7 @@ import {newHTML, newDiv, gn,
 export default class Page {
     constructor (id, data, fcn) {
         var container = ScratchJr.stage.pagesdiv;
-        this.div = newHTML('div', 'stagepage', container); // newDiv(container,0,0, 480, 360, {position: 'absolute'});
+        this.div = newHTML('div', 'stagepage', container); // newDiv(container,0,0, tmwidth, 360, {position: 'absolute'});
         this.div.owner = this;
         this.id = id;
         this.textstartat = 36;
@@ -26,7 +26,7 @@ export default class Page {
         ScratchJr.stage.currentPage = this;
         this.num = data ? data.num : ScratchJr.stage.pages.length + 1;
         this.sprites = JSON.stringify([]);
-        this.bkg = newDiv(this.div, 0, 0, 480, 360, {
+        this.bkg = newDiv(this.div, 0, 0, tmwidth, 360, {
             position: 'absolute',
             background: ScratchJr.stagecolor
         });
@@ -276,7 +276,7 @@ export default class Page {
             var imgh = img.naturalHeight ? img.naturalHeight : img.height;
             ctx.drawImage(img, 0, 0, imgw, imgh, 0, 0, w, h);
         }
-        var scale = w / 480;
+        var scale = w / tmwidth;
         for (var i = 0; i < this.div.childElementCount; i++) {
             var spr = this.div.childNodes[i].owner;
             if (!spr) {

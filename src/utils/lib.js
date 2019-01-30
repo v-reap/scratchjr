@@ -5,7 +5,8 @@ export const isTablet = (window.orientation != 'undefined');
 export const DEGTOR = Math.PI / 180;
 export const WINDOW_INNER_HEIGHT = window.innerHeight;
 export const WINDOW_INNER_WIDTH = window.innerWidth;
-export const scaleMultiplier = WINDOW_INNER_HEIGHT / 768.0;
+export const scaleMultiplier = (WINDOW_INNER_HEIGHT>WINDOW_INNER_WIDTH
+    ?WINDOW_INNER_WIDTH:WINDOW_INNER_HEIGHT) / 768.0;
 export const fullscreenScaleMultiplier = 136;
 
 export const isiOS = (typeof AndroidInterface == 'undefined');
@@ -654,6 +655,10 @@ export function css_vh (y) {
 
 export function css_vw (x) {
     return (x * WINDOW_INNER_WIDTH / 100.0) + 'px';
+}
+
+export function css_vm (x) {
+    return (x * (WINDOW_INNER_HEIGHT>WINDOW_INNER_WIDTH?WINDOW_INNER_WIDTH:WINDOW_INNER_HEIGHT) / 100.0) + 'px';
 }
 
 Number.prototype.mod = function (n) {

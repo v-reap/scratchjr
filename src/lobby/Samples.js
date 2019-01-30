@@ -31,7 +31,7 @@ export default class Samples {
     static playHowTo (e) {
         e.preventDefault();
         e.stopPropagation();
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         window.location.href = 'gettingstarted.html?place=help';
     }
 
@@ -74,7 +74,7 @@ export default class Samples {
     static loadMe (e, mt) {
         e.preventDefault();
         e.stopPropagation();
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         iOS.analyticsEvent('samples', 'sample_opened', mt.textContent);
         var md5 = mt.md5;
         window.location.href = 'editor.html?pmd5=' + md5 + '&mode='

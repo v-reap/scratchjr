@@ -425,7 +425,7 @@ export default class BlockArg {
             var imgh = img.naturalHeight ? img.naturalHeight : img.height;
             ctx.drawImage(img, 0, 0, imgw, imgh, 0, 0, w, h);
         }
-        var scale = w / 480;
+        var scale = w / tmwidth;
         for (var i = 0; i < page.div.childElementCount; i++) {
             var spr = page.div.childNodes[i].owner;
             if (!spr) {

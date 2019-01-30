@@ -617,7 +617,7 @@ export default class ScratchJr {
         div = sc.parentNode;
         var w = div.offsetWidth;
         var h = div.offsetHeight;
-        var dx = ((pt.x + 480 * scaleMultiplier) > w) ? (w - 486 * scaleMultiplier) : pt.x - 6 * scaleMultiplier;
+        var dx = ((pt.x + tmwidth * scaleMultiplier) > w) ? (w - 486 * scaleMultiplier) : pt.x - 6 * scaleMultiplier;
         var ti = document.forms.editable.field;
         ti.style.textAlign = 'center';
         document.forms.editable.style.left = dx + 'px';
@@ -763,7 +763,7 @@ export default class ScratchJr {
             t = t.parentNode;
         }
         if (t.className != 'onekey space') {
-            ScratchAudio.sndFX('keydown.wav');
+            ScratchAudio.sndFX('keydown.mp3');
         }
         var c = t.textContent;
         var input = activeFocus.input;
@@ -779,7 +779,7 @@ export default class ScratchJr {
             val = '0';
         }
         if ((c == '-') && (val != '0')) {
-            ScratchAudio.sndFX('boing.wav');
+            ScratchAudio.sndFX('boing.mp3');
             return;
         }
         if (val == '0') {
@@ -788,7 +788,7 @@ export default class ScratchJr {
             val += c;
         }
         if ((Number(val).toString() != 'NaN') && ((Number(val) > 99) || (Number(val) < -99))) {
-            ScratchAudio.sndFX('boing.wav');
+            ScratchAudio.sndFX('boing.mp3');
         } else {
             activeFocus.setValue(val);
         }
@@ -910,7 +910,7 @@ export default class ScratchJr {
     // XXX: does this ever happen?
     // I'm pretty sure this is dead code -TM
     static saveProjectState () {
-        ScratchAudio.sndFX('tap.wav');
+        ScratchAudio.sndFX('tap.mp3');
         if (frame.style.display == 'none') {
             Paint.saveEditState(ScratchJr.stopServer);
         } else {

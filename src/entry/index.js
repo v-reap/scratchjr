@@ -143,12 +143,12 @@ function indexGohome () {
 function indexGoSettings () {
     // Switch to the settings selection page
     // Triggered by tapping the gear icon in the top right
-    ScratchAudio.sndFX('tap.wav');
+    ScratchAudio.sndFX('tap.mp3');
     window.location.href = 'home.html?place=gear';
 }
 
 function indexGettingstarted () {
-    ScratchAudio.sndFX('tap.wav');
+    ScratchAudio.sndFX('tap.mp3');
     window.location.href = 'gettingstarted.html?place=home';
 }
 
@@ -172,17 +172,17 @@ function indexSetUsage (e) {
     // Send one-time analytics event about usage
     iOS.analyticsEvent('lobby', 'scratchjr_usage', usageText);
     AppUsage.setUsage(usageText);
-    ScratchAudio.sndFX('tap.wav');
+    ScratchAudio.sndFX('tap.mp3');
     indexLoadStart(true);
 }
 // For PBS KIDS edition only
 function indexInfo () {
-    ScratchAudio.sndFX('tap.wav');
+    ScratchAudio.sndFX('tap.mp3');
     window.location.href = 'home.html?place=book';
 }
 
 function indexMoreApps () {
-    ScratchAudio.sndFX('tap.wav');
+    ScratchAudio.sndFX('tap.mp3');
 
     UI.parentalGate(null, function () {
         if (isiOS) {

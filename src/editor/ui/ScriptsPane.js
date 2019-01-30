@@ -185,7 +185,7 @@ export default class ScriptsPane {
             ScriptsPane.blockDropped(ScratchJr.getActiveScript(), el.startx, el.starty);
             if (thumb && (gn(thumb.owner).owner.type == gn(page.currentSpriteName).owner.type)) {
                 ScratchJr.storyStart('ScriptsPane.dropBlock:library');
-                ScratchAudio.sndFX('copy.wav');
+                ScratchAudio.sndFX('copy.mp3');
                 Thumbs.quickHighlight(thumb);
                 setTimeout(function () {
                     Thumbs.quickRestore(thumb);

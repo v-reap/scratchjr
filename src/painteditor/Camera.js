@@ -25,7 +25,7 @@ export default class Camera {
     }
 
     static startFeed (feedTarget) {
-        ScratchAudio.sndFX('entertap.wav');
+        ScratchAudio.sndFX('entertap.mp3');
         if (!Paint.canvasFits()) {
             Paint.scaleToFit();
         }
@@ -78,7 +78,7 @@ export default class Camera {
     static doAction (str) {
         switch (str) {
         case 'cameraflip':
-            ScratchAudio.sndFX('tap.wav');
+            ScratchAudio.sndFX('tap.mp3');
             view = (view == 'front') ? 'back' : 'front';
             iOS.choosecamera(view, Camera.flip);
             break;

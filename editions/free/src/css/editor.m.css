@@ -1,4 +1,4 @@
-@media only screen and (min-width: 888px) {
+@media only screen and (max-width: 888px) {
 div.frame {
     width: 100%;
     height: 100%;
@@ -14,8 +14,8 @@ div.frame {
 *.info {
     position: absolute;
     top: 0;
-    right: ${css_vh(0)};
-    width: ${css_vh(5.73)};
+    right: ${css_vw(0)};
+    width: ${css_vw(5.73)};
     height: ${css_vh(5.99)};
     background:  url('../assets/ui/info.svg');
     background-size: 100%;
@@ -35,7 +35,8 @@ div.frame {
 
 *.leftpanel {
     position: relative;
-    display: inline-block;
+    display: none;
+    /* display: inline-block; */
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
     width: ${css_vw(25.39)};
@@ -52,12 +53,13 @@ div.frame {
 *.rightpanel {
     position: absolute;
     top: ${css_vh(0)};
-    right: ${css_vh(5.73)};
+    right: ${css_vw(5.73)};
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
-    display: inline-block;
+    display: none;
+    /* display: inline-block; */
     height: ${css_vh(61.20)};
-    width: ${css_vh(21.09)};
+    width: ${css_vw(21.09)};
 }
 
 /* Pages Thumbnails */
@@ -130,13 +132,13 @@ div.frame {
     position: relative;
     margin: ${css_vh(-14.64)} ${css_vh(16.06)} ${css_vh(0)};
     padding: ${css_vh(0)};
-    width: ${css_vh(3.65)};
+    width: ${css_vw(3.65)};
     height: ${css_vh(3.65)};
     font-size: ${css_vh(1.82)};
     font-family: Roboto;
     font-weight: bold;
     color: white;
-    padding-left: ${css_vh(1.0)};
+    padding-left: ${css_vw(1.0)};
     padding-top: ${css_vh(0.5)};
     text-shadow:  0 ${css_vh(0.13)} #000;
     background: url('../assets/ui/numOff.svg') no-repeat left top;
@@ -164,7 +166,7 @@ div.frame {
 .deletethumb {
     position: relative;
     margin: ${css_vh(-3.9)} ${css_vh(0)} ${css_vh(0)};
-    width: ${css_vh(5.86)};
+    width: ${css_vw(5.86)};
     height: ${css_vh(5.73)};
     background: url('../assets/ui/closeit.svg');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
@@ -179,7 +181,7 @@ div.frame {
 
 .circle {
     position: absolute;
-    width: ${css_vh(2.6)};
+    width: ${css_vw(2.6)};
     height: ${css_vh(2.6)};
     background: #515050;
     -moz-border-radius: 12px;
@@ -202,7 +204,7 @@ div.frame {
     position: absolute;
     margin: ${css_vh(0)};
     top: ${64 * scaleMultiplier}px;
-    left: ${css_vh(0)};
+    left: ${css_vw(0)};
     background: white;
     z-index: 50;
     width: 100%;
@@ -214,7 +216,7 @@ div.frame {
     position: absolute;
     margin: ${css_vh(0)};
     top: ${css_vh(0)};
-    left: ${css_vh(0)};
+    left: ${css_vw(0)};
     width: 100%;
     height: ${7 * scaleMultiplier}px;
     background: url('../assets/categories/papercut.png');
@@ -274,7 +276,7 @@ div.frame {
     margin: ${css_vh(0)};
     margin-top: ${css_vh(5.47)};
     padding: ${css_vh(0)};
-    width: ${css_vh(4.56)};
+    width: ${css_vw(4.56)};
     height: ${css_vh(2.6)};
     overflow: hidden;
     z-index: 40;
@@ -295,7 +297,7 @@ div.frame {
 .deleteasset {
     position: absolute;
     margin: ${css_vh(-13.02)} ${css_vh(0)} ${css_vh(0)};
-    width: ${css_vh(5.86)};
+    width: ${css_vw(5.86)};
     height: ${css_vh(5.73)};
     background: url('../assets/ui/closeit.svg');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
@@ -308,7 +310,7 @@ div.frame {
 .deletesound {
     position: absolute;
     margin: ${css_vh(-0.78)} ${css_vh(-0.78)} ${css_vh(0)};
-    width: ${css_vh(5.86)};
+    width: ${css_vw(5.86)};
     height: ${css_vh(5.73)};
     background: url('../assets/ui/closeit.svg');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
@@ -331,7 +333,7 @@ div.frame {
 .deletetext {
     position: absolute;
     margin: ${css_vh(-2.08)} ${css_vh(-4.17)} ${css_vh(0)};
-    width: ${css_vh(5.86)};
+    width: ${css_vw(5.86)};
     height: ${css_vh(5.73)};
     background: url('../assets/ui/closeit.svg');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
@@ -384,7 +386,7 @@ z-index: 5;
     position: absolute;
     display: inline-block;
     top: ${css_vh(0.91)};
-    right: ${css_vh(1)};
+    right: ${css_vw(1)};
     margin: ${css_vh(0.00)};
     padding: ${css_vh(0.00)};
     width: ${100 * scaleMultiplier};
@@ -397,8 +399,8 @@ z-index: 5;
     position: relative;
     margin: ${css_vh(0.00)};
     padding: ${css_vh(0.00)};
-    width: ${css_vh(6.51)};
-    height: ${css_vh(6.51)};
+    width: ${css_vm(6.51)};
+    height: ${css_vm(6.51)};
     background: url('../assets/undo/undo.png');
     background-size: 101%;
     -webkit-user-select: none;
@@ -409,8 +411,8 @@ z-index: 5;
     position: relative;
     margin: ${css_vh(0.00)};
     padding: ${css_vh(0.00)};
-    width: ${css_vh(6.51)};
-    height: ${css_vh(6.51)};
+    width: ${css_vm(6.51)};
+    height: ${css_vm(6.51)};
     background: url('../assets/undo/redo.png');
     background-size: 101%;
     -webkit-user-select: none;
@@ -449,8 +451,8 @@ z-index: 5;
 .watermark {
     position: absolute;
     top: ${css_vh(2.60)};
-    left: ${css_vh(3.26)};
-    width: ${css_vh(18.88)};
+    left: ${css_vw(3.26)};
+    width: ${css_vw(18.88)};
     height: ${css_vh(18.88)};
 }
 
@@ -461,7 +463,7 @@ z-index: 5;
 .scripts .leftarrow {
     float: left;
     padding: ${css_vh(0.00)};
-    padding-left: ${css_vh(1.30)};
+    padding-left: ${css_vw(1.30)};
     z-index: 10;
     visibility: hidden;
 }
@@ -478,8 +480,8 @@ z-index: 5;
 .scripts .rightarrow {
     float: right;
     padding: ${css_vh(0.00)};
-    padding-right: ${css_vh(1.30)};
-    width: ${css_vh(3.91)};
+    padding-right: ${css_vw(1.30)};
+    width: ${css_vw(3.91)};
     z-index: 10;
     visibility: hidden;
 }
@@ -659,19 +661,19 @@ img.infoboxShareLoading {
 .infobox.fade {
     /*  -webkit-transition: top .2s linear, left .2s ease-out;*/
     top: ${css_vh(-100)};
-    left: ${css_vh(133.33)};
+    left: ${css_vw(133.33)};
 }
 
 .infobox.fade.in {
     /*  -webkit-transition: top .2s linear, left .2s ease-out;*/
-    left: ${css_vh(0)};
+    left: ${css_vw(0)};
     top: ${css_vh(0)};
 }
 
 
 form.projectname {
     padding: ${css_vh(0)};
-    width: ${css_vh(46.88)};
+    width: ${css_vw(46.88)};
     height: ${css_vh(6.51)};
     margin: ${css_vh(0)} ${css_vh(0)} ${css_vh(0)};
     top: ${css_vh(18.88)};
@@ -697,7 +699,7 @@ form.projectname {
     -webkit-border-radius: ${36 * scaleMultiplier}px;
     cursor: default;
     background: white;
-    width: ${css_vh(46.88)};
+    width: ${css_vw(46.88)};
     height: ${css_vh(6.51)};
     outline: ${css_vh(0)};
 }
@@ -749,8 +751,8 @@ form.projectname {
 
 .infoboxlogo {
     top: ${css_vh(1.82)};
-    left: ${css_vh(43.23)};
-    width: ${css_vh(46.75)};
+    left: ${css_vw(43.23)};
+    width: ${css_vw(46.75)};
     height: ${css_vh(16.67)};
     background: url('../assets/pinfologo.png');
     background-size: 100%;
@@ -906,9 +908,9 @@ Blocks text fields and input fields
     margin: ${css_vh(0.00)};
     padding: ${css_vh(0.00)};
     height: ${css_vh(3.13)};
-    width: ${css_vh(6.51)};
+    width: ${css_vw(6.51)};
     top: ${css_vh(7.16)};
-    left: ${css_vh(0.78)};
+    left: ${css_vw(0.78)};
     color: #77787b;
     -webkit-border-radius: ${6 * scaleMultiplier}px;
     border: ${2 * scaleMultiplier}px solid #c0c2c3;
@@ -928,7 +930,7 @@ Blocks text fields and input fields
     font-weight: normal;
     font-size:  ${css_vh(1.82)};
     height: ${css_vh(3.13)};
-    width: ${css_vh(6.51)};
+    width: ${css_vw(6.51)};
     cursor: default;
     line-height: ${css_vh(3.13)};
     overflow: hidden;
@@ -939,9 +941,9 @@ Blocks text fields and input fields
     position: absolute;
     padding: ${css_vh(0)} ${css_vh(0)};
     height: ${css_vh(6.25)};
-    width: ${css_vh(62.51)};
+    width: ${css_vw(62.51)};
     top: ${css_vh(7.16)};
-    left: ${css_vh(0.79)};
+    left: ${css_vw(0.79)};
     display: none;
 }
 
@@ -961,7 +963,7 @@ Blocks text fields and input fields
     font-family: Verdana;
     cursor: default;
     border: 2px solid  #28A5DA;
-    width: ${css_vh(62.51)};
+    width: ${css_vw(62.51)};
     height: ${css_vh(6.25)};
     font-size: ${css_vh(3.13)};
 }
@@ -971,7 +973,7 @@ Blocks text fields and input fields
     -moz-border-radius: ${5 * scaleMultiplier}px;
     -webkit-border-radius: ${5 * scaleMultiplier}px;
     outline-color: rgba(0, 0, 0, 0);
-    width: ${css_vh(62.51)};
+    width: ${css_vw(62.51)};
     height: ${css_vh(6.25)};
     font-size: ${css_vh(3.13)};
 }
@@ -983,10 +985,10 @@ Blocks text fields and input fields
     display: none;
     padding: ${css_vh(0)};
     margin: ${css_vh(0)};
-    width: ${css_vh(23.44)};
+    width: ${css_vw(23.44)};
     height: ${css_vh(27.34)};
     top: ${css_vh(71.61)};
-    right: ${css_vh(1)};
+    right: ${css_vw(1)};
     border: ${scaleMultiplier}px solid #B9C0C6;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0%,#ffffff), color-stop(1%,#ffffff),  color-stop(100%,#F9F9F9));
     -webkit-border-radius: ${6 * scaleMultiplier}px;
@@ -1002,7 +1004,7 @@ Blocks text fields and input fields
     margin: ${css_vh(0.65)} ${css_vh(0.65)} ${css_vh(0.00)};
     position: relative;
     padding: ${css_vh(0.00)};
-    width: ${css_vh(23.18)};
+    width: ${css_vw(23.18)};
     height: ${css_vh(27.08)};
     -webkit-border-radius: ${6 * scaleMultiplier}px;
 }
@@ -1010,7 +1012,7 @@ Blocks text fields and input fields
 *.onekey {
     display: inline-block;
     position: relative;
-    width: ${css_vh(6.77)};
+    width: ${css_vw(6.77)};
     height: ${css_vh(5.21)};
     margin: ${css_vh(0.26)};
     color: #999;
@@ -1062,9 +1064,9 @@ Blocks text fields and input fields
     padding: ${css_vh(0.00)};
     border: 0px solid;
     height: ${css_vh(3.13)};
-    width: ${css_vh(5.47)};
+    width: ${css_vw(5.47)};
     top: ${css_vh(7.16)};
-    left: ${css_vh(1.30)};
+    left: ${css_vw(1.30)};
     color: #77787b;
     -moz-border-radius: ${12 * scaleMultiplier}px;
     -webkit-border-radius: ${12 * scaleMultiplier}px;
@@ -1084,7 +1086,7 @@ Blocks text fields and input fields
     font-size:  ${css_vh(1.82)};
     font-weight: normal;
     height: ${css_vh(3.13)};
-    width: ${css_vh(5.47)};
+    width: ${css_vw(5.47)};
     cursor: default;
     line-height: ${css_vh(3.13)};
 }

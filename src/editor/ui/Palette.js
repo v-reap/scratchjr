@@ -60,6 +60,7 @@ export default class Palette {
         sel.setAttribute('id', 'selectors');
         var bkg = newHTML('div', 'catbkg', sel);
         newHTML('div', 'catimage', bkg);
+        console.log(scaleMultiplier);
         var leftPx = 15 * scaleMultiplier;
         var widthPx = 54 * scaleMultiplier;
         for (var i = 0; i < BlockSpecs.categories.length; i++) {
@@ -104,7 +105,7 @@ export default class Palette {
     }
 
     static removeSound (ths) {
-        ScratchAudio.sndFX('cut.wav');
+        ScratchAudio.sndFX('cut.mp3');
         var indx = ths.owner.getArgValue();
         var spr = ScratchJr.getSprite();
         if (!spr) {
@@ -257,7 +258,7 @@ export default class Palette {
 
     static prepareForDrag (e) {
         e.preventDefault();
-        ScratchAudio.sndFX('grab.wav');
+        ScratchAudio.sndFX('grab.mp3');
         if (!ScratchJr.runtime.inactive()) {
             ScratchJr.stopStrips();
         }
@@ -337,7 +338,7 @@ export default class Palette {
         e.preventDefault();
         ScratchJr.unfocus(e);
         var t = e.target;
-        ScratchAudio.sndFX('keydown.wav');
+        ScratchAudio.sndFX('keydown.mp3');
         var index = t.parentNode ? t.parentNode.index : 2;
         Palette.selectCategory(index);
     }

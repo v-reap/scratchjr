@@ -86,7 +86,7 @@ export default class Undo {
             index--;
         }
         index--;
-        var snd = (index < 0) ? 'boing.wav' : 'tap.wav';
+        var snd = (index < 0) ? 'boing.mp3' : 'tap.mp3';
         ScratchAudio.sndFX(snd);
         if (index < 0) {
             index = 0;
@@ -104,7 +104,7 @@ export default class Undo {
         ScratchJr.unfocus();
         ScratchJr.time = e.timeStamp;
         index++;
-        var snd = (index > buffer.length - 1) ? 'boing.wav' : 'tap.wav';
+        var snd = (index > buffer.length - 1) ? 'boing.mp3' : 'tap.mp3';
         ScratchAudio.sndFX(snd);
         if (index > buffer.length - 1) {
             index = buffer.length - 1;
