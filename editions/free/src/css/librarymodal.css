@@ -57,7 +57,7 @@
 }
 
 .assetname p{
-    text-align: center;
+    /* text-align: center; */
     font-size: ${css_vh(4.17)};
     /*  font-weight: bold;  */
     color:  #4682B5;
@@ -68,6 +68,7 @@
     cursor: default;
     outline: ${css_vh(0.00)};
     height: ${css_vh(5.21)};
+    padding-left: 20px;
 }
 
 .actions .bkgbuttons {
@@ -164,10 +165,10 @@ hr.bigdivide{
 .assetbox {
     display: inline-block;
     vertical-align: top;
-    width: ${css_vh(17.84)};
-    height: ${css_vh(14.45)};
-    margin: ${css_vh(0.65)};
-    padding: ${css_vh(0.65)};
+    width: ${css_vh(19)};
+    height: ${css_vh(14.5)};
+    margin: ${css_vh(1)};
+    padding: ${css_vh(1)};
 }
 
 .assetbox.off {

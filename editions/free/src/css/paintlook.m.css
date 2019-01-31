@@ -1,4 +1,4 @@
-@media only screen and (min-width: 888px) {
+@media only screen and (max-width: 888px) {
 .paintframe {
     position: absolute;
     z-index: 10000;
@@ -260,43 +260,49 @@ spriteform.off {visibility: hidden; };
 }
 
 *.side {
-    position: absolute;
-    right: ${css_vw(2)};
-    top: ${css_vh(8.25)};
-    margin: ${css_vh(1.56)} ${css_vh(0.00)} 0;
+    /* position: fixed;
+    left: ${css_vw(8.00)};
     padding: ${css_vh(0.00)} ${css_vh(0.39)} ${css_vh(0.00)};
-    width: ${css_vh(10.42)};
-    height: ${css_vh(65.18)};
+    width: 78%;
+    height: ${css_vh(76.56)};
     overflow: hidden;
-    z-index: 100;
+    z-index: 100; */
 }
 
 *.side.up {
-    top: ${css_vh(3)};
-    height: ${css_vh(73.18)};
-    left: ${css_vw(2.00)};
+    position: fixed;
+    left: ${css_vw(8.00)};
+    /* margin: ${css_vh(1.56)} ${css_vh(0.00)} 0; */
+    padding: ${css_vh(0.00)} ${css_vh(0.39)} ${css_vh(0.00)};
+    width: 78%;
+    /* height: ${css_vh(76.56)}; */
+    overflow: hidden;
+    z-index: 100;
+    /* margin-top: ${css_vh(3)};
+    height: ${css_vh(18)}; */
 }
 
 *.paintpalette {
-    display: inline-block;
+    margin-top: 20px;
+    /* display: inline-block;
     position: absolute;
     margin: ${css_vh(0.00)};
     margin-bottom: ${css_vh(0.65)};
     padding: ${css_vh(0.00)};
-    width: ${css_vh(10.42)};
-    overflow: hidden;
+    width: 100%;
     height: 100%;
+    overflow: hidden; */
 }
 
 *.paintpalette .section {
-    display: inline-block;
-    position: absolute;
-    top: ${css_vh(0)};
+    display: flex;
+    /* position: absolute;
+    top: ${css_vh(0)}; */
 }
 
 *.paintpalette .section.space {
-    margin-top: ${css_vh(3.13)};
-    top: ${css_vh(33)};
+    /* margin-top: ${css_vh(9.5)}; */
+    /* top: ${css_vh(33)}; */
 }
 
 *.paintpalette.short {
@@ -307,15 +313,18 @@ spriteform.off {visibility: hidden; };
 }
 
 *.paintpalette.short#selectortools {
-    top: ${css_vh(0)};
+    bottom: ${css_vh(3)};
+    left: 10%;
 }
 
 *.paintpalette.short#edittools {
-    top: ${css_vh(19.4)};
+    bottom: ${css_vh(3)};
+    left: 40%;
 }
 
 *.paintpalette.short#filltools {
-    top: ${css_vh(38.7)};
+    bottom: ${css_vh(3)};
+    left: 70%;
 }
 
 *.paintpalette.medium {
@@ -338,7 +347,7 @@ spriteform.off {visibility: hidden; };
     margin: ${css_vh(0.00)} ${css_vh(1.30)} ${css_vh(1.0)};
     padding: ${css_vh(0.00)};
     width: ${css_vh(7.81)};
-    height: ${css_vh(7.16)};
+    /* height: ${css_vh(7.16)}; */
 }
 
 *.paintpalette .element.first{}
@@ -352,7 +361,7 @@ spriteform.off {visibility: hidden; };
 *.paintpalette .element.on {}
 
 *.tool {
-    position: absolute;
+    /* position: fixed; */
     width: ${css_vh(8.33)};
     height: ${css_vh(8.33)};
 }
@@ -453,8 +462,8 @@ spriteform.off {visibility: hidden; };
     position: relative;
     margin: ${css_vh(0.00)};
     padding: ${css_vh(0.00)};
-    width: ${css_vh(10.42)};
-    height: ${css_vh(5.86)};
+    width: ${css_vh(9)};
+    height: ${css_vh(5)};
 }
 
 *.paintpalette .pensizeholder.off {background: none;}

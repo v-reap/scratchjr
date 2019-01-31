@@ -2051,10 +2051,10 @@ function isnan (val) {
 
 /***/ }),
 
-/***/ "./node_modules/expose-loader/index.js?IntlMessageFormat!./node_modules/intl-messageformat/index.js":
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/expose-loader?IntlMessageFormat!./node_modules/intl-messageformat/index.js ***!
-  \*************************************************************************************************/
+/***/ "./node_modules/expose-loader/index.js?IntlMessageFormat!./node_modules/intl-messageformat/index.js-exposed":
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/expose-loader?IntlMessageFormat!./node_modules/intl-messageformat/index.js-exposed ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24961,6 +24961,7 @@ var Stage = function () {
     _createClass(Stage, [{
         key: 'setStageScaleAndPosition',
         value: function setStageScaleAndPosition(scale, x, y) {
+            scale = (0, _lib.min_scale)();
             this.stageScale = scale;
             (0, _lib.setProps)((0, _lib.gn)('stage').style, {
                 webkitTransform: 'translate(' + -this.width / 2 + 'px, ' + -this.height / 2 + 'px) ' + 'scale(' + scale + ') ' + 'translate(' + (this.width / 2 + x) + 'px, ' + (this.height / 2 + y) + 'px)'
@@ -26081,6 +26082,7 @@ var Grid = function () {
     }, {
         key: 'setScaleAndPosition',
         value: function setScaleAndPosition(grid, scale, x, y, w, h) {
+            scale = (0, _lib.min_scale)();
             (0, _lib.setProps)(grid.style, {
                 webkitTransform: 'translate(' + -w / 2 + 'px, ' + -h / 2 + 'px) ' + 'scale(' + scale + ') ' + 'translate(' + (w / 2 + x) + 'px, ' + (h / 2 + y) + 'px)'
             });
@@ -26509,7 +26511,9 @@ var Library = function () {
         key: 'addThumbnails',
         value: function addThumbnails() {
             var div = (0, _lib.gn)('scrollarea');
-            Library.addEmptyThumb(div, type == 'costumes' ? 118 * _lib.scaleMultiplier : 120 * _lib.scaleMultiplier, type == 'costumes' ? 90 * _lib.scaleMultiplier : 90 * _lib.scaleMultiplier);
+            Library.addEmptyThumb(div, type == 'costumes' ? 118 : 120, type == 'costumes' ? 90 : 90);
+            // Library.addEmptyThumb(div, (type == 'costumes') ? (118 * scaleMultiplier) : (120 * scaleMultiplier),
+            //     (type == 'costumes') ? (90 * scaleMultiplier) : (90 * scaleMultiplier));z
             var key = type == 'costumes' ? 'usershapes' : 'userbkgs';
             // Student' assets
             var json = {};
@@ -26596,8 +26600,8 @@ var Library = function () {
             var img = (0, _lib.newHTML)('img', undefined, tb);
             img.style.left = 9 * _lib.scaleMultiplier + 'px';
             img.style.top = 7 * _lib.scaleMultiplier + 'px';
-            img.style.position = 'relative';
             img.style.height = data.height * scale + 'px';
+            img.style.position = 'relative';
             if (data.altmd5) {
                 _IO2.default.getAsset(data.altmd5, drawMe);
             }
@@ -26623,8 +26627,8 @@ var Library = function () {
 
             var img = (0, _lib.newHTML)('img', undefined, tb);
             var scale = Math.min(w / tb.w, h / tb.h);
-            img.style.height = tb.h * scale + 'px';
-            img.style.width = tb.w * scale + 'px';
+            // img.style.height = tb.h * scale + 'px';
+            img.style.width = '93%'; //tb.w * scale + 'px';
 
             img.style.left = Math.floor((w - scale * tb.w) / 2 + 9 * _lib.scaleMultiplier) + 'px';
             img.style.top = Math.floor((h - scale * tb.h) / 2 + 9 * _lib.scaleMultiplier) + 'px';
@@ -27090,7 +27094,7 @@ var Palette = function () {
             sel.setAttribute('id', 'selectors');
             var bkg = (0, _lib.newHTML)('div', 'catbkg', sel);
             (0, _lib.newHTML)('div', 'catimage', bkg);
-            console.log(_lib.scaleMultiplier);
+            // console.log(scaleMultiplier);
             var leftPx = 15 * _lib.scaleMultiplier;
             var widthPx = 54 * _lib.scaleMultiplier;
             for (var i = 0; i < _BlockSpecs2.default.categories.length; i++) {
@@ -33374,7 +33378,7 @@ var ElectronDesktopInterface = function () {
                 };
 
                 var playPromise = audioElement.play();
-                document.body.addEventListener('touchstart', _musicInBrowserHandler);
+                document.body.addEventListener('touchstart', _musicInBrowserHandler, false);
 
                 // In browsers that don’t yet support this functionality,
                 // playPromise won’t be defined.
@@ -34143,6 +34147,7 @@ window.onload = function () {
             (0, _lib.preprocessAndLoadCss)('css', 'css/editor.m.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/editorleftpanel.m.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/editorstage.m.css');
+            (0, _lib.preprocessAndLoadCss)('css', 'css/paintlook.m.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/editormodal.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/librarymodal.css');
             (0, _lib.preprocessAndLoadCss)('css', 'css/paintlook.css');
@@ -40810,7 +40815,7 @@ var PaintAction = function () {
             if (mt.tagName.toLowerCase() != 'div' && mt.tagName.toLowerCase() != 'svg') {
                 target = mt;
             }
-            evt.preventDefault();
+            // evt.preventDefault(); //todo bug: Unable to preventDefault inside passive event listener
             _Paint2.default.initialPoint = PaintAction.getScreenPt(evt);
             _Paint2.default.deltaPoint = PaintAction.getScreenPt(evt);
             if (_Path2.default.hitDot(evt)) {
@@ -47215,7 +47220,7 @@ __webpack_require__(/*! intl/locale-data/jsonp/sv.js */ "./node_modules/intl/loc
 __webpack_require__(/*! intl/locale-data/jsonp/th.js */ "./node_modules/intl/locale-data/jsonp/th.js");
 __webpack_require__(/*! intl/locale-data/jsonp/zh.js */ "./node_modules/intl/locale-data/jsonp/zh.js");
 
-__webpack_require__(/*! expose-loader?IntlMessageFormat!intl-messageformat */ "./node_modules/expose-loader/index.js?IntlMessageFormat!./node_modules/intl-messageformat/index.js");
+__webpack_require__(/*! expose-loader?IntlMessageFormat!intl-messageformat */ "./node_modules/expose-loader/index.js?IntlMessageFormat!./node_modules/intl-messageformat/index.js-exposed");
 __webpack_require__(/*! intl-messageformat/dist/locale-data/ca */ "./node_modules/intl-messageformat/dist/locale-data/ca.js");
 __webpack_require__(/*! intl-messageformat/dist/locale-data/de */ "./node_modules/intl-messageformat/dist/locale-data/de.js");
 __webpack_require__(/*! intl-messageformat/dist/locale-data/en */ "./node_modules/intl-messageformat/dist/locale-data/en.js");
@@ -48770,6 +48775,8 @@ exports.colorToRGBA = colorToRGBA;
 exports.css_vh = css_vh;
 exports.css_vw = css_vw;
 exports.css_vm = css_vm;
+exports.min_scale = min_scale;
+exports.css_vtopsection = css_vtopsection;
 var frame = exports.frame = undefined;
 // XXX: isTablet is legacy code that can be used to detect if we're running on a desktop browser
 // There are references to it throughout the codebase, should possibly be removed at some point
@@ -49426,6 +49433,14 @@ function css_vm(x) {
     return x * (WINDOW_INNER_HEIGHT > WINDOW_INNER_WIDTH ? WINDOW_INNER_WIDTH : WINDOW_INNER_HEIGHT) / 100.0 + 'px';
 }
 
+function min_scale() {
+    return scaleMultiplier > 0.7 ? scaleMultiplier : 1.35168 * scaleMultiplier;
+}
+
+function css_vtopsection(x) {
+    return min_scale() * 360 * 1.2 + x * (WINDOW_INNER_HEIGHT > WINDOW_INNER_WIDTH ? WINDOW_INNER_WIDTH : WINDOW_INNER_HEIGHT) / 100.0 + 'px';
+}
+
 Number.prototype.mod = function (n) {
     return (this % n + n) % n;
 };
@@ -49455,4 +49470,4 @@ Number.prototype.mod = function (n) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.bundle.js.map?4ae4d674
+//# sourceMappingURL=app.bundle.js.map?ec9a8d3f

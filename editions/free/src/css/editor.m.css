@@ -28,7 +28,7 @@ div.frame {
     padding: ${css_vh(0)};
     margin: ${css_vh(0)} ${css_vh(0)} ${css_vh(0)};
     width: 100%;
-    height: ${css_vh(61.2)};
+    height: ${css_vtopsection(8.3)};
     background:  url('../assets/ui/backgrounds.png');
     background-size: 100% 100%;
 }
@@ -985,7 +985,7 @@ Blocks text fields and input fields
     display: none;
     padding: ${css_vh(0)};
     margin: ${css_vh(0)};
-    width: ${css_vw(23.44)};
+    width: ${css_vh(23.44)};
     height: ${css_vh(27.34)};
     top: ${css_vh(71.61)};
     right: ${css_vw(1)};
@@ -1004,7 +1004,7 @@ Blocks text fields and input fields
     margin: ${css_vh(0.65)} ${css_vh(0.65)} ${css_vh(0.00)};
     position: relative;
     padding: ${css_vh(0.00)};
-    width: ${css_vw(23.18)};
+    width: ${css_vh(23.18)};
     height: ${css_vh(27.08)};
     -webkit-border-radius: ${6 * scaleMultiplier}px;
 }
@@ -1012,7 +1012,7 @@ Blocks text fields and input fields
 *.onekey {
     display: inline-block;
     position: relative;
-    width: ${css_vw(6.77)};
+    width: ${css_vh(6.77)};
     height: ${css_vh(5.21)};
     margin: ${css_vh(0.26)};
     color: #999;
@@ -1065,7 +1065,7 @@ Blocks text fields and input fields
     border: 0px solid;
     height: ${css_vh(3.13)};
     width: ${css_vw(5.47)};
-    top: ${css_vh(7.16)};
+    top: ${css_vw(7.16)};
     left: ${css_vw(1.30)};
     color: #77787b;
     -moz-border-radius: ${12 * scaleMultiplier}px;

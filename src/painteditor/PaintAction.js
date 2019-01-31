@@ -78,7 +78,7 @@ export default class PaintAction {
         if ((mt.tagName.toLowerCase() != 'div') && (mt.tagName.toLowerCase() != 'svg')) {
             target = mt;
         }
-        evt.preventDefault();
+        // evt.preventDefault(); //todo bug: Unable to preventDefault inside passive event listener
         Paint.initialPoint = PaintAction.getScreenPt(evt);
         Paint.deltaPoint = PaintAction.getScreenPt(evt);
         if (Path.hitDot(evt)) {

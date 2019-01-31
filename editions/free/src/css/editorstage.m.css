@@ -1,6 +1,7 @@
 /* toolbar */
 @media only screen and (max-width: 888px) {
     .fullscreen#full {
+        display: none;
         position: absolute;
         margin: 0px;
         padding: 0px;

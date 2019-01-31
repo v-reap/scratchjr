@@ -109,8 +109,10 @@ export default class Library {
 
     static addThumbnails () {
         var div = gn('scrollarea');
-        Library.addEmptyThumb(div, (type == 'costumes') ? (118 * scaleMultiplier) : (120 * scaleMultiplier),
-            (type == 'costumes') ? (90 * scaleMultiplier) : (90 * scaleMultiplier));
+        Library.addEmptyThumb(div, (type == 'costumes') ? (118) : (120),
+            (type == 'costumes') ? (90) : (90));
+        // Library.addEmptyThumb(div, (type == 'costumes') ? (118 * scaleMultiplier) : (120 * scaleMultiplier),
+        //     (type == 'costumes') ? (90 * scaleMultiplier) : (90 * scaleMultiplier));z
         var key = (type == 'costumes') ? 'usershapes' : 'userbkgs';
         // Student' assets
         var json = {};
@@ -196,8 +198,8 @@ export default class Library {
         var img = newHTML('img', undefined, tb);
         img.style.left = (9 * scaleMultiplier) + 'px';
         img.style.top = (7 * scaleMultiplier) + 'px';
-        img.style.position = 'relative';
         img.style.height = (data.height * scale) + 'px';
+        img.style.position = 'relative';
         if (data.altmd5) {
             IO.getAsset(data.altmd5, drawMe);
         }
@@ -222,8 +224,8 @@ export default class Library {
 
         var img = newHTML('img', undefined, tb);
         var scale = Math.min(w / tb.w, h / tb.h);
-        img.style.height = tb.h * scale + 'px';
-        img.style.width = tb.w * scale + 'px';
+        // img.style.height = tb.h * scale + 'px';
+        img.style.width = '93%';//tb.w * scale + 'px';
 
         img.style.left = Math.floor(((w - (scale * tb.w)) / 2) + (9 * scaleMultiplier)) + 'px';
         img.style.top = Math.floor(((h - (scale * tb.h)) / 2) + (9 * scaleMultiplier)) + 'px';

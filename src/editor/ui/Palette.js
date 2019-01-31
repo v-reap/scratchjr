@@ -60,7 +60,7 @@ export default class Palette {
         sel.setAttribute('id', 'selectors');
         var bkg = newHTML('div', 'catbkg', sel);
         newHTML('div', 'catimage', bkg);
-        console.log(scaleMultiplier);
+        // console.log(scaleMultiplier);
         var leftPx = 15 * scaleMultiplier;
         var widthPx = 54 * scaleMultiplier;
         for (var i = 0; i < BlockSpecs.categories.length; i++) {

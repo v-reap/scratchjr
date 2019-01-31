@@ -661,6 +661,14 @@ export function css_vm (x) {
     return (x * (WINDOW_INNER_HEIGHT>WINDOW_INNER_WIDTH?WINDOW_INNER_WIDTH:WINDOW_INNER_HEIGHT) / 100.0) + 'px';
 }
 
+export function min_scale () {
+    return scaleMultiplier>0.7?scaleMultiplier:(1.35168*scaleMultiplier);
+}
+
+export function css_vtopsection (x) {
+    return min_scale()*360*1.2+(x * (WINDOW_INNER_HEIGHT>WINDOW_INNER_WIDTH?WINDOW_INNER_WIDTH:WINDOW_INNER_HEIGHT) / 100.0) + 'px';
+}
+
 Number.prototype.mod = function (n) {
     return ((this % n) + n) % n;
 };

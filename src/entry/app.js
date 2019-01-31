@@ -215,7 +215,7 @@ class ElectronDesktopInterface {
                 document.body.removeEventListener('touchstart', musicInBrowserHandler);
                 audioElement.play();
             }
-            document.body.addEventListener('touchstart', musicInBrowserHandler);
+            document.body.addEventListener('touchstart', musicInBrowserHandler, false);
             
             // In browsers that don’t yet support this functionality,
             // playPromise won’t be defined.
@@ -975,6 +975,7 @@ window.onload = () => {
         preprocessAndLoadCss('css', 'css/editor.m.css');
         preprocessAndLoadCss('css', 'css/editorleftpanel.m.css');
         preprocessAndLoadCss('css', 'css/editorstage.m.css');
+        preprocessAndLoadCss('css', 'css/paintlook.m.css');
         preprocessAndLoadCss('css', 'css/editormodal.css');
         preprocessAndLoadCss('css', 'css/librarymodal.css');
         preprocessAndLoadCss('css', 'css/paintlook.css');

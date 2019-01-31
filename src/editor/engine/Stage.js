@@ -10,7 +10,7 @@ import ScratchAudio from '../../utils/ScratchAudio';
 import Vector from '../../geom/Vector';
 import Page from './Page';
 import {newHTML, newDiv, gn,
-    getIdFor, setProps,
+    getIdFor, setProps,min_scale,
     scaleMultiplier, setCanvasSize,
     globaly, globalx} from '../../utils/lib';
 
@@ -44,6 +44,7 @@ export default class Stage {
     }
 
     setStageScaleAndPosition (scale, x, y) {
+        scale = min_scale();
         this.stageScale = scale;
         setProps(gn('stage').style, {
             webkitTransform: 'translate(' + (-this.width / 2) + 'px, ' + (-this.height / 2) + 'px) ' +

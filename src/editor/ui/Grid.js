@@ -5,7 +5,7 @@
 import ScratchJr from '../ScratchJr';
 import Events from '../../utils/Events';
 import Localization from '../../utils/Localization';
-import {gn, scaleMultiplier, isTablet, newDiv, setProps, newP, newCanvas} from '../../utils/lib';
+import {gn, scaleMultiplier, isTablet, newDiv, setProps, newP, min_scale, newCanvas} from '../../utils/lib';
 
 let width = tmwidth;
 let height = 362;
@@ -38,6 +38,7 @@ export default class Grid {
     }
 
     static setScaleAndPosition (grid, scale, x, y, w, h) {
+        scale = min_scale();
         setProps(grid.style, {
             webkitTransform: 'translate(' + (-w / 2) + 'px, ' + (-h / 2) + 'px) ' +
                 'scale(' + scale + ') ' +
