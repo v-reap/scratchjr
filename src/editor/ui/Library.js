@@ -225,7 +225,7 @@ export default class Library {
         var img = newHTML('img', undefined, tb);
         var scale = Math.min(w / tb.w, h / tb.h);
         // console.log(scale,w , tb.w, h , tb.h);
-        if (tb.w<tb.h){
+        if (tb.w<tb.h){//
             img.style.height = '93%';//tb.h * scale + 'px';
         } else {
             img.style.width = '93%';//tb.w * scale + 'px';
