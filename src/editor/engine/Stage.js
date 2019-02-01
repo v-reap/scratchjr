@@ -30,6 +30,12 @@ export default class Stage {
         var me = this;
         this.div.ontouchstart = function (evt) {
             me.mouseDown(evt);
+            gn('library').style.display="none";
+            gn('pages').style.display="none";
+            setTimeout( function(){
+                gn('library').style.display="block";
+                gn('pages').style.display="block";
+            }, 3 * 1000 );
         };
         this.div.owner = this;
         this.currentZoom = 1;

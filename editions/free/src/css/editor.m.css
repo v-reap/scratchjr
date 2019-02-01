@@ -39,7 +39,8 @@ div.frame {
     /* display: inline-block; */
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
-    width: ${css_vw(25.39)};
+    width: 1px;
+    /* width: ${css_vw(25.39)}; */
     /* height: ${css_vh(61.20)}; */
     height: ${css_vtopsection(8.3)};
     z-index: 1;
@@ -54,13 +55,13 @@ div.frame {
 *.rightpanel {
     position: absolute;
     top: ${css_vh(0)};
-    right: ${css_vw(5.73)};
+    right: ${css_vw(23)};
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
     /* display: none; */
     display: inline-block;
     height: ${css_vtopsection(8.3)};
-    width: ${css_vw(21.09)};
+    /* width: ${css_vw(21.09)}; */
 }
 
 /* Pages Thumbnails */

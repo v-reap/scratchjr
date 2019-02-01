@@ -6,10 +6,10 @@
     padding: 0px;
     top: ${css_vm(0.13)};
     left: ${css_vm(1.69)};
-    background:  url('../assets/ui/fliplogo.svg');
+    background:  url('../assets/ui/fliplogo.png');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
-    /* width: ${css_vm(29.95)}; */
-    /* height: ${css_vm(8.20)}; */
+    width: ${css_vm(8)};
+    height: ${css_vm(8)};
 }
 
 .flipme:active {
