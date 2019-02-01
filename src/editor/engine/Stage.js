@@ -28,16 +28,19 @@ export default class Stage {
             position: 'absolute'
         });
         var me = this;
+        let showIn3Secs;
         this.div.ontouchstart = function (evt) {
             me.mouseDown(evt);
             if (scaleMultiplier<0.9){
+                clearTimeout(showIn3Secs);
                 gn('library').style.display="none";
                 gn('pages').style.display="none";
             }
         };
+        
         if (scaleMultiplier<0.9){
             this.div.ontouchend = function() {
-                setTimeout( function(){
+                showIn3Secs = setTimeout(function(){
                     gn('library').style.display="block";
                     gn('pages').style.display="block";
                 }, 3 * 1000 );

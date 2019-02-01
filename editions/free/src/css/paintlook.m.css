@@ -1,12 +1,14 @@
 @media only screen and (max-width: 888px) {
 .paintframe {
-    position: absolute;
+    position: fixed;
     z-index: 10000;
-    background: url('../assets/pagebkg.png');
+    /* background: url('../assets/pagebkg.png'); */
+    background-color: #f3f1e7;
     background-size: 100%;
     display: none;
     width: ${css_vw(100)};
-    height: ${css_vh(100)};
+    /* height: ${css_vh(100)}; */
+    height: 100%;
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -23,7 +25,7 @@
     margin: ${css_vh(0.65)} auto;
     position: relative;
     top:  ${css_vh(0.65)};
-    width: ${css_vh(31.25)};
+    /* width: ${css_vm(31.25)}; */
     height: ${css_vh(6.51)};
 }
 
@@ -39,7 +41,7 @@
     -webkit-border-radius: ${32 * scaleMultiplier}px;
     outline: ${css_vh(0.00)};
     background: white;
-    width: ${css_vh(31.25)};
+    width: ${css_vm(29)};
     height: ${css_vh(5.21)};
 }
 
@@ -256,10 +258,13 @@ spriteform.off {visibility: hidden; };
     padding: ${css_vh(0.00)};
     margin: ${css_vh(0.00)};
     width: ${css_vw(100)};
-    height: ${css_vh(76.56)};
+    /* height: ${css_vh(76.56)}; */
 }
 
 *.side {
+    margin-left: auto;
+    margin-right: auto;
+    width: 78%;
     /* position: fixed;
     left: ${css_vw(8.00)};
     padding: ${css_vh(0.00)} ${css_vh(0.39)} ${css_vh(0.00)};
@@ -273,7 +278,7 @@ spriteform.off {visibility: hidden; };
     position: fixed;
     left: ${css_vw(8.00)};
     /* margin: ${css_vh(1.56)} ${css_vh(0.00)} 0; */
-    padding: ${css_vh(0.00)} ${css_vh(0.39)} ${css_vh(0.00)};
+    /* padding: ${css_vh(0.00)} ${css_vh(0.39)} ${css_vh(0.00)}; */
     width: 78%;
     /* height: ${css_vh(76.56)}; */
     overflow: hidden;
@@ -283,7 +288,7 @@ spriteform.off {visibility: hidden; };
 }
 
 *.paintpalette {
-    margin-top: 20px;
+    margin-left: ${css_vm(3)};
     /* display: inline-block;
     position: absolute;
     margin: ${css_vh(0.00)};
@@ -306,25 +311,27 @@ spriteform.off {visibility: hidden; };
 }
 
 *.paintpalette.short {
-    display: inline-block;
+    margin-top: ${css_vh(-8)};
+    margin-left: ${css_vh(1)};
+    /* display: inline-block;
     position: absolute;
     margin: ${css_vh(0.65)} ${css_vh(0.00)} ${css_vh(0.65)};
-    height: ${css_vh(16.67)};
+    height: ${css_vh(8.67)}; */
 }
 
 *.paintpalette.short#selectortools {
-    bottom: ${css_vh(3)};
-    left: 10%;
+    /* bottom: ${css_vh(3)};
+    left: 10%; */
 }
 
 *.paintpalette.short#edittools {
-    bottom: ${css_vh(3)};
-    left: 40%;
+    /* bottom: ${css_vh(3)};
+    left: 40%; */
 }
 
 *.paintpalette.short#filltools {
-    bottom: ${css_vh(3)};
-    left: 70%;
+    /* bottom: ${css_vh(3)};
+    left: 70%; */
 }
 
 *.paintpalette.medium {
@@ -344,10 +351,11 @@ spriteform.off {visibility: hidden; };
 /* left tools */
 
 *.paintpalette .element{
-    margin: ${css_vh(0.00)} ${css_vh(1.30)} ${css_vh(1.0)};
-    padding: ${css_vh(0.00)};
-    width: ${css_vh(7.81)};
+    /* margin: ${css_vh(0.00)} ${css_vh(1.30)} ${css_vh(0)};
+    padding: ${css_vh(0.00)}; */
+    width: ${css_vm(12)};
     /* height: ${css_vh(7.16)}; */
+    float: left;
 }
 
 *.paintpalette .element.first{}
@@ -362,8 +370,8 @@ spriteform.off {visibility: hidden; };
 
 *.tool {
     /* position: fixed; */
-    width: ${css_vh(8.33)};
-    height: ${css_vh(8.33)};
+    width: ${css_vh(6)};
+    height: ${css_vh(6)};
 }
 
 *.tool.path.on {
@@ -462,8 +470,8 @@ spriteform.off {visibility: hidden; };
     position: relative;
     margin: ${css_vh(0.00)};
     padding: ${css_vh(0.00)};
-    width: ${css_vh(9)};
-    height: ${css_vh(5)};
+    width: ${css_vm(14)};
+    /* height: ${css_vh(5)}; */
 }
 
 *.paintpalette .pensizeholder.off {background: none;}
@@ -483,7 +491,7 @@ spriteform.off {visibility: hidden; };
 }
 
 *.paintpalette .pensizeholder .line.t0 {
-    margin: ${css_vh(2.60)} ${css_vh(1.56)} ${css_vh(0.00)};
+    margin: ${css_vh(2.60)} ${css_vh(0)} ${css_vh(0.00)};
     height: ${css_vh(0.26)};
 }
 
@@ -509,16 +517,19 @@ spriteform.off {visibility: hidden; };
 
 .swatchpalette-container {
     position: absolute;
-    top: ${css_vh(84.90)};
+    /* top: ${css_vh(84.90)}; */
     width: 100%;
+    margin-left: ${css_vm(3)};
     pointer-events: auto;
+    bottom: 0px;
 }
 
 *.swatchpalette {
     margin-left: auto;
     margin-right: auto;
-    width: ${css_vh(130.21)};
-    height: ${css_vh(13.54)};
+    width: 100%;
+    /* width: ${css_vh(130.21)}; */
+    /* height: ${css_vh(13.54)}; */
 }
 
 /*swatches */
@@ -573,8 +584,8 @@ spriteform.off {visibility: hidden; };
 /* Workspace */
 
 .workspacebkg-container {
-    position: absolute;
-    top: ${css_vh(0.65)};
+    /* position: absolute; */
+    /* top: ${css_vh(0.65)}; */
     left: ${css_vh(0)};
     width: 100%;
     pointer-events: auto;
@@ -586,7 +597,7 @@ spriteform.off {visibility: hidden; };
     background: #ffffff;
     border: ${css_vh(0.13)} solid #b0b1b1;
     width: 78%;
-    height: ${css_vh(74.48)};
+    /* height: ${css_vh(74.48)}; */
     overflow: hidden;
     -webkit-border-radius: ${4 * scaleMultiplier}px;
     -webkit-box-shadow: inset 0 0 ${4 * scaleMultiplier}px #b0b1b1;

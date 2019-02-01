@@ -35,8 +35,7 @@ div.frame {
 
 *.leftpanel {
     position: relative;
-    /* display: none; */
-    /* display: inline-block; */
+    display: inline-block;
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
     width: 1px;
@@ -55,10 +54,9 @@ div.frame {
 *.rightpanel {
     position: absolute;
     top: ${css_vh(0)};
-    right: ${css_vm(21.09)};;
+    right: ${css_vm(22)};;
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
-    /* display: none; */
     display: inline-block;
     height: ${css_vtopsection(8.3)};
     /* width: ${css_vw(21.09)}; */
