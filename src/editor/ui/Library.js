@@ -224,8 +224,12 @@ export default class Library {
 
         var img = newHTML('img', undefined, tb);
         var scale = Math.min(w / tb.w, h / tb.h);
-        // img.style.height = tb.h * scale + 'px';
-        img.style.width = '93%';//tb.w * scale + 'px';
+        // console.log(scale,w , tb.w, h , tb.h);
+        if (tb.w<tb.h){
+            img.style.height = '93%';//tb.h * scale + 'px';
+        } else {
+            img.style.width = '93%';//tb.w * scale + 'px';
+        }
 
         img.style.left = Math.floor(((w - (scale * tb.w)) / 2) + (9 * scaleMultiplier)) + 'px';
         img.style.top = Math.floor(((h - (scale * tb.h)) / 2) + (9 * scaleMultiplier)) + 'px';
