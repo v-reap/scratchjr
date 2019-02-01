@@ -1,4 +1,4 @@
-These are the mac terminal commands for making an icon from a 888px png 
+These are the mac terminal commands for making an icon from a 950 png 
 
 
 mkdir MyIcon.iconset

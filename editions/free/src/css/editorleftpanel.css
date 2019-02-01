@@ -7,7 +7,7 @@
     padding: 0px;
     top: ${css_vh(0.13)};
     left: ${css_vh(1.69)};
-    background:  url('../assets/ui/fliplogo.svg');
+    background:  url('../assets/ui/fliplogo1.svg');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
     width: ${css_vh(29.95)};
     height: ${css_vh(8.20)};

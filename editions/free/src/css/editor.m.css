@@ -2,7 +2,7 @@
 div.frame {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: fixed;
     -webkit-overflow-scrolling: none;
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
@@ -55,7 +55,7 @@ div.frame {
 *.rightpanel {
     position: absolute;
     top: ${css_vh(0)};
-    right: ${css_vw(23)};
+    right: ${css_vm(21.09)};;
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
     /* display: none; */

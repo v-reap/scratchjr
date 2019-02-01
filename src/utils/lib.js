@@ -3,7 +3,7 @@ export var frame;
 // There are references to it throughout the codebase, should possibly be removed at some point
 export const isTablet = (window.orientation != 'undefined');
 export const DEGTOR = Math.PI / 180;
-export const WINDOW_INNER_HEIGHT = window.innerHeight;
+export const WINDOW_INNER_HEIGHT = (window.innerWidth/window.innerHeight>0.5)?window.innerHeight:730;
 export const WINDOW_INNER_WIDTH = window.innerWidth;
 export const scaleMultiplier = (WINDOW_INNER_HEIGHT>WINDOW_INNER_WIDTH
     ?WINDOW_INNER_WIDTH:WINDOW_INNER_HEIGHT) / 768.0;
