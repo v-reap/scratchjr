@@ -191,7 +191,7 @@ export default class Sprite {
         var c = newHTML('canvas', 'thumbcanvas', tb);
 
         // TODO: Merge these to get better thumbnail rendering on iOS
-        if (isAndroid) {
+        if (!isAndroid) {
             setCanvasSizeScaledToWindowDocumentHeight(c, 64, 64);
         } else {
             setCanvasSize(c, 64, 64);

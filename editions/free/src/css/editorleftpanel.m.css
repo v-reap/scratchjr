@@ -4,12 +4,12 @@
     position: absolute;
     margin: 0px;
     padding: 0px;
-    top: ${css_vh(0.13)};
-    left: ${css_vh(1.69)};
+    top: ${css_vm(0.13)};
+    left: ${css_vm(1.69)};
     background:  url('../assets/ui/fliplogo.svg');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
-    width: ${css_vh(29.95)};
-    height: ${css_vh(8.20)};
+    /* width: ${css_vm(29.95)}; */
+    /* height: ${css_vm(8.20)}; */
 }
 
 .flipme:active {
@@ -23,9 +23,10 @@
     margin: 0px;
     padding: 0px;
     top: 0px;
-    left: ${css_vh(32.29)};
-    width: ${css_vh(1.04)};
-    height: ${css_vh(40.63)};
+    left: ${css_vm(32.29)};
+    width: ${css_vm(1.04)};
+    /* height: ${css_vm(40.63)}; */
+    height: ${css_vtopsection(8.3)};
     background: rgba(255,255,255,0.5);
 }
 
@@ -33,7 +34,7 @@
     position: absolute;
     margin: 0px;
     padding: 0px;
-    width: ${css_vh(1.04)};
+    width: ${css_vm(1.04)};
     height: 0px;
     background: #C9C9C9;
 }
@@ -48,7 +49,7 @@
     margin: 0px;
     padding: 0px;
     top: ${css_vh(9.38)};
-    width: ${css_vh(33.85)};
+    width: ${css_vm(33.85)};
     overflow-x: hidden;
 }
 
@@ -59,8 +60,8 @@
     display: block;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: ${css_vh(33.85)};
-    max-height: ${css_vh(40.63)};
+    width: ${css_vm(33.85)};
+    max-height: ${css_vm(40.63)};
 }
 
 .spritethumbs::-webkit-scrollbar {
@@ -69,9 +70,9 @@
 
 #library .spritethumbs .spritecc{
     position: relative;
-    margin: 0px ${css_vh(2.34)} 0px;
+    margin: 0px ${css_vm(2.34)} 0px;
     padding: 0px;
-    width:  ${css_vh(29.95)};
+    width:  ${css_vm(29.95)};
 }
 
 #library .addsprite {
@@ -79,9 +80,9 @@
     display: inline-block;
     background:  url('../assets/ui/newsprite2.png') no-repeat left top;
     background-size: 100%;
-    width:  ${css_vh(23.18)};
-    height: ${css_vh(10.29)};
-    margin: 0px ${css_vh(2.34)} 0px;
+    width:  ${css_vm(23.18)};
+    height: ${css_vm(10.29)};
+    margin: 0px ${css_vm(2.34)} 0px;
 }
 
 
@@ -91,39 +92,39 @@
     position: relative;
     display: inline-block;
     word-spacing: -1;
-    width: ${css_vh(29.95)};
-    height: ${css_vh(10.16)};
+    width: ${css_vm(29.95)};
+    height: ${css_vm(10.16)};
     margin: 0px;
-    margin-bottom: ${css_vh(-0.39)};
+    margin-bottom: ${css_vm(-0.39)};
     padding: 0px;
 }
 
 .spritethumb .thumbcanvas{
     position: absolute;
-    margin: ${css_vh(0.65)} ${css_vh(0.65)} 0px;
+    margin: ${css_vm(0.65)} ${css_vm(0.65)} 0px;
     padding: 0px;
 }
 
 .spritethumb.off {
     background: url('../assets/ui/viewOff.png') no-repeat left top;
-    background-size: ${css_vh(23.18)};
+    background-size: ${css_vm(23.18)};
 }
 
 .spritethumb.off.target {
     background: url('../assets/ui/viewOffTarget.png') no-repeat left top;
-    background-size: ${css_vh(23.18)};
+    background-size: ${css_vm(23.18)};
 }
 
 .spritethumb.on.target {
     background: url('../assets/ui/viewOnTarget.png') no-repeat left top;
     background-size: 100%;
-    width: ${css_vh(29.95)};
+    width: ${css_vm(29.95)};
 }
 
 .spritethumb.on {
     background: url('../assets/ui/viewOn.png') no-repeat left top;
     background-size: 100%;
-    width: ${css_vh(29.95)};
+    width: ${css_vm(29.95)};
 }
 
 .spritethumb.noneditable {
@@ -135,8 +136,8 @@
     position: absolute;
     margin: 0px 0px 0px;
     left: 0px;
-    width: ${css_vh(5.86)};
-    height: ${css_vh(5.73)};
+    width: ${css_vm(5.86)};
+    height: ${css_vm(5.73)};
     background: url('../assets/ui/closeit.svg');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
     z-index: 5;
@@ -147,8 +148,8 @@
     position: absolute;
     margin: 0px 0px 0px;
     left: 0px;
-    width: ${css_vh(5.86)};
-    height: ${css_vh(5.73)};
+    width: ${css_vm(5.86)};
+    height: ${css_vm(5.73)};
     background: url('../assets/ui/closeit.svg');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
     z-index: 5;
@@ -157,62 +158,62 @@
 
 .spritethumb .icon{
     position: absolute;
-    top: ${css_vh(0.65)};
-    left: ${css_vh(1.04)};
-    width: ${css_vh(8.33)};
-    height: ${css_vh(8.33)};
-    margin: ${css_vh(0.00)};
-    padding: ${css_vh(0.00)};
+    top: ${css_vm(0.65)};
+    left: ${css_vm(1.04)};
+    width: ${css_vm(8.33)};
+    height: ${css_vm(8.33)};
+    margin: ${css_vm(0.00)};
+    padding: ${css_vm(0.00)};
     overflow: hidden;
 }
 
 .spritethumb .sname{
     position: absolute;
     text-align: center;
-    top: ${css_vh(3.52)};
-    left: ${css_vh(9.89)};
+    top: ${css_vm(3.52)};
+    left: ${css_vm(9.89)};
     margin: 0px;
     padding: 0px;
-    line-height: ${css_vh(2.60)};
+    line-height: ${css_vm(3.2)};
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     font-family: Roboto;
     font-weight: bold;
-    font-size:  ${css_vh(1.69)};
-    width: ${css_vh(11.97)};
+    font-size:  ${css_vm(1.69)};
+    width: ${css_vm(11.97)};
     cursor: default;
     color: #999999;
 }
 
 .spritethumb.off .sname{
     color: #999999;
-    top: ${css_vh(3.52)};
-    left: ${css_vh(9.89)};
-    width: ${css_vh(11.97)};
+    top: ${css_vm(3.52)};
+    left: ${css_vm(9.89)};
+    width: ${css_vm(11.97)};
 }
 
 .spritethumb.on .sname{
     color: #F9A737;
-    top: ${css_vh(3.91)};
-    left: ${css_vh(9.24)};
-    width: ${css_vh(11.97)};
+    top: ${css_vm(3.91)};
+    left: ${css_vm(9.24)};
+    width: ${css_vm(11.97)};
 }
 .spritethumb.noneditable .sname{
     color: #999;
-    top: ${css_vh(3.91)};
-    left: ${css_vh(9.24)};
-    width: ${css_vh(11.97)};
+    top: ${css_vm(3.91)};
+    left: ${css_vm(9.24)};
+    width: ${css_vm(11.97)};
 }
 
 .spritethumb .brush {
     position: absolute;
     background:  url('../assets/paint/paintbrush.svg');
-    background-size: ${css_vh(7.03)} ${css_vh(7.03)};
-    width: ${css_vh(7.03)};
-    height: ${css_vh(7.03)};
-    top: ${css_vh(1.30)};
-    left: ${css_vh(21.75)};
+    background-size: ${css_vm(7.03)} ${css_vm(7.03)};
+    width: ${css_vm(7.03)};
+    height: ${css_vm(7.03)};
+    top: ${css_vm(1.30)};
+    left: ${css_vm(21.75)};
     margin: 0px;
     padding: 0px;
 }

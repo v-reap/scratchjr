@@ -278,10 +278,10 @@
     /* stage */
 
     #stageframe {
-        position: relative;
+        position: fixed;
         margin-left: auto;
         margin-right: auto;
-        width: ${css_vh(70.57)};
+        width: 100%;
         height: ${css_vh(61.20)};
     }
 

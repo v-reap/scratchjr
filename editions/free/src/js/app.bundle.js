@@ -23817,7 +23817,7 @@ var Sprite = function () {
             var c = (0, _lib.newHTML)('canvas', 'thumbcanvas', tb);
 
             // TODO: Merge these to get better thumbnail rendering on iOS
-            if (_lib.isAndroid) {
+            if (!_lib.isAndroid) {
                 (0, _lib.setCanvasSizeScaledToWindowDocumentHeight)(c, 64, 64);
             } else {
                 (0, _lib.setCanvasSize)(c, 64, 64);
@@ -49470,4 +49470,4 @@ Number.prototype.mod = function (n) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.bundle.js.map?ec9a8d3f
+//# sourceMappingURL=app.bundle.js.map?041852c1

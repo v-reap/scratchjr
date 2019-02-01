@@ -35,12 +35,13 @@ div.frame {
 
 *.leftpanel {
     position: relative;
-    display: none;
+    /* display: none; */
     /* display: inline-block; */
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
     width: ${css_vw(25.39)};
-    height: ${css_vh(61.20)};
+    /* height: ${css_vh(61.20)}; */
+    height: ${css_vtopsection(8.3)};
     z-index: 1;
 }
 
@@ -56,28 +57,28 @@ div.frame {
     right: ${css_vw(5.73)};
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
-    display: none;
-    /* display: inline-block; */
-    height: ${css_vh(61.20)};
+    /* display: none; */
+    display: inline-block;
+    height: ${css_vtopsection(8.3)};
     width: ${css_vw(21.09)};
 }
 
 /* Pages Thumbnails */
 
 .pages {
-    top: ${css_vh(0)};
+    top: ${css_vh(9)};
     position: absolute;
     display: inline-block;
     margin: ${css_vh(0)} ${css_vh(1.29)} ${css_vh(0)};
-    width:  ${css_vh(21.09)};
+    /* width:  ${css_vh(21.09)}; */
+    /* height: ${css_vtopsection(8.3)}; */
     height: 100%;
 }
 
 .pagescc{
     position: absolute;
-    top: ${css_vh(2.60)};
-    width:  ${css_vh(21.09)};
-    height: ${css_vh(57.29)};
+    /* top: ${css_vh(2.60)}; */
+    /* width:  ${css_vh(21.09)}; */
 }
 
 .pagethumb {
@@ -130,9 +131,9 @@ div.frame {
 
 .pagethumb .pagenum {
     position: relative;
-    margin: ${css_vh(-14.64)} ${css_vh(16.06)} ${css_vh(0)};
+    margin: ${css_vm(-14.64)} ${css_vm(16.06)} ${css_vm(0)};
     padding: ${css_vh(0)};
-    width: ${css_vw(3.65)};
+    width: ${css_vh(3.65)};
     height: ${css_vh(3.65)};
     font-size: ${css_vh(1.82)};
     font-family: Roboto;
@@ -167,7 +168,7 @@ div.frame {
     position: relative;
     margin: ${css_vh(-3.9)} ${css_vh(0)} ${css_vh(0)};
     width: ${css_vw(5.86)};
-    height: ${css_vh(5.73)};
+    height: ${css_vw(5.73)};
     background: url('../assets/ui/closeit.svg');
     background-size: 100.5%; /* webview pixelates the image unless we do this */
     visibility: hidden;
