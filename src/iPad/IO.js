@@ -676,7 +676,7 @@ export default class IO {
                     IO.getImagesInSVG(data, gotSVGImages);
 
                     function gotSVGImages () {
-                        var thumbnailDataURL = IO.getThumbnail(data, tmwidth, 360, 120, 90);
+                        var thumbnailDataURL = IO.getThumbnail(data, 480, 360, 120, 90);
                         var thumbnailPngBase64 = thumbnailDataURL.split(',')[1];
                         iOS.setmedia(thumbnailPngBase64, 'png', function (thumbnailMD5) {
 
@@ -693,7 +693,7 @@ export default class IO {
                                     var json = {};
                                     var keylist = ['md5', 'altmd5', 'version', 'width', 'height', 'ext'];
                                     var values = '?,?,?,?,?,?';
-                                    json.values = [fullName, thumbnailMD5, 'iOSv01', tmwidth, '360', 'svg'];
+                                    json.values = [fullName, thumbnailMD5, 'iOSv01', 480, '360', 'svg'];
                                     json.stmt = 'insert into userbkgs (' + keylist.toString() +
                                         ') values (' + values + ')';
                                     iOS.stmt(json, function () {

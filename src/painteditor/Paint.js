@@ -179,7 +179,7 @@ export default class Paint {
         SVGTools.init();
         nativeJr = true;
         if (isBkg) {
-            Paint.initBkg(tmwidth, 360);
+            Paint.initBkg(480, 360);
         } else {
             Paint.initSprite(sw, sh);
         }
@@ -1067,7 +1067,7 @@ export default class Paint {
                 'fixed': 'yes',
                 fill: ScratchJr.stagecolor
             };
-            var cmds = [['M', 0, 0], ['L', tmwidth, 0], ['L', tmwidth, 360], ['L', 0, 360], ['L', 0, 0]];
+            var cmds = [['M', 0, 0], ['L', 480, 0], ['L', 480, 360], ['L', 0, 360], ['L', 0, 0]];
             attr.d = SVG2Canvas.arrayToString(cmds);
             SVGTools.addChild(gn('layer1'), 'path', attr);
             Ghost.drawOffscreen();
@@ -1258,14 +1258,14 @@ export default class Paint {
     */
 
     static addToBkgLib (fcn) {
-        var dataurl = IO.getThumbnail(svgdata, tmwidth, 360, 120, 90);
+        var dataurl = IO.getThumbnail(svgdata, 480, 360, 120, 90);
         var pngBase64 = dataurl.split(',')[1];
         iOS.setmedia(pngBase64, 'png', setBkgRecord);
         function setBkgRecord (pngmd5) {
             var json = {};
             var keylist = ['md5', 'altmd5', 'version', 'width', 'height', 'ext'];
             var values = '?,?,?,?,?,?';
-            json.values = [saveMD5, pngmd5, ScratchJr.version, tmwidth, '360', 'svg'];
+            json.values = [saveMD5, pngmd5, ScratchJr.version, 480, '360', 'svg'];
             json.stmt = 'insert into userbkgs (' + keylist.toString() + ') values (' + values + ')';
             iOS.stmt(json, fcn);
         }

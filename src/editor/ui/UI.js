@@ -87,7 +87,7 @@ export default class UI {
         // sprite library
         var sl = newHTML('div', 'leftpanel', div);
         var flip = newHTML('div', 'flipme', sl);
-        // flip.innerHTML = tmwidth;
+        // flip.innerHTML = 480;
         flip.setAttribute('id', 'flip');
         flip.ontouchstart = function (evt) {
             ScratchJr.saveAndFlip(evt);

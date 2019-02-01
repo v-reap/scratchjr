@@ -264,8 +264,8 @@ export default class Sprite {
         if (!this.shown) {
             return false;
         }
-        setCanvasSize(ScratchJr.workingCanvas, tmwidth, 360);
-        setCanvasSize(ScratchJr.workingCanvas2, tmwidth, 360);
+        setCanvasSize(ScratchJr.workingCanvas, 480, 360);
+        setCanvasSize(ScratchJr.workingCanvas2, 480, 360);
         var page = this.div.parentNode;
         var box = this.getBoxWithEffects(); // box with effects is a scale  and 1.5 times to count for rotations
         for (var i = 0; i < page.childElementCount; i++) {
@@ -299,8 +299,8 @@ export default class Sprite {
     verifyHit (other) {
         var ctx = ScratchJr.workingCanvas.getContext('2d');
         var ctx2 = ScratchJr.workingCanvas2.getContext('2d');
-        ctx.clearRect(0, 0, tmwidth, 360);
-        ctx2.clearRect(0, 0, tmwidth, 360);
+        ctx.clearRect(0, 0, 480, 360);
+        ctx2.clearRect(0, 0, 480, 360);
         var box = this.getBoxWithEffects();
         var box2 = other.getBoxWithEffects();
         var rect = box.intersection(box2);
@@ -376,13 +376,13 @@ export default class Sprite {
 
     wrapChar () {
         if (this.xcoor < 0) {
-            this.xcoor = tmwidth + this.xcoor;
+            this.xcoor = 480 + this.xcoor;
         }
         if (this.ycoor < 0) {
             this.ycoor = 360 + this.ycoor;
         }
-        if (this.xcoor >= tmwidth) {
-            this.xcoor = this.xcoor - tmwidth;
+        if (this.xcoor >= 480) {
+            this.xcoor = this.xcoor - 480;
         }
         if (this.ycoor >= 360) {
             this.ycoor = this.ycoor - 360;
@@ -390,8 +390,8 @@ export default class Sprite {
     }
 
     wrapText () {
-        var max = this.cx > tmwidth ? this.cx : tmwidth;
-        var min = this.cx > tmwidth ? tmwidth - this.cx : 0;
+        var max = this.cx > 480 ? this.cx : 480;
+        var min = this.cx > 480 ? 480 - this.cx : 0;
         if (this.xcoor < min) {
             this.xcoor = max + this.xcoor;
         }
@@ -604,7 +604,7 @@ export default class Sprite {
         w += 10;
         w = Math.round(w);
         var offset = (this.screenLeft() + (this.div.offsetWidth * this.scale / 2)) - (w / 2);
-        var dx = (offset < 0) ? 0 : (offset + w) > tmwidth ? 478 - w : offset;
+        var dx = (offset < 0) ? 0 : (offset + w) > 480 ? 478 - w : offset;
         dx = Math.round(dx);
         h = p.offsetHeight + curve * 2 + 7;
         setCanvasSize(this.balloon, w, h);
@@ -632,7 +632,7 @@ export default class Sprite {
         var h = this.balloon.offsetHeight;
         var dy = this.screenTop();
         var offset = (this.screenLeft() + (this.div.offsetWidth * this.scale / 2)) - (w / 2);
-        var dx = (offset < 0) ? 0 : (offset + w) > tmwidth ? 478 - w : offset;
+        var dx = (offset < 0) ? 0 : (offset + w) > 480 ? 478 - w : offset;
         dx = Math.round(dx);
         dy -= h;
         if (dy < 2) {

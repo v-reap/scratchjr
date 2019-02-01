@@ -20,11 +20,11 @@ export default class Stage {
         this.div = newHTML('div', 'stage', div);
         this.div.setAttribute('id', 'stage');
         this.div.style.webkitTextSizeAdjust = '100%';
-        this.width = tmwidth;
+        this.width = 480;
         this.height = 360;
         this.setStageScaleAndPosition(scaleMultiplier, 46, 74);
         this.pages = [];
-        this.pagesdiv = newDiv(this.div, 0, 0, tmwidth, 360, {
+        this.pagesdiv = newDiv(this.div, 0, 0, 480, 360, {
             position: 'absolute'
         });
         var me = this;
@@ -329,14 +329,14 @@ export default class Stage {
             return;
         }
         var pt = this.getStagePt(e);
-        setCanvasSize(ScratchJr.workingCanvas, tmwidth, 360);
+        setCanvasSize(ScratchJr.workingCanvas, 480, 360);
         var ctx = ScratchJr.workingCanvas.getContext('2d');
         var target = (e.target.nodeName == 'CANVAS') ? this.checkShaking(pt, e.target) : e.target;
         if (ScratchJr.shaking && (target.id == 'deletesprite')) {
             this.removeSprite(ScratchJr.shaking.owner);
             return;
         }
-        ctx.clearRect(0, 0, tmwidth, 360);
+        ctx.clearRect(0, 0, 480, 360);
         var hitobj = this.whoIsIt(ctx, pt);
         if (ScratchJr.shaking && hitobj && (hitobj.id == ScratchJr.shaking.id)) { // check grid case
             var sprname = ScratchJr.shaking.id;
@@ -399,7 +399,7 @@ export default class Stage {
             }
         }
         var fuzzy = 5;
-        ctx.clearRect(0, 0, tmwidth, 360);
+        ctx.clearRect(0, 0, 480, 360);
         for (var j = page.childElementCount - 1; j > -1; j--) {
             spr = page.childNodes[j].owner;
             if (!spr) {
@@ -517,7 +517,7 @@ export default class Stage {
         if ((delta.y + spr.ycoor) < 0) {
             delta.y -= (spr.ycoor + delta.y);
         }
-        if ((delta.x + spr.xcoor) >= tmwidth) {
+        if ((delta.x + spr.xcoor) >= 480) {
             delta.x += (479 - (spr.xcoor + delta.x));
         }
         if ((delta.y + spr.ycoor) >= 360) {
@@ -527,8 +527,8 @@ export default class Stage {
     }
 
     wrapText (spr, delta) {
-        var max = spr.cx > tmwidth ? spr.cx : tmwidth;
-        var min = spr.cx > tmwidth ? tmwidth - spr.cx : 0;
+        var max = spr.cx > 480 ? spr.cx : 480;
+        var min = spr.cx > 480 ? 480 - spr.cx : 0;
         if ((delta.x + spr.xcoor) <= min) {
             delta.x -= (spr.xcoor + delta.x - min);
         }
@@ -709,7 +709,7 @@ export default class Stage {
 
     sd () {
         var stg = gn('stage');
-        let width = tmwidth+2;
+        let width = 480+2;
         var mask = newDiv(gn('stageframe'), stg.offsetLeft + 1, stg.offsetTop + 1, width, 362,
             {
                 position: 'absolute',

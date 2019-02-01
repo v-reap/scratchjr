@@ -1138,7 +1138,7 @@ export default class Path {
         var box2 = {
             x: 0,
             y: 0,
-            width: tmwidth,
+            width: 480,
             height: 360
         };
         if (Path.withinBounds(box, box2)) {
@@ -1281,7 +1281,7 @@ export default class Path {
                 y: -10
             };
         }
-        if (last.x >= tmwidth) {
+        if (last.x >= 480) {
             return {
                 x: 490,
                 y: last.y
@@ -1323,7 +1323,7 @@ export default class Path {
         if (pt.x <= 0) {
             return 'W';
         }
-        if (pt.x >= tmwidth) {
+        if (pt.x >= 480) {
             return 'E';
         }
         if (pt.y >= 360) {
@@ -1339,7 +1339,7 @@ export default class Path {
         var box2 = {
             x: 0,
             y: 0,
-            width: tmwidth,
+            width: 480,
             height: 360
         };
         if (Path.withinBounds(box, box2)) {

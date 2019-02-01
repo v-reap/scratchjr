@@ -537,7 +537,7 @@ export default class Project {
     /////////////////////////////
 
     static getThumbnailPNG (page, w, h, fcn) {
-        var scale = w / tmwidth;
+        var scale = w / 480;
         var data = {};
         data.pagecount = ScratchJr.stage.pages.length;
         var c = document.createElement('canvas');
@@ -552,11 +552,11 @@ export default class Project {
             var pcnv;
             if (md5.substr(md5.length - 3) == 'png') {
                 var bgimg = page.div.firstElementChild.firstElementChild;
-                pcnv = Project.drawPNGInCanvas(bgimg, tmwidth, 360);
+                pcnv = Project.drawPNGInCanvas(bgimg, 480, 360);
             } else {
-                pcnv = Project.drawSVGinCanvas(page.svg, tmwidth, 360);
+                pcnv = Project.drawSVGinCanvas(page.svg, 480, 360);
             }
-            ctx.drawImage(pcnv, 0, 0, tmwidth, 360, 0, 0, w, h);
+            ctx.drawImage(pcnv, 0, 0, 480, 360, 0, 0, w, h);
             Project.drawSprites(page, scale, c, w, h, fcn);
         }
     }

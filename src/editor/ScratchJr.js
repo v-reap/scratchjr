@@ -617,7 +617,7 @@ export default class ScratchJr {
         div = sc.parentNode;
         var w = div.offsetWidth;
         var h = div.offsetHeight;
-        var dx = ((pt.x + tmwidth * scaleMultiplier) > w) ? (w - 486 * scaleMultiplier) : pt.x - 6 * scaleMultiplier;
+        var dx = ((pt.x + 480 * scaleMultiplier) > w) ? (w - 486 * scaleMultiplier) : pt.x - 6 * scaleMultiplier;
         var ti = document.forms.editable.field;
         ti.style.textAlign = 'center';
         document.forms.editable.style.left = dx + 'px';
