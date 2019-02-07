@@ -87,8 +87,8 @@ export default class Project {
     }
 
     static dataRecieved (str) {
-        ScratchJr.log('got project metadata', ScratchJr.getTime(), 'sec');
-        var data = JSON.parse(str)[0];
+        ScratchJr.log('~~~~~~got project metadata', ScratchJr.getTime(), 'sec');
+        var data = typeof str == 'string' ? JSON.parse(str) : str;//todo JSON.parse(str)[0]
         metadata = IO.parseProjectData(data);
         mediaCount = -1;
         if (metadata.json) {

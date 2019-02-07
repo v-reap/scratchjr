@@ -1,4 +1,4 @@
-import {isiOS, gn} from '../utils/lib';
+import {isiOS, gn, getUrlVars} from '../utils/lib';
 import IO from './IO';
 import Lobby from '../lobby/Lobby';
 import Alert from '../editor/ui/Alert';
@@ -84,11 +84,53 @@ export default class iOS {
         }
     }
 
+    static getNowStr (){
+        let now = new Date();
+        return ''+now.getFullYear()+(now.getMonth()+1)+now.getDate()+now.getHours()+now.getMinutes()+now.getSeconds(); //
+    }
+
+    static initProject(obj){
+        let now = new Date();
+        let nowStr = iOS.getNowStr();
+        let pmd5 = getUrlVars().pmd5;
+        let isGift = obj.isgift ? obj.isgift : '0';
+        let name = obj.name ? obj.name : (pmd5 ? pmd5 : nowStr);
+        let version = obj.version ? obj.version : '1';
+        let file = {
+            name:name, 
+            version:version,
+            mtime:now.toJSON(),
+            isgift:isGift,
+            deleted: 'NO'
+        };
+        if (obj.json) {
+            file['json'] = (obj.json);
+        }
+        if (obj.thumbnail) {
+            file['thumbnail'] = (obj.thumbnail);
+        }
+        return {name: name, ext: 'json', file: file};
+    }
+
+    static saveProject(obj, fcn){
+        tabletInterface.postData(iOS.initProject(obj), fcn);
+    }
+
+    static postData (name, ext, file, fcn) {
+        let data = {name: name, ext: ext, file: file}
+        var result = tabletInterface.postData(data, fcn);
+    }
+
+    static getData (url, fcn) {
+        tabletInterface.getData(url, fcn);
+    }
+
     static setfield (db, id, fieldname, val, fcn) {
         var json = {};
         var keylist = [fieldname + ' = ?', 'mtime = ?'];
         json.values = [val, (new Date()).getTime().toString()];
         json.stmt = 'update ' + db + ' set ' + keylist.toString() + ' where id = ' + id;
+        console.log('~~~~~~~~~~~~~~setfield',json);
         iOS.stmt(json, fcn);
     }
 

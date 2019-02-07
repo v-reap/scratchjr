@@ -34,8 +34,10 @@
     "webpack-notifier": "^1.6.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "intl": "^1.0.1",
     "intl-messageformat": "^1.2.0",
+    "js-md5": "^0.7.3",
     "jszip": "^2.5.0",
     "snapsvg": "^0.3.0"
   }

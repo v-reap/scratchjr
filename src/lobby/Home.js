@@ -230,9 +230,10 @@ export default class Home {
     //////////////////////////
 
     static displayYourProjects () {
-        iOS.getfile('homescroll.sjr', gotScrollsState);
+        // iOS.getfile('homescroll.sjr', gotScrollsState);
+        gotScrollsState ('MA==');
         function gotScrollsState (str) {
-            var num = Number(atob('MA=='));
+            var num = Number(atob(str));
             scrollvalue = (num.toString() == 'NaN') ? 0 : num;
             var json = {};
             json.cond = 'deleted = ? AND version = ? AND gallery IS NULL';

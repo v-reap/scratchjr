@@ -1,7 +1,7 @@
 import iOS from './iOS';
 import MediaLib from './MediaLib';
 import JSZip from 'jszip';
-import {setCanvasSize, drawThumbnail, gn} from '../utils/lib';
+import {setCanvasSize, drawThumbnail, gn, getUrlVars} from '../utils/lib';
 import Lobby from '../lobby/Lobby';
 import SVG2Canvas from '../utils/SVG2Canvas';
 
@@ -196,7 +196,7 @@ export default class IO {
     }
 
     static getObject (md5, fcn) {
-        if (md5.indexOf('/') > -1) {
+        if (md5 && md5.indexOf('/') > -1) {//todo: md5 文件
             var gotit = function (str) {
                 fcn(str);
             };
@@ -210,7 +210,10 @@ export default class IO {
         var json = {};
         json.stmt = 'select * from ' + db + ' where id = ?';
         json.values = [md5];
-        iOS.query(json, fcn);
+        // let data = iOS.query(json, fcn);
+        // if (!data) {
+        // }
+        iOS.getData(md5+'.json', fcn);
     }
 
     static setMedia (data, type, fcn) {
@@ -264,6 +267,8 @@ export default class IO {
             values += ',?';
             json.values.push(str);
         }
+        iOS.saveProject(obj, fcn);
+        console.log('~~~~~~~~~~~~~~createProject',obj);
     }
 
     static saveProject (obj, fcn) {
@@ -273,6 +278,8 @@ export default class IO {
             JSON.stringify(obj.thumbnail), (new Date()).getTime().toString()];
         json.stmt = 'update ' + database + ' set ' + keylist.toString() + ' where id = ' + obj.id;
         iOS.stmt(json, fcn);
+        iOS.saveProject(obj, fcn);
+        console.log('~~~~~~~~~~~~~~saveProject',obj);
     }
 
     // Since saveProject is changing the modified time of the project,

@@ -4,6 +4,8 @@ import AppUsage from '../utils/AppUsage';
 import iOS from '../iPad/iOS';
 import IO from '../iPad/IO';
 import MediaLib from '../iPad/MediaLib';
+import axios from 'axios';
+import md5 from 'js-md5';
 
 import {indexMain} from './index';
 import {homeMain} from './home';
@@ -43,17 +45,27 @@ class ElectronDesktopInterface {
 
     constructor () {
         this.currentAudio = {};
+        this.mediaStrings = {};
+    }
+
+    /** gets an md5 checksum of the data passed in.
+        @param {object} data
+    */
+    getMD5(data) { // eslint-disable class-methods-use-this
+        return md5.hex(data);
     }
 
     database_stmt(json) {
         if (DEBUG_DATABASE) debugLog('database_stmt', json);
-        return json;//ipcRenderer.sendSync('database_stmt', json);
+        return 1;//select last_insert_rowid();
 
     }
+
     database_query(json) {
         if (DEBUG_DATABASE) debugLog('beginning database_query', json);
         let res = json;//ipcRenderer.sendSync('database_query', json);
-        if (DEBUG_DATABASE) debugLog('end database_query', res);
+      
+        // res = JSON.stringify(db.query(json));
         return res;
     }
 
@@ -65,77 +77,136 @@ class ElectronDesktopInterface {
 
     io_getmedia(file){
         if (DEBUG_FILEIO) debugLog('io_getmedia', file);
-        return file;//ipcRenderer.sendSync('io_getmedia', file);
+        // select stringValue from PROJECTFILES by file
+        // event.returnValue = dataStore.readProjectFileAsBase64EncodedString(file);
+        return this.getData(file);//todo:  返回文件string //ipcRenderer.sendSync('io_getmedia', file);
     }
 
     io_getmediadata(key, offset, length){
 
         if (DEBUG_FILEIO) debugLog('io_getmediadata', key, offset, length);
-        return key;//ipcRenderer.sendSync('io_getmediadata', key, offset, length);
+        const mediaString = this.mediaStrings[key];
+      
+        if (mediaString) {
+          try {
+            return mediaString.substring(offset, offset + length); 
+          } catch (e) {
+            debugLog('error parsing media');
+          }
+        }
+        return ;//ipcRenderer.sendSync('io_getmediadata', key, offset, length);
 
     }
 
     io_getmediadone(key){
 
         if (DEBUG_FILEIO) debugLog('io_getmediadone', key);
+        if (this.mediaStrings[key]) {
+          delete this.mediaStrings.key;
+        }
         return key;//ipcRenderer.sendSync('io_getmediadone', key);
 
     }
     io_getmedialen(file, key){
 
         if (DEBUG_FILEIO) debugLog('io_getmedialen', file, key);
-        return key;//ipcRenderer.sendSync('io_getmedialen', file, key);
+
+        // select stringValue from PROJECTFILES by file
+        const encodedStr = '';//dataStore.readProjectFileAsBase64EncodedString(file);
+        this.mediaStrings[key] = encodedStr;
+        
+        return (encodedStr) ? encodedStr.length : 0;//ipcRenderer.sendSync('io_getmedialen', file, key);
 
     }
 
     io_setmedia(str,  ext){
         if (DEBUG_FILEIO)  debugLog('io_setmedia', str, ext);
-        return str.ext;//ipcRenderer.sendSync('io_setmedia', str,  ext);
+        let name = this.getMD5(str);
+        const filename = `${name}.${ext}`;
+        this.postData({name: name, ext: '.'+ext, file: str});
+        //todo: save(filename, str, { encoding: 'base64' });
+        return filename;//str.ext;//ipcRenderer.sendSync('io_setmedia', str,  ext);
 
     }
 
-    io_setmedianame(str, name, ext){
-        if (DEBUG_FILEIO) debugLog('io_setmedianame', name, ext);
+    io_setmedianame(str, key, ext){
+        if (DEBUG_FILEIO) debugLog('io_setmedianame', key, ext);
 
-        return str;//ipcRenderer.sendSync('io_setmedianame', str, name, ext);
+        const filename = `${key}.${ext}`;
+
+        // key = filename.length<36 ? key : this.getMD5(str);
+        //todo save(filename, contents, encoding)
+        this.postData({name: key, ext: '.'+ext, file: str});
+        
+        return filename;//ipcRenderer.sendSync('io_setmedianame', str, name, ext);
     }
 
     io_getmd5(str){
         if (DEBUG_FILEIO) debugLog('io_getmd5', str);
-        return (str) //? ipcRenderer.sendSync('io_getmd5', str) : null;
+        let returnValue;
+        try {
+          returnValue = this.getMD5(str);
+        } catch (e) {
+          returnValue = null;
+          debugLog('io_getmd5', e);
+        }
+        return (returnValue) //? ipcRenderer.sendSync('io_getmd5', str) : null;
     }
 
 
     io_remove(str){
         if (DEBUG_NYI)  debugLog('io_remove - NYI', str);
-        return str;//ipcRenderer.sendSync('io_remove', str);
+        // delete stringValue from PROJECTFILES by file
+        return true;//ipcRenderer.sendSync('io_remove', str);
 
     }
 
-    io_cleanassets(str){
+    io_cleanassets(fileType){
         if (DEBUG_NYI) {
-            debugLog('io_cleanassets - NYI', str);
+            debugLog('io_cleanassets - NYI', fileType);
         }
-        return str;//ipcRenderer.sendSync('io_cleanassets', str);
+        // we don't use wav files, so translate that to webm.
+        if (fileType === 'wav') {
+            fileType = 'webm';
+        }
+
+        //db.cleanProjectFiles(fileType);
+        return true;//ipcRenderer.sendSync('io_cleanassets', fileType);
 
     }
 
 
-    io_registersound(dir, name){
-        if (DEBUG_FILEIO)  debugLog('io_getAudioData', dir, name);
+    io_registersound(dir, audioName){
+        if (DEBUG_FILEIO)  debugLog('io_getAudioData', dir, audioName);
 
-        if (!this.currentAudio[name]) {
-            let dataUri = '/sounds/' + name;//ipcRenderer.sendSync('io_getAudioData', name);
-            this.loadSoundFromDataURI(name, dataUri);
+        // try fishing out of the app directory first - samples/pig.wav
+        // let dataStr = false;
+        // axios({
+        //         url: `sounds/${audioName}`,
+        //         method: "get"
+        //     }).then(response => {
+        //         dataStr = (response.status===200)
+        //         console.log(dataStr);
+        // });
+        
+        // if (!dataStr) { // if not pull from the scratch document folder.
+        //     if (DEBUG_FILEIO) debugLog('...trying to look in the PROJECTFILE table', audioName);
+        //     // this is already stored as a string, we do not need to convert it
+        //     dataStr = request({url: `user/sounds/${audioName}`});
+        //     if (DEBUG_FILEIO && !dataStr) debugLog('...WARNING: unable to find: ',  audioName);
+        // }
+        
+        if (!this.currentAudio[audioName]) {
+            let dataUri = audioName;//ipcRenderer.sendSync('io_getAudioData', name);
+            this.loadSoundFromDataURI(audioName, dataUri);
 
         }
-
 
     }
 
     loadSoundFromDataURI(name, dataUri) {
         if (dataUri && name) {
-            let audio = new window.Audio(dataUri);
+            let audio = new window.Audio('/sounds/' + dataUri);
             audio.volume = 0.8;  // don't oversaturate the speakers
             audio.onended = function() {
                 // we need to tell ScratchJR the sound is done
@@ -150,9 +221,10 @@ class ElectronDesktopInterface {
 
     io_getfile(str){
         if (DEBUG_FILEIO) debugLog('io_getfile', str);
-
+        
+        // select stringValue from PROJECTFILES by file
         // returns a file from the scratch jr documents folder
-        return str;//ipcRenderer.sendSync('io_getfile', str);
+        return this.getData(str);//ipcRenderer.sendSync('io_getfile', str);
 
 
     }
@@ -161,22 +233,52 @@ class ElectronDesktopInterface {
         if (DEBUG_RESOURCEIO) debugLog('io_gettextresource', filename);
 
         // returns a file from the app resource folder
-        return filename;//ipcRenderer.sendSync('io_gettextresource', filename);
+        return this.getData(filename);//ipcRenderer.sendSync('io_gettextresource', filename);
 
 
     }
-
-
-
 
     io_setfile(name, btoa_str){
         if (DEBUG_FILEIO)  debugLog('io_setfile', name, btoa_str);
 
+        this.postData({name: name, ext: '', file: btoa_str});
         return {name: name, contents: btoa_str};//ipcRenderer.sendSync('io_setfile', {name: name, contents: btoa_str});
     }
 
+    postData(data,fcn){
+        if (DEBUG_DATABASE)  debugLog('postData', data);
+        axios({
+            url: `https://service-b0at6gwz-1251016959.ap-shanghai.apigateway.myqcloud.com/release/cosUpload`,
+            method: "POST",
+            data
+        }).then(response => {
+            if (response.status === 304 || (response.status >= 200 && response.status < 300)) {
+                if (typeof (fcn) !== 'undefined') {
+                    fcn(response.data);
+                }
+            } else {
+                console.log('postData: error, errCode:', response.status);
+            }
+            if (DEBUG_DATABASE)  debugLog('postData response', response);
+        });
+    }
 
-
+    getData(filename,fcn){
+        if (DEBUG_DATABASE)  debugLog('getData', filename);
+        axios({
+            url: filename,
+            baseURL: 'https://scratchjr-1251016959.cos.ap-chengdu.myqcloud.com/'
+        }).then(response => {
+            if (response.status === 304 || (response.status >= 200 && response.status < 300)) {
+                if (typeof (fcn) !== 'undefined') {
+                    fcn(response.data);
+                }
+            } else {
+                console.log('getData: error, errCode:', response.status);
+            }
+            if (DEBUG_DATABASE)  debugLog('getData response', response);
+        });
+    }
 
     getAudioCaptureElement() {
         if (!this.audioCaptureElement) {
@@ -386,7 +488,6 @@ class ElectronDesktopInterface {
 
 
 } // class ElectronDesktopInterface
-
 
 /* =========================
     wrappers around 'getUserMedia'
@@ -924,6 +1025,10 @@ class CameraPickerDialog {
 
 
 window.tablet = new ElectronDesktopInterface();
+
+// let prd = {"name":"1549266663634","version":"1","mtime":"1549266663634","isgift":"0","deleted":"NO","json":{"pages":["page 1"],"currentPage":"page 1","page 1":{"textstartat":36,"sprites":["星星 1"],"num":1,"lastSprite":"星星 1","星星 1":{"shown":true,"type":"sprite","md5":"Star.svg","id":"星星 1","flip":false,"name":"星星","angle":0,"scale":0.5,"speed":2,"defaultScale":0.5,"sounds":["pop.mp3"],"xcoor":416.49272571910507,"ycoor":240.74711192737928,"cx":40,"cy":50,"w":80,"h":101,"homex":416.49272571910507,"homey":240.74711192737928,"homescale":0.5,"homeshown":true,"homeflip":false,"scripts":[]},"layers":["星星 1"]}},"thumbnail":{"pagecount":1,"md5":"1_db4265c85b71d98623c9aa602d3b63da.png"}};
+// let data = {name: 'test', ext: '.json', file: (prd)}
+// window.tablet.postData(data);
 
 function loadSettings (settingsRoot, whenDone) {
     IO.requestFromServer(settingsRoot + 'settings.json', (result) => {
