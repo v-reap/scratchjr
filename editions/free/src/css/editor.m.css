@@ -196,6 +196,7 @@ div.frame {
     left: 0;
     right: 0;
     /* height: ${64 * scaleMultiplier}px; */
+    background-color: beige;
     margin: ${css_vh(0)};
     padding: ${css_vh(0)};
     z-index: 10;
