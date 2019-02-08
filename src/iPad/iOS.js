@@ -109,7 +109,7 @@ export default class iOS {
         if (obj.thumbnail) {
             file['thumbnail'] = (obj.thumbnail);
         }
-        return {name: name, ext: 'json', file: file};
+        return {name: name, ext: '.json', file: file};
     }
 
     static saveProject(obj, fcn){

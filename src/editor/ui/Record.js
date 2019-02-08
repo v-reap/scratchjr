@@ -3,7 +3,7 @@ import Palette from './Palette';
 import Undo from './Undo';
 import iOS from '../../iPad/iOS';
 import ScratchAudio from '../../utils/ScratchAudio';
-import {frame, gn, newHTML, isTablet, isAndroid, setProps} from '../../utils/lib';
+import {frame, gn, newHTML, isTablet, isAndroid,isWechat, remoteUrl, setProps} from '../../utils/lib';
 
 let interval = null;
 let recordedSound = null;
@@ -314,7 +314,9 @@ export default class Record {
             Record.tearDownRecorder();
             Palette.selectCategory(3);
         }
-        if (!isAndroid) {
+        if (remoteUrl) {
+            ScratchAudio.loadFromLocal(remoteUrl, recordedSound, whenDone);
+        } else if (!isAndroid && !isWechat) {
             ScratchAudio.loadFromLocal('Documents', recordedSound, whenDone);
         } else {
             // On Android, just pass URL

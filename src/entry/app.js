@@ -180,14 +180,28 @@ class ElectronDesktopInterface {
         if (DEBUG_FILEIO)  debugLog('io_getAudioData', dir, audioName);
 
         // try fishing out of the app directory first - samples/pig.wav
-        // let dataStr = false;
-        // axios({
-        //         url: `sounds/${audioName}`,
-        //         method: "get"
-        //     }).then(response => {
-        //         dataStr = (response.status===200)
-        //         console.log(dataStr);
-        // });
+        let dataStr = false;
+        axios({
+                url: dir+audioName,
+                method: "get"
+            }).then(response => {
+                if (response.status===200){
+                    dataStr = response.data;
+                    if (dir == 'sounds/') {
+                        this.loadSoundFromDataURI(audioName, dir+audioName);
+                    } else {
+                        this.loadSoundFromDataURI(audioName, dataStr);
+                    }
+                    // this.currentAudio[audioName] = dataStr;
+                    
+                    // if (!this.currentAudio[audioName]) {
+                    //     let dataUri = audioName;//ipcRenderer.sendSync('io_getAudioData', name);
+                    //     this.loadSoundFromDataURI(audioName, '/sounds/' + dataUri);
+            
+                    // }
+                }
+                if (DEBUG_FILEIO)  debugLog('~~io_registersound', response);
+        });
         
         // if (!dataStr) { // if not pull from the scratch document folder.
         //     if (DEBUG_FILEIO) debugLog('...trying to look in the PROJECTFILE table', audioName);
@@ -195,18 +209,12 @@ class ElectronDesktopInterface {
         //     dataStr = request({url: `user/sounds/${audioName}`});
         //     if (DEBUG_FILEIO && !dataStr) debugLog('...WARNING: unable to find: ',  audioName);
         // }
-        
-        if (!this.currentAudio[audioName]) {
-            let dataUri = audioName;//ipcRenderer.sendSync('io_getAudioData', name);
-            this.loadSoundFromDataURI(audioName, dataUri);
-
-        }
 
     }
 
     loadSoundFromDataURI(name, dataUri) {
         if (dataUri && name) {
-            let audio = new window.Audio('/sounds/' + dataUri);
+            let audio = new window.Audio(dataUri);
             audio.volume = 0.8;  // don't oversaturate the speakers
             audio.onended = function() {
                 // we need to tell ScratchJR the sound is done
@@ -328,7 +336,7 @@ class ElectronDesktopInterface {
 					}).catch(function(error) {
 					// Automatic playback failed.
 					// Show a UI element to let the user manually start playback.
-					debugLog(error);
+					debugLog('io_playsound', error);
 				  });
             }
         }  catch (e) {

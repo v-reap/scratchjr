@@ -354,7 +354,7 @@ export default class Palette {
             sel.childNodes[1].style.visibility = (sel.index == n) ? 'visible' : 'hidden';
         }
         var pal = gn('palette');
-        gn('blockspalette').style.background = currentSel.bkg;
+        // gn('blockspalette').style.background = currentSel.bkg;
         while (pal.childElementCount > 0) {
             pal.removeChild(pal.childNodes[0]);
         }

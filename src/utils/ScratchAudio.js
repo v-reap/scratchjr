@@ -1,4 +1,4 @@
-import {isAndroid} from './lib';
+import {isAndroid,isWechat,remoteUrl} from './lib';
 import Sound from './Sound';
 import iOS from '../iPad/iOS';
 
@@ -39,7 +39,7 @@ export default class ScratchAudio {
         if (!prefix) {
             prefix = '';
         }
-        if (!isAndroid) {
+        if (!isAndroid && !isWechat) {
             prefix = 'HTML5/';
         }
         uiSounds = {};
@@ -47,7 +47,7 @@ export default class ScratchAudio {
         for (var i = 0; i < defaultSounds.length; i++) {
             ScratchAudio.addSound(prefix + 'sounds/', defaultSounds[i], uiSounds);
         }
-        ScratchAudio.addSound(prefix, 'pop.mp3', projectSounds);
+        ScratchAudio.addSound(prefix + 'sounds/', 'pop.mp3', projectSounds);
     }
 
     static addSound (url, snd, dict, fcn) {
@@ -86,9 +86,13 @@ export default class ScratchAudio {
         var dir = '';
         if (!isAndroid) {
             if (md5.indexOf('/') > -1) dir = 'HTML5/';
-            else if (md5.indexOf('wav') > -1) dir = 'Documents';
+            else if (md5.indexOf('wav') > -1 && !isWechat) dir = 'Documents';
         }
-        ScratchAudio.loadFromLocal(dir, md5, fcn);
+        if (remoteUrl) {
+            ScratchAudio.loadFromLocal(remoteUrl+dir, md5, fcn);
+        } else {
+            ScratchAudio.loadFromLocal(dir, md5, fcn);
+        }
     }
 
     static loadFromLocal (dir, md5, fcn) {

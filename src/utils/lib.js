@@ -11,6 +11,8 @@ export const fullscreenScaleMultiplier = 136;
 
 export const isiOS = (typeof AndroidInterface == 'undefined');
 export const isAndroid = (typeof AndroidInterface != 'undefined');
+export const isWechat = true; //todo: 判断当前系统环境
+export const remoteUrl = 'https://scratchjr-1251016959.cos.ap-chengdu.myqcloud.com/'; //todo: 判断当前系统环境
 
 export function libInit () {
     frame = document.getElementById('frame');
