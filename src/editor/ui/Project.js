@@ -460,7 +460,7 @@ export default class Project {
         }
 
         function savePNG (md5, pngBase64) {
-            var filename = ScratchJr.currentProject + '_' + md5;
+            var filename = ScratchJr.currentProject; // + '_' + md5; //just update. todo: debug iOS
             iOS.setmedianame(pngBase64, filename, 'png', doNext);
         }
 

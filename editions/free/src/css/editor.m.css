@@ -202,7 +202,7 @@ div.frame {
 }
 
 #blockspalette .papercut{
-    position: absolute;
+    /* position: absolute; */
     margin: ${css_vh(0)};
     top: ${64 * scaleMultiplier}px;
     left: ${css_vw(0)};
@@ -242,7 +242,7 @@ div.frame {
     position: relative;
     width: ${708 * scaleMultiplier}px;
     height: ${128 * scaleMultiplier}px;
-    background: #E9ECF0;
+    /* background: #E9ECF0; */
     overflow: hidden;
     zoom: 50%;
 }
@@ -250,7 +250,7 @@ div.frame {
 .catbkg .catimage{
     width: ${708 * scaleMultiplier}px;
     height: ${132 * scaleMultiplier}px;
-    background: url('../assets/categories/categoryimage.svg');
+    /* background: url('../assets/categories/categoryimage.svg'); */
     background-size: 100%;
 }
 
@@ -390,8 +390,8 @@ z-index: 5;
     right: ${css_vw(1)};
     margin: ${css_vh(0.00)};
     padding: ${css_vh(0.00)};
-    width: ${100 * scaleMultiplier};
-    height: ${css_vh(6.51)};
+    width: ${100 * scaleMultiplier}px;
+    height: ${50 * scaleMultiplier}px;
     z-index: 6;
 }
 
@@ -451,7 +451,7 @@ z-index: 5;
 
 .watermark {
     position: absolute;
-    top: ${css_vh(2.60)};
+    top: ${css_vh(10)};
     left: ${css_vw(3.26)};
     width: ${css_vw(18.88)};
     height: ${css_vh(18.88)};
